@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/plantillas/plantillaInicial.xhtml">
+
+            <ui:define name="content">
+
+                <h:form id="contenidoBuscar">
+                    <p:growl id="message" showDetail="true" />
+
+                    <h1 style="color: #045491;text-align: center">Estudios Asignados a Macroscopía</h1>
+
+                    <p:dataTable id="busquedaEstudios" value="#{estudiosParaMacro.ltsEstudioLista}" var="itemEstudio"  widgetVar="estudiosTabla" 
+                                 filteredValue="#{estudiosParaMacro.ltsEstudioFiltrados}" rows="10" paginator="true" 
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+                                 rowsPerPageTemplate="10,15,20"  sortOrder="descending"
+                                 paginatorPosition="top" emptyMessage="No hay ningún registro con esa opción">
+
+                        <p:column headerText="No." style="width: 30px" sortBy="#{itemEstudio.idcrm}" >
+                            <h:outputText value="#{itemEstudio.idcrm}" />
+                        </p:column>
+
+                        <p:column filterBy="#{itemEstudio.idpaciente.numhistclinpaciente}" headerText="No. Historia Clínica" filterMatchMode="contains">
+                            <h:outputText value="#{itemEstudio.idpaciente.numhistclinpaciente}" />
+                        </p:column>
+
+                        <p:column filterBy="#{itemEstudio.idte.nombrete}" headerText="Estudio" filterMatchMode="contains">
+                            <h:outputText value="#{itemEstudio.idte.nombrete}" />
+                        </p:column>
+                        
+                        <p:column filterBy="#{itemEstudio.codigoestudiocrm}" headerText="Código" filterMatchMode="contains">
+                            <h:outputText value="#{itemEstudio.codigoestudiocrm}" />
+                        </p:column>
+                        
+                        <p:column filterBy="#{itemEstudio.fechacreacrm}" headerText="Fecha de Asignación" filterMatchMode="contains">
+                            <h:outputText value="#{itemEstudio.fechacreacrm}">
+                            <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm" timeZone="America/Guayaquil" />
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column id="botonesAccion" headerText="Opciones" filterMatchMode="accion" style="text-align: center">
+                            <p:commandButton id="registrar" icon="fa fa-user-md" action="#{estudiosParaMacro.registrarMacroscopia(itemEstudio.idcrm)}" /> 
+                            <p:tooltip id="toolTipFade2" for="registrar" value="Registrar" position="top"/>
+                        </p:column>
+
+                    </p:dataTable>
+
+                </h:form>
+                
+                <!-- Script de estilos para el contenido fel formulario-->
+                 <h:outputStylesheet library="css" name="buscar.css" />
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

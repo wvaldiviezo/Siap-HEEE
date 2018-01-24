@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+
+        <ui:composition template="./../../WEB-INF/plantillas/plantillaInicial.xhtml">
+
+            <ui:define name="content">
+
+                <h:form id="contenidoBuscar">
+
+                    <h1 style="color: #045491;text-align: center">Búsqueda de Empleados</h1>
+
+                    <p:dataTable id="busquedaEmpleado" value="#{empleadoListar.empleadoLista}" var="itemEstudio"  widgetVar="empleadoTabla" filteredValue="#{empleadoListar.empleadoFiltrado}" rows="15"
+                                 paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="10,15,20"
+                                 paginatorPosition="top" emptyMessage="No hay ningún registro con esa opción">
+
+                        <p:column headerText="No." style="width: 30px" sortBy="#{itemEstudio.idempleado}">
+                            <h:outputLabel value="#{itemEstudio.idempleado}" />
+                        </p:column>
+
+                        <p:column filterBy="#{itemEstudio.nombresempleado}" headerText="Nombres" filterMatchMode="contains" >
+                            <h:outputText value="#{itemEstudio.nombresempleado}" />
+                        </p:column>
+
+                        <p:column filterBy="#{itemEstudio.apellidosempleado}" headerText="Apellidos" filterMatchMode="contains" >
+                            <h:outputText value="#{itemEstudio.apellidosempleado}" />
+                        </p:column>
+
+                        <p:column filterBy="#{itemEstudio.cedulaempleado}" headerText="Cédula" filterMatchMode="contains" >
+                            <h:outputText value="#{itemEstudio.cedulaempleado}" />
+                        </p:column>                        
+
+                        <p:column filterBy="#{itemEstudio.idcargo}" headerText="Cargo" filterMatchMode="exact">
+                            <h:outputText value="#{itemEstudio.idcargo.descripcioncargo}"/>
+                        </p:column>
+
+                        <p:column filterBy="#{itemEstudio.idarea}" headerText="Área" filterMatchMode="contains" >
+                            <h:outputText value="#{itemEstudio.idarea.nombrearea}" />
+                        </p:column>
+
+                        <p:column filterBy="#{itemEstudio.telefonoempleado}" headerText="Teléfono" filterMatchMode="contains">
+                            <h:outputText value="#{itemEstudio.telefonoempleado}" />
+                        </p:column>
+
+                        <p:column id="botonesAccion" headerText="Opciones" filterMatchMode="accion" style="text-align: center">
+                            <p:commandButton id="editar" icon="fa fa-edit" action="#{empleadoListar.actualizarAtributosEmpleado(itemEstudio.idempleado)}"/> 
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+
+                <!-- Script de estilos para el contenido fel formulario-->
+                <h:outputStylesheet library="css" name="buscar.css" />
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

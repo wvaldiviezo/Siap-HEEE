@@ -1,0 +1,455 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <ui:composition template="./../../WEB-INF/plantillas/plantillaInicial.xhtml">
+            <ui:define name="content">               
+
+                <h:form id="contenido">
+
+                    <h1 style="color: #045491;text-align: center">Registro de Estudio Citológico</h1>
+
+                    <h1 style="display:none;" >#{codigoEstudioListar.nombreEstudio='CITOLÓGICOS'}</h1>
+                    <h1 style="display:none;" >#{citologicoCrear.nombreEstudio='CITOLÓGICOS'}</h1>
+
+                    <p:growl id="growl" sticky="true" showDetail="true"/>
+                    <p:outputLabel value="Código del Estudio: " />
+                    <p:outputLabel style="color: #045491" value="#{citologicoCrear.cabecera.codigoestudiocrm=codigoEstudioListar.codigo}"/>
+                    <br/>
+                    <br/>
+
+                    <p:wizard>
+                        <p:tab id="hospital" title="Hospital">
+                            <p:panel header="Datos del hospital">
+                                <h:panelGrid id="datosHospital" columns="2" >
+
+                                    <p:outputLabel for="txtInstSistema" value="Institución del Sistema: " />
+                                    <p:inputText id="txtInstSistema" value="#{citologicoCrear.hospital.instituciondelsistema}" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56" required="false" label="txtInstSistema"/>
+                                    <p:watermark for="txtInstSistema" value="MSP" />
+                                    <p:messages for="txtInstSistema"/>
+
+                                    <p:outputLabel for="txtUniOperat" value="Unidad Operativa: " />
+                                    <p:inputText id="txtUniOperat" value="#{citologicoCrear.hospital.unidadoperativa}" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56" required="false" label="txtUniOperat" />
+                                    <p:watermark for="txtUniOperat" value="HEEE" />
+                                    <p:messages for="txtUniOperat"/>
+
+                                    <p:outputLabel for="txtCodUO" value="Cod. UO: " />
+                                    <p:inputText id="txtCodUO" value="#{citologicoCrear.hospital.codigouo}" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();"  size="56" required="false" label="txtCodUO" />
+                                    <p:watermark for="txtCodUO" value="0001" />
+                                    <p:messages for="txtCodUO"/>
+
+                                    <h:outputLabel value="Provincia: " />
+                                    <p:selectOneMenu id="cboProvincia" value="#{ubicacionListar.provinciaID}" filter="false" filterMatchMode="startsWith" style="width: 500px">
+                                        <f:selectItem itemLabel="- Seleccione -" itemValue="" />
+                                        <f:selectItems value="#{ubicacionListar.provincias}" var="provincias" itemLabel="#{provincias.nombreprovincia}" itemValue="#{provincias.idprovincia}"/>
+                                        <p:ajax update="cboCanton ,cboParroquia"  />
+                                    </p:selectOneMenu>
+                                    <p:watermark for="cboProvincia" value="" />
+                                    <p:messages for="cboProvincia"/>                            
+
+                                    <h:outputLabel value="Cantón: " />
+                                    <p:selectOneMenu id="cboCanton" value="#{ubicacionListar.cantonID}"  filter="true" filterMatchMode="startsWith" required="false" requiredMessage="Seleccione el Cantón" style="width: 500px">
+                                        <f:selectItem itemLabel="- Seleccione -" itemValue="" />
+                                        <f:selectItems value="#{ubicacionListar.cantones}" var="cantones" itemLabel="#{cantones.nombrecanton}" itemValue="#{cantones.idcanton}"/>
+                                        <p:ajax update="cboParroquia"/>
+                                    </p:selectOneMenu>
+                                    <p:watermark for="cboCanton" value="" />
+                                    <p:messages for="cboCanton"/>
+
+                                    <h:outputLabel value="Parroquia: " />
+                                    <p:selectOneMenu id="cboParroquia" value="#{citologicoCrear.parroquiaID}" filter="true" filterMatchMode="startsWith" style="width: 500px" >
+                                        <f:selectItem itemLabel="- Seleccione -" itemValue="" />
+                                        <f:selectItems value="#{ubicacionListar.parroquias}" var="parroquias" itemLabel="#{parroquias.nombreparroquia}" itemValue="#{parroquias.idparroquia}"/>
+                                    </p:selectOneMenu>
+                                    <p:watermark for="cboParroquia" value="" />
+                                    <p:messages for="cboParroquia"/>
+                                </h:panelGrid>
+
+                            </p:panel>
+                        </p:tab>
+
+                        <p:tab id="muestra" title="Muestra">
+                            <p:panel header="Datos de la muestra">
+                                <p:messages />
+                                <h:panelGrid columns="2" id="pgDatosMuestra" columnClasses="label, value">
+
+                                    <h:outputLabel for="txtFechaTomaMuestra" value="Fecha de toma: " />
+                                    <p:calendar id="txtFechaTomaMuestra"  locale="es" pattern="dd-MM-yyyy" navigator="true" mask="true" value="#{citologicoCrear.cabecera.fechatomamuestracrm}" size="56" />
+                                    <p:watermark for="txtFechaTomaMuestra" value="dd-mm-aaaa" />
+                                    <p:messages for="txtFechaTomaMuestra"/>
+
+                                    <h:outputLabel for="txtHoraTomaMuestra" value="Hora de toma: " />
+                                    <p:calendar id="txtHoraTomaMuestra" locale="es" pattern="HH:mm" timeOnly="true" value="#{citologicoCrear.cabecera.horatomamuestracrm}" size="56" />
+                                    <p:watermark for="txtHoraTomaMuestra" value="hh:mm" />
+                                    <p:messages for="txtHoraTomaMuestra"/>
+
+                                    <h:outputLabel for="txtRefrigeración" value="Refrigeración: " />
+                                    <p:spinner id="txtRefrigeración" value="#{citologicoCrear.cabecera.refrigeracionmuestra}" stepFactor="0.25" />
+                                    <p:watermark for="txtRefrigeración" value="°C" />
+                                    <p:messages for="txtRefrigeración"/> 
+
+                                    <h:outputLabel for="txtTempAmbiente" value="Temperatura Ambiente: " />
+                                    <p:spinner id="txtTempAmbiente" value="#{citologicoCrear.cabecera.tempambientemuestra}" stepFactor="0.25" />
+                                    <p:watermark for="txtTempAmbiente" value="°C"/>
+                                    <p:messages for="txtTempAmbiente"/> 
+
+
+
+                                </h:panelGrid>
+                            </p:panel>
+                        </p:tab>
+
+                        <p:tab id="medico" title="Médico">
+                            <p:panel header="Datos del médico solicitante">
+                                <p:messages />
+                                <h:panelGrid columns="3" id="pgDatosMedico" columnClasses="label, value">
+
+                                    <p:outputLabel for="txtNombresMS" value="Nombres: " />
+                                    <p:inputText id="txtNombresMS" value="#{citologicoCrear.doctor.nombresdoctor}" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56" />
+                                    <p:messages for="txtNombresMS"/>
+
+                                    <p:outputLabel for="txtApellidosMS" value="Apellidos: " />
+                                    <p:inputText id="txtApellidosMS" value="#{citologicoCrear.doctor.apellidosdoctor}" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56" />
+                                    <p:messages for="txtApellidosMS"/>
+
+                                    <p:outputLabel for="txtEmail" value="Correo electrónico: " />
+                                    <p:inputText id="txtEmail" value="#{citologicoCrear.doctor.emaildoctor}" size="56" />
+                                    <p:messages for="txtEmail"/>
+
+                                    <p:outputLabel for="txtTel" value="Teléfono: " />
+                                    <p:inputText id="txtTel" value="#{citologicoCrear.doctor.telefonodoctor}" size="56"/>
+                                    <p:messages for="txtTel"/>
+                                </h:panelGrid>
+                            </p:panel>
+                        </p:tab>
+
+                        <p:tab id="paciente" title="Paciente">
+                            <p:panel header="Datos del paciente">
+                                <p:messages />
+                                <h:panelGrid columns="3" id="pgTipoEstudio" columnClasses="label, value">
+                                    <p:selectOneRadio id="rdbTipoEstudio" value="#{citologicoCrear.cabecera.tiposervicio}" required="false" label="Tipo de servicio">
+                                        <f:selectItem itemValue="Consulta Externa" itemLabel="Consulta Externa" />
+                                        <f:selectItem itemValue="Hospitalización" itemLabel="Hospitalización" />
+                                        <f:selectItem itemValue="Otros" itemLabel="Otros" />
+                                        <p:ajax  update="txtOtros" />
+                                    </p:selectOneRadio>
+                                    <p:inputText id="txtOtros" value="#{citologicoCrear.cabecera.descriptiposerviciocrm}" disabled="#{(citologicoCrear.cabecera.tiposervicio == 'Consulta Externa') || (citologicoCrear.cabecera.tiposervicio == 'Hospitalización')}" size="31" />
+                                    <p:messages for="rdbTipoEstudio"/>
+                                </h:panelGrid>
+
+                                <h:panelGrid columns="3" id="pgDatosPaciente" columnClasses="label, value">
+
+                                    <h:outputLabel for="txtNumHCl" value="No. Historia: " />
+                                    <p:inputText id="txtNumHCl" value="#{citologicoCrear.paciente.numhistclinpaciente}" size="56" />
+                                    <p:messages for="txtNumHCl"/>
+
+                                    <h:outputLabel for="txtServicio" value="Servicio: " />
+                                    <p:inputText id="txtServicio" value="#{citologicoCrear.cabecera.serviciocrm}" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56" />
+                                    <p:messages for="txtServicio"/>                            
+
+                                    <h:outputLabel for="txtSala" value="Sala: " />
+                                    <p:inputText id="txtSala" value="#{citologicoCrear.cabecera.salacrm}" size="56" />
+                                    <p:messages for="txtSala"/>                           
+
+                                    <h:outputLabel for="txtCama" value="Cama: " />
+                                    <p:inputText id="txtCama" value="#{citologicoCrear.cabecera.camacrm}" size="56" />
+                                    <p:messages for="txtCama"/>
+
+                                    <h:outputLabel for="txtApellidos" value="Apellidos: " />
+                                    <p:inputText id="txtApellidos" value="#{citologicoCrear.paciente.apellidopaciente}" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56"  />
+                                    <p:messages for="txtApellidos"/>
+
+                                    <h:outputLabel for="txtNombres" value="Nombres: " />
+                                    <p:inputText id="txtNombres" value="#{citologicoCrear.paciente.nombrepaciente}" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56"/>
+                                    <p:messages for="txtNombres"/>
+
+                                    <h:outputLabel for="txtCI" value="Cédula: " />
+                                    <p:inputText id="txtCI" value="#{citologicoCrear.paciente.ceduidenpaciente}" size="56" />
+                                    <p:messages for="txtCI"/>
+
+                                    <h:outputLabel for="txtEdad" value="Edad: " />
+                                    <p:inputText id="txtEdad" value="#{citologicoCrear.paciente.edadpaciente}" size="56" />
+                                    <p:messages for="txtEdad"/>
+
+                                    <h:outputLabel for="rdbGenero" value="Género: " />
+                                    <p:selectOneRadio id="rdbGenero" value="#{citologicoCrear.paciente.generopaciente}" required="false" label="Género">
+                                        <f:selectItem itemValue="M" itemLabel="Masculino" />
+                                        <f:selectItem itemValue="F" itemLabel="Femenino" />
+                                    </p:selectOneRadio>
+                                    <p:messages for="rdbGenero"/>
+
+                                    <h:outputLabel for="txtTratamiento" value="Tratamiento que recibe: " />
+                                    <p:inputTextarea id="txtTratamiento" value="#{citologicoCrear.cabecera.tratamientopacientecrm}" rows="3" cols="56"    queryDelay="750" minQueryLength="4" />
+                                    <p:messages for="txtTratamiento"/>
+
+                                </h:panelGrid>
+                            </p:panel>
+                        </p:tab>
+
+                        <p:tab id="registros" title="Registros">
+                            <p:panel header="Registro de diagnóstico presuntivo, resumen clínico, información de la muestra" >
+                                <p:messages />
+                                <h:panelGrid id="pgDiagPresuntivo" columnClasses="label, value">
+                                    <h:outputLabel for="txtDiagPresuntivo" value="Diagnostico Presuntivo: " />
+                                    <p:inputTextarea id="txtDiagPresuntivo" value="#{citologicoCrear.cabecera.diagnosticopresunticocrm}" rows="2" cols="73"    queryDelay="750" minQueryLength="4" />
+                                    <p:messages for="txtDiagPresuntivo"/>
+                                </h:panelGrid>
+
+                                <h:panelGrid id="pgResumenCl" columnClasses="label, value">
+                                    <h:outputLabel for="txtResumenCl" value="Resumen clínico: " />
+                                    <p:inputTextarea id="txtResumenCl" value="#{citologicoCrear.cabecera.resumenclinicocrm}" rows="2" cols="73"    queryDelay="750" minQueryLength="4" />
+                                    <p:messages for="txtResumenCl"/>
+                                </h:panelGrid>
+
+                                <h:panelGrid id="pgMuestra" columnClasses="label, value">
+                                    <h:outputLabel for="txtResumenCl" value=" Muestra o pieza (Describir el procedimiento, origen, número y zona):" />
+                                    <p:inputTextarea id="txtMuestra" value="#{citologicoCrear.cabecera.muestrapiezacrm}" rows="2" cols="73"    queryDelay="750" minQueryLength="4" />
+                                    <p:messages for="txtMuestra"/>
+                                </h:panelGrid>
+                            </p:panel>
+                        </p:tab>
+
+                        <p:tab id="citologico" title="Citológico">
+                            <p:panel header="Registro datos estudio citológicos" >
+
+                                <h:panelGrid id="prioridad" columns="2" columnClasses="label, value">
+                                    <h:outputLabel for="rdbPrioridad" value="Prioridad: " />
+                                    <p:selectOneRadio id="rdbPrioridad" value="#{citologicoCrear.cabecera.prioridad}" rendered="true" label="Prioridad" >
+                                        <f:selectItem itemValue="Urgente" itemLabel="Urgente" />
+                                        <f:selectItem itemValue="Rutina" itemLabel="Rutina" />
+                                        <f:selectItem itemValue="Control" itemLabel="Control" />
+                                    </p:selectOneRadio>
+                                    <p:messages for="rdbPrioridad"/>
+                                </h:panelGrid>
+                                <br/>
+
+                                <h:panelGrid id="pgOrganos">
+                                    <p:accordionPanel>
+                                        <p:tab title="Cérvico Vaginales">
+                                            <h:panelGrid columns="2" >
+
+                                                <h:panelGrid columns="1">
+                                                    <h3>Material:</h3>
+                                                    <p:selectManyCheckbox id="gridMaterial" value="#{citologicoCrear.marcadorSubcategoriaMaterial}" layout="grid" columns="1">
+                                                        <f:selectItems value="#{citologicoListar.listarSubcategoria('1')}" var="subcategoriaMaterial" itemLabel="#{subcategoriaMaterial.nombresubcategoria}" itemValue="#{subcategoriaMaterial.idsubcategoria}" />
+                                                    </p:selectManyCheckbox>  
+                                                    <p:inputTextarea id="txtOtroMaterial" value="#{citologicoCrear.otroMaterial}" rows="1" cols="30"/>
+                                                </h:panelGrid>
+
+                                                <h:panelGrid columns="1">
+                                                    <h3>Anticoncepción:</h3>
+                                                    <p:selectManyCheckbox id="gridAnticoncepcion" value="#{citologicoCrear.marcadorSubcategoriaAnticoncepcion}" layout="grid" columns="1">
+                                                        <f:selectItems value="#{citologicoListar.listarSubcategoria('4')}" var="subcategoriaAnticoncepcion" itemLabel="#{subcategoriaAnticoncepcion.nombresubcategoria}" itemValue="#{subcategoriaAnticoncepcion.idsubcategoria}" />
+                                                    </p:selectManyCheckbox>  
+                                                    <p:inputTextarea id="txtOtroAnticoncepcion" value="#{citologicoCrear.otroAnticoncepcion}" rows="1" cols="30"/>
+                                                </h:panelGrid>
+
+
+                                                <h:panelGrid columns="1">
+                                                    <h3>Edades de:</h3>
+                                                    <p:selectManyCheckbox id="gridEdades" value="#{citologicoCrear.marcadorSubcategoriaEdades}" layout="grid" columns="1">
+                                                        <f:selectItems value="#{citologicoListar.listarSubcategoria('2')}" var="subcategoriaEdades" itemLabel="#{subcategoriaEdades.nombresubcategoria}" itemValue="#{subcategoriaEdades.idsubcategoria}" />
+                                                    </p:selectManyCheckbox>  
+                                                </h:panelGrid>
+
+                                                <h:panelGrid columns="1">
+                                                    <br></br>
+                                                    <br></br>
+                                                    <br></br>
+                                                    <p:spinner id="txtOtroEdadMenarquia" value="#{citologicoCrear.edadMenarquia}" min="5" stepFactor="5" />
+                                                    <p:watermark for="txtOtroEdadMenarquia" value="Edad menarquia" />
+                                                    <p:spinner id="txtOtroEdadMenopausia" value="#{citologicoCrear.edadMenopausia}" min="5" stepFactor="5" />
+                                                    <p:watermark for="txtOtroEdadMenopausia" value="Edad menopausia" />
+                                                    <p:spinner id="txtOtroEdadInicioRelacionesSexuales" value="#{citologicoCrear.edadInicioRelaciones}" min="5"  stepFactor="5" />
+                                                    <p:watermark for="txtOtroEdadInicioRelacionesSexuales" value="Edad relaciones sexuales" />
+                                                </h:panelGrid>
+
+                                                <h:panelGrid columns="1">
+                                                    <h3>Fechas:</h3>
+                                                    <p:selectManyCheckbox id="gridFechas" value="#{citologicoCrear.marcadorSubcategoriaFechas}" layout="grid" columns="1">
+                                                        <f:selectItems value="#{citologicoListar.listarSubcategoria('6')}" var="subcategoriaFechas" itemLabel="#{subcategoriaFechas.nombresubcategoria}" itemValue="#{subcategoriaFechas.idsubcategoria}" />
+                                                    </p:selectManyCheckbox>
+                                                </h:panelGrid>
+
+                                                <h:panelGrid columns="1">
+                                                    <br></br>
+                                                    <br></br>
+                                                    <br></br>
+                                                    
+                                                    <p:calendar id="txtFechaUltimaMenstruacion" value="#{citologicoCrear.ultimaMenstruacion}" locale="es" pattern="dd-MM-yyyy" navigator="true" mask="true" >
+                                                        <f:convertDateTime pattern="dd-MM-yyyy"></f:convertDateTime>
+                                                    </p:calendar>
+                                                    <p:watermark for="txtFechaUltimaMenstruacion" value="dd-mm-aaaa" />
+                                                    <p:calendar id="txtFechaUltimoParto"  value="#{citologicoCrear.ultimoParto}" locale="es" pattern="dd-MM-yyyy" navigator="true" mask="true" />
+                                                    <p:watermark for="txtFechaUltimoParto" value="dd-mm-aaaa" />
+                                                    <p:calendar id="txtFechaUltimaCitologia" value="#{citologicoCrear.ultimaCitologia}" locale="es" pattern="dd-MM-yyyy" navigator="true" mask="true" />
+                                                    <p:watermark for="txtFechaUltimaCitologia" value="dd-mm-aaaa" /> 
+                                                </h:panelGrid>
+
+                                                <h:panelGrid columns="1">
+                                                    <h3>Paridad:</h3>
+                                                    <p:selectManyCheckbox id="gridParidad" value="#{citologicoCrear.marcadorSubcategoriaParidad}" layout="grid" columns="1">
+                                                        <f:selectItems value="#{citologicoListar.listarSubcategoria('3')}" var="subcategoriaParidad" itemLabel="#{subcategoriaParidad.nombresubcategoria}" itemValue="#{subcategoriaParidad.idsubcategoria}" />
+                                                    </p:selectManyCheckbox>
+                                                </h:panelGrid>
+
+                                                <h:panelGrid columns="1">
+                                                    <br></br>
+                                                    <br></br>
+                                                    <br></br>
+                                                    <p:spinner id="txtGestaciones" value="#{citologicoCrear.numeroGestaciones}" min="1" stepFactor="1" />
+                                                    <p:watermark for="txtGestaciones" value="Número de gestaciones" />
+                                                    <p:spinner id="txtPartos"  value="#{citologicoCrear.numeroPartos}" min="1" stepFactor="1" />
+                                                    <p:watermark for="txtPartos" value="Número de partos" />
+                                                    <p:spinner id="txtAbortos" value="#{citologicoCrear.numeroAbortos}" min="1"  stepFactor="1" />
+                                                    <p:watermark for="txtAbortos" value="Número de abortos" />
+                                                    <p:spinner id="txtCesareas" value="#{citologicoCrear.numeroCesareas}" min="1"  stepFactor="1" />
+                                                    <p:watermark for="txtCesareas" value="Número de cesáreas" />
+                                                </h:panelGrid>
+
+                                            </h:panelGrid>
+                                        </p:tab>
+
+                                        <p:tab title="Citológico Especial">
+                                            <h:panelGrid columns="2" cellpadding="10">
+
+                                                <h:panelGrid columns="1">
+                                                    <h3>Líquidos:</h3>
+                                                    <p:selectManyCheckbox id="gridLiquidos" value="#{citologicoCrear.marcadorSubcategoriaLiquidos}" layout="grid" columns="1">
+                                                        <f:selectItems value="#{citologicoListar.listarSubcategoria('7')}" var="subcategoriaLiquidos" itemLabel="#{subcategoriaLiquidos.nombresubcategoria}" itemValue="#{subcategoriaLiquidos.idsubcategoria}" />
+                                                    </p:selectManyCheckbox>  
+                                                    <p:inputTextarea id="txtOtroLiquidos" value="#{citologicoCrear.otroLiquidos}" rows="1" cols="30"/>
+                                                </h:panelGrid>
+
+                                                <h:panelGrid columns="1">
+                                                    <h3>Lavado:</h3>
+                                                    <p:selectManyCheckbox id="gridLavado" value="#{citologicoCrear.marcadorSubcategoriaLavado}" layout="grid" columns="1">
+                                                        <f:selectItems value="#{citologicoListar.listarSubcategoria('8')}" var="subcategoriaLavado" itemLabel="#{subcategoriaLavado.nombresubcategoria}" itemValue="#{subcategoriaLavado.idsubcategoria}" />
+                                                    </p:selectManyCheckbox>
+                                                    <br></br>
+                                                    <br></br>
+                                                    <br></br>
+                                                    <br></br>
+                                                    <br></br>
+                                                    <br></br>
+                                                    <br></br>
+                                                    <br></br>
+                                                    <br></br>
+                                                </h:panelGrid>
+
+                                                <h:panelGrid columns="1">
+                                                    <h3>Cepillado:</h3>
+                                                    <p:selectManyCheckbox id="gridCepillado" value="#{citologicoCrear.marcadorSubcategoriaCepillado}" layout="grid" columns="1">
+                                                        <f:selectItems value="#{citologicoListar.listarSubcategoria('9')}" var="subcategoriaCepillado" itemLabel="#{subcategoriaCepillado.nombresubcategoria}" itemValue="#{subcategoriaCepillado.idsubcategoria}" />
+                                                    </p:selectManyCheckbox>  
+                                                </h:panelGrid>
+
+                                                <h:panelGrid columns="1">
+                                                    <h3>PAAF:</h3>
+                                                    <p:selectManyCheckbox id="gridPAAF" value="#{citologicoCrear.marcadorSubcategoriaPaaf}" layout="grid" columns="1">
+                                                        <f:selectItems value="#{citologicoListar.listarSubcategoria('10')}" var="subcategoriaPaaf" itemLabel="#{subcategoriaPaaf.nombresubcategoria}" itemValue="#{subcategoriaPaaf.idsubcategoria}" />
+                                                    </p:selectManyCheckbox>  
+                                                    <p:inputTextarea id="txtOtroPAAF" value="#{citologicoCrear.paaf}" rows="1" cols="30"/>
+                                                </h:panelGrid>
+                                            </h:panelGrid>
+                                        </p:tab>
+
+
+<!--                                        <p:tab title="Tamizage de HPV">
+                                            <h:panelGrid columns="2" cellpadding="10" id="descripcionCitologico">
+                                                <h:panelGrid >
+                                                    <p:row>
+                                                        <p style="font-style: oblique">Diagnostico Citologico:</p>
+                                                    </p:row>
+                                                    <p:row>
+                                                        <p:inputTextarea id="txtCitologico"  rows="2" cols="67"  queryDelay="750" minQueryLength="4" />
+                                                        <p:messages for="txtCitologico"/>
+                                                    </p:row>
+                                                </h:panelGrid>
+                                            </h:panelGrid>
+                                        </p:tab>-->
+
+
+                                    </p:accordionPanel>
+                                </h:panelGrid>
+                                <h:panelGrid id="descripcion" columns="1" columnClasses="label, value">
+                                    <h:outputLabel for="txtDescripcion" value="Descripción: " /> 
+                                    <p:inputTextarea id="txtDescripcion" value="#{citologicoCrear.estudioCitologico.descripcioncitologicocec}" rows="2" cols="73"    queryDelay="750" minQueryLength="4"  />
+                                    <p:messages for="txtDescripcion"/>
+
+                                </h:panelGrid>
+
+
+
+
+
+
+                            </p:panel>
+                        </p:tab>
+                        <p:tab id="estadoEstudio" title="Estado">
+                            <p:panel header="Estado del Estudio">
+
+
+                                <h:panelGrid columns="3" id="pgEstado" columnClasses="label, value" >
+
+                                    <h:outputLabel for="rdbEstudio" value="Estudio: " />
+<<<<<<< HEAD
+                                    <p:selectOneRadio id="rdbEstudio" value="#{citologicoCrear.cabecera.estadoestudiocrm}" required="true" label="Estado de estudio">
+                                        <f:selectItem itemValue="Aceptado" itemLabel="Aceptado" />
+=======
+                                    <p:selectOneRadio id="rdbConsulta" value="#{citologicoCrear.cabecera.estadoestudiocrm}" required="true" label="Estado de estudio">
+                                        <f:selectItem itemValue="Macroscopia" itemLabel="Aceptado" />
+>>>>>>> wil
+                                        <f:selectItem itemValue="Rechazado" itemLabel="Rechazado" />
+                                        <p:ajax  update="txtRechazo" />
+                                    </p:selectOneRadio>
+                                    <p:messages for="rdbEstudio"/>
+
+
+                                    <h:outputLabel for="txtRechazo" value="Motivo rechazo: " />
+                                    <p:inputTextarea id="txtRechazo" value="#{citologicoCrear.cabecera.razonrechazocrm}" disabled="#{citologicoCrear.cabecera.estadoestudiocrm == 'Aceptado'}" rows="3" cols="51" queryDelay="750" minQueryLength="4" />
+                                    <p:messages for="rdbRechazo"/>
+                                </h:panelGrid> 
+
+
+                                <br/>
+                                <p:commandButton icon="fa fa-save" value="Guardar" action="#{citologicoCrear.registrarCitologico()}" actionListener="#{navegar.direccionarInicio()}"  >
+                                    <p:confirm  header="Confirmación" message="Desea registrar el estudio" icon="ui-icon-alert"/>
+                                </p:commandButton>
+
+                                <p:commandButton  icon="fa fa-fw fa-remove" value="Cancelar" update="contenido" process="@this"  actionListener="#{navegar.direccionarInicio()}" >
+                                    <p:confirm header="Confirmación" message="Desea cancelar el estudio" icon="ui-icon-alert" />
+                                </p:commandButton>
+
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                    <p:commandButton value="Si"  type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
+                            </p:panel>
+                        </p:tab>
+                    </p:wizard>
+
+
+                </h:form>
+
+
+
+
+
+                <!-- Script para usar el calendario en español-->
+                <h:outputScript library="js" name="spanishLocale.js" />
+                <h:outputScript library="js" name="limpiar.js" />
+                <!-- Script de estilos para el contenido fel formulario-->
+                <h:outputStylesheet library="css" name="estudios.css" />
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

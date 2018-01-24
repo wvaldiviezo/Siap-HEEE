@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <link rel="icon" href="./../resources/images/microscopio.ico"/>
+        <link rel="icon" href="./../.../resources/images/microscopio.ico"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Contenido Menú</title>
+        
+        <!-- El siguiente evento muestra si la variable esta o no activa, se ejecuta antes de que la página sea visualizada -->
+        <f:event type="preRenderView" listener="#{plantillaController.verificarSesion()}" />
+        <h:outputStylesheet library="css" name="plantillaInicial.css" />
+
+    </h:head>
+
+    <h:body>
+
+        <div id="top">
+            <h:graphicImage value="/resources/images/banner.png" style="background-size: 50%;"></h:graphicImage>
+            <ui:insert name="top">
+                <h:form>
+                        <p:menubar model="#{menuController.model}">
+                        <f:facet name="options">
+                            <h:graphicImage value="/resources/images/medicina.png" ></h:graphicImage>
+                            Bienvenido(a): #{menuController.mostrarUsuarioLogueado()}
+                            <p:commandButton id="salir" actionListener="#{menuController.cerrarSesion()}" icon="fa fa-home" action="/index?faces-redirect=true" />
+                            <p:tooltip id="toolTipFade3" for="salir" value="Salir del Sistema" trackMouse="true"/>
+                        </f:facet>
+                    </p:menubar>
+                </h:form>
+            </ui:insert>
+        </div>
+        
+        <div id="content" class="center_content" >
+            <ui:insert name="content"></ui:insert>
+            
+        </div>
+        
+      
+
+
+<p id="bottom">
+    <br/><br/> Sistema de Información del Laboratorio de Anatomía Patológica &copy; 2017. <br/>Proyecto colaborativo entre la Escuela Politecnica Nacional y el Hospital de Especialidades Eugenio Espejo.
+</p>    
+
+    </h:body>
+    
+    
+
+</html>

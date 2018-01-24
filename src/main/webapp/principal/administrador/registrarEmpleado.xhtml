@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/plantillas/plantillaInicial.xhtml">
+
+            <ui:define name="content">
+
+                <h:form id="contenido">
+
+                    <h1 style="color: #045491;text-align: center">Registro de Empleado</h1>
+
+                    <p:growl id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true"/>
+
+                    <p:fieldset  legend="Datos Personales" style="width:80%" id="pg" >
+                        <h:panelGrid columns="1" id="pgDatosPersonales" >
+
+                            <p:outputLabel for="txtCedIden" value="Cédula de Identidad: " />
+                            <p:inputText id="txtCedIden" value="#{empleadoCrear.empleado.cedulaempleado}" required="true" requiredMessage="Campo requerido" style="width:700px;margin-left:-4px;"
+                                         title="Número de Cédula. Ej: 1712345678">
+                                <f:validateLength maximum="10"></f:validateLength>
+                            </p:inputText>                          
+                            <p:messages for="txtCedIden"/>
+                            <p:tooltip id="toolTipFade1" for="txtCedIden" value="Ej. 1712345678" position="right"/>
+
+
+                            <p:outputLabel for="txtNombres" value="Nombres: " />
+                            <p:inputText id="txtNombres" value="#{empleadoCrear.empleado.nombresempleado}" required="true" requiredMessage="Campo requerido" style="text-transform:uppercase; width:700px;margin-left:-4px;" onkeyup="javascript:this.value = this.value.toUpperCase();" 
+                                         title="Nombres. Ej: JUAN JOSE" />
+                            <p:messages for="txtNombres"/>
+                            <p:tooltip id="toolTipFade2" for="txtNombres" value="Ej. JUAN JOSE" position="right"/>
+
+                            <p:outputLabel for="txtApellidos" value="Apellidos: " />
+                            <p:inputText id="txtApellidos" value="#{empleadoCrear.empleado.apellidosempleado}" required="true" requiredMessage="Campo requerido" style="text-transform:uppercase; width:700px;margin-left:-4px;" onkeyup="javascript:this.value = this.value.toUpperCase();" 
+                                         title="Apellidos. Ej: JACOME GARCIA"/>
+                            <p:messages for="txtApellidos"/>
+                            <p:tooltip id="toolTipFade3" for="txtApellidos" value="Ej. GARCIA VELEZ" position="right"/>
+
+                            <h:outputLabel for="rdbGenero" value="Género: " />
+                            <p:selectOneRadio id="rdbGenero" value="#{empleadoCrear.empleado.sexo}" required="true" requiredMessage="Selección requerida">
+                                <f:selectItem itemValue="M" itemLabel="Masculino" />
+                                <f:selectItem itemValue="F" itemLabel="Femenino" />
+                            </p:selectOneRadio>
+                            <p:messages for="rdbGenero"/>
+                            <p:tooltip id="toolTipFade4" for="rdbGenero" value="Seleccione el Género" position="right"/>
+
+                            <h:outputLabel for="txtFechaNac" value="Fecha de Nacimiento: " />
+                            <p:calendar id="txtFechaNac" locale="es" pattern="dd-MM-yyyy" navigator="true"
+                                        mask="true" required="true" value="#{empleadoCrear.empleado.fechanacimientoempleado}" requiredMessage="Campo requerido" style="width:700px;margin-left:-4px;"/>
+                            <p:messages for="txtFechaNac"/>
+                            <p:tooltip id="toolTipFade5" for="txtFechaNac" value="Ej. dd-mm-aaaa" position="right"/>
+
+                            <p:outputLabel for="txtDireccion" value="Dirección: " />
+                            <p:inputText id="txtDireccion" value="#{empleadoCrear.empleado.direccionempleado}" required="true" requiredMessage="Campo requerido" style="text-transform:uppercase; width:700px;margin-left:-4px;" onkeyup="javascript:this.value = this.value.toUpperCase();"/>
+                            <p:messages for="txtDireccion"/>
+                            <p:tooltip id="toolTipFade6" for="txtDireccion" value="Ej. AV. 12 DE OCTUBRE" position="right"/>
+
+                            <p:outputLabel for="txtTelefono" value="Teléfono: " />
+                            <p:inputText id="txtTelefono" value="#{empleadoCrear.empleado.telefonoempleado}" required="true" requiredMessage="Campo requerido" style="text-transform:uppercase; width:700px;margin-left:-4px;" onkeyup="javascript:this.value = this.value.toUpperCase();"/>
+<!--                            <p:inputMask id="txtTelefono" value="#{empleadoCrear.empleado.telefonoempleado}" required="true" requiredMessage="El campo Teléfono es requerido" style="width: 98%;" mask="(99) 999-9999? x9999"/>
+                            -->                            <p:messages for="txtTelefono"/>   
+                            <p:tooltip id="toolTipFade7" for="txtTelefono" value="Ej. (02)212-3456x0001" position="right"/>
+
+                            <p:outputLabel for="txtCorreo" value="Correo Electrónico: " />
+                            <p:inputText id="txtCorreo" value="#{empleadoCrear.empleado.emailempleado}" required="true" requiredMessage="El campo Correo Electrónico es requerido" style="text-transform:uppercase; width:700px;margin-left:-4px;" onkeyup="javascript:this.value = this.value.toUpperCase();"/>
+                            <p:messages for="txtCorreo"/>
+                            <p:tooltip id="toolTipFade11" for="txtCorreo" value="correo@heee.gob.ec" position="right"/>                            
+
+                            <h:outputLabel value="Cargo: " />
+                            <p:selectOneMenu id="cboCargo" value="#{empleadoCrear.cargoID}" filter="true" filterMatchMode="startsWith" style="width:680px;margin-left:-4px;" required="true" requiredMessage="Selección requerida">
+                                <f:selectItem itemLabel="- SELECCIONE -" itemValue="" />
+                                <f:selectItems value="#{empleadoListar.cargos}" var="cargos" itemLabel="#{cargos.descripcioncargo}" itemValue="#{cargos.idcargo}"/>
+                            </p:selectOneMenu>
+                            <p:messages for="cboCargo"/>
+                            <p:tooltip id="toolTipFade8" for="cboCargo" value="Cargo que desempeñará el Empleado" position="right"/>
+
+                            <h:outputLabel value="Especialidad: " />
+                            <p:selectOneMenu id="cboEspecialidad" value="#{empleadoCrear.especialidadID}" filter="true" filterMatchMode="startsWith" style="width:680px;margin-left:-4px;;" required="true" requiredMessage="Selección requerida">
+                                <f:selectItem itemLabel="- SELECCIONE -" itemValue="" />
+                                <f:selectItems value="#{empleadoListar.especialidades}" var="especialidades" itemLabel="#{especialidades.descripcionespecialidad}" itemValue="#{especialidades.idespecialidad}" />
+                            </p:selectOneMenu>
+                            <p:messages for="cboEspecialidad"/>
+                            <p:tooltip id="toolTipFade9" for="cboEspecialidad" value="Especialidad profesional del Empleado" position="right"/>
+
+                            <h:outputLabel value="Área: " />
+                            <p:selectOneMenu id="cboArea" value="#{empleadoCrear.areaID}" filter="true" filterMatchMode="startsWith" style="width:680px;margin-left:-4px;" required="true" requiredMessage="Selección requerida">
+                                <f:selectItem itemLabel="- SELECCIONE -" itemValue="" />
+                                <f:selectItems value="#{empleadoListar.areas}" var="areas" itemLabel="#{areas.nombrearea}" itemValue="#{areas.idarea}" />
+                            </p:selectOneMenu>
+                            <p:messages for="cboArea"/>
+                            <p:tooltip id="toolTipFade10" for="cboArea" value="Área del Empleado" position="right"/>
+
+                        </h:panelGrid>
+                    </p:fieldset>
+
+                    <br/>
+
+                    <p:fieldset legend="Datos de la Cuenta" style="width:80%" id="dpUsuario">
+                        <h:panelGrid columns="1" id="pgDatosUsuario" >
+                            <h:outputLabel value="Rol: " />
+                            <p:selectOneMenu id="cboRol" value="#{empleadoCrear.usuario.tipousuario}" filter="true" filterMatchMode="startsWith" style="width:680px;margin-left:-4px;" required="true" requiredMessage="Selección requerida">
+                                <f:selectItem itemLabel="- SELECCIONE -" itemValue="" />" required="true" requiredMessage="Selección requerida">
+                                <f:selectItem itemValue="0" itemLabel="- SELECCIONE -"  />
+                                <f:selectItem itemValue="A" itemLabel="ADMINISTRADOR"  />
+                                <f:selectItem itemValue="S" itemLabel="SECRETARIA"  />
+                                <f:selectItem itemValue="R" itemLabel="RESIDENTE"  />
+                                <f:selectItem itemValue="M" itemLabel="JEFE DE MACROSCOPÍA"  />
+                                <f:selectItem itemValue="L" itemLabel="LICENCIADO DE HISTOTECNOLOGÍA"  />
+                                <f:selectItem itemValue="J" itemLabel="JEFE DE HISTOTECNOLOGÍA" />
+                                <f:selectItem itemValue="P" itemLabel="PATOLOGO" />
+                                <f:selectItem itemValue="D" itemLabel="JEFE DE PATOLOGÍA"  />
+                                <f:selectItem itemValue="B" itemLabel="JEFE DEL AREA PATOLOGÍA"  />
+                            </p:selectOneMenu>
+                            <p:messages for="cboRol"/>
+                            <p:tooltip id="toolTipFade12" for="cboRol" value="Rol del Empleado" position="right"/>
+                            
+                            
+                            <h:outputText value="Usuario: " />
+                            <p:inputText id="txtUsuario" value="#{empleadoCrear.usuario.usuariousuario}" style="width:700px;margin-left:-4px;"/>
+
+                            <h:outputText value="Contraseña: " />
+                            <p:inputText id="txtClave" value="#{empleadoCrear.usuario.claveusuario}" style="width:700px;margin-left:-4px;" />
+
+
+                        </h:panelGrid>
+                    </p:fieldset>
+
+                    <p:toolbar style="width: 83%">
+                        <f:facet name="right">
+                            <p:commandButton icon="ui-icon-disk" id="btnGuardar" value="Guardar" actionListener="#{empleadoCrear.registrarEmpleado()}" oncomplete="limpiar()" update="pgDatosPersonales, pgDatosUsuario" >
+                                <p:confirm header="Confirmación" message="Desea registrar el empleado" icon="ui-icon-alert" />
+                                <!--                                <p:ajax update=":contenido:cboCargo ,:contenido:cboEspecialidad" ></p:ajax>-->
+                            </p:commandButton>
+                            <p:commandButton  icon="fa fa-fw fa-remove" value="Cancelar" update="contenido" process="@this"  actionListener="#{navegar.direccionarInicio()}" >
+                                <p:confirm header="Confirmación" message="Desea cancelar el nuevo empleado" icon="ui-icon-alert" />
+                            </p:commandButton>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            </p:confirmDialog>
+                        </f:facet>
+                    </p:toolbar>
+
+                </h:form>
+                <!-- Scrip para usar el calendario en español-->
+                <h:outputScript library="js" name="spanishLocale.js" />
+                <h:outputScript library="js" name="limpiar.js" />
+                <!-- Script de estilos para el contenido fel formulario-->
+                <h:outputStylesheet library="css" name="estudios.css" />
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

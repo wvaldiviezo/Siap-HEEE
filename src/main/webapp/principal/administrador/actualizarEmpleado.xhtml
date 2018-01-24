@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+
+        <ui:composition template="./../../WEB-INF/plantillas/plantillaInicial.xhtml">
+
+            <ui:define name="content">
+
+                <h:form id="contenido">
+                    <h1 style="color: #045491;text-align: center">Actualizar Información del Empleado</h1>
+                    <p:growl id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true" />
+
+                    <p:panel id="panel">
+                        <p:fieldset  legend="Datos Personales" style="width:80%" id="pgDatosPersonales" >
+                            <h:panelGrid columns="1" cellpadding="3">
+                                <p:outputLabel value="Id:" style="font-weight:bold"/>
+                                <p:inputText value="#{empleadoActualizar.empleado.idempleado}" readonly="#{facesContext.renderResponse}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
+
+                                <p:outputLabel value="Cédula:" style="font-weight:bold"/>
+                                <p:inputText value="#{empleadoActualizar.empleado.cedulaempleado}" readonly="#{facesContext.renderResponse}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
+
+                                <p:outputLabel value="Nombres:" style="font-weight:bold"/>
+                                <p:inputText value="#{empleadoActualizar.empleado.nombresempleado}" readonly="#{facesContext.renderResponse}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
+
+                                <p:outputLabel value="Apellidos:" style="font-weight:bold"/>
+                                <p:inputText value="#{empleadoActualizar.empleado.apellidosempleado}" readonly="#{facesContext.renderResponse}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
+
+                                <p:outputLabel value="Cédula:" style="font-weight:bold"/>
+                                <p:inputText value="#{empleadoActualizar.empleado.cedulaempleado}" readonly="#{facesContext.renderResponse}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
+
+                                <p:outputLabel value="Género:" style="font-weight:bold"/>
+                                <p:selectOneRadio id="rdbGenero" value="#{empleadoActualizar.empleado.sexo}">
+                                    <f:selectItem itemValue="M" itemLabel="Masculino" />
+                                    <f:selectItem itemValue="F" itemLabel="Femenino" />
+                                </p:selectOneRadio>
+
+                                <p:outputLabel value="Fecha de Nacimiento:" style="font-weight:bold;"/>
+                                <p:calendar id="txtFechaNac" locale="es" pattern="dd-MM-yyyy" navigator="true"
+                                            mask="true" required="true" value="#{empleadoActualizar.empleado.fechanacimientoempleado}" style="width:700px;margin-left:-4px;"/>
+
+                                <p:outputLabel value="Dirección:" style="font-weight:bold;"/>
+                                <p:inputText value="#{empleadoActualizar.empleado.direccionempleado}" style="width:700px;margin-left:-4px;"/>
+
+                                <p:outputLabel value="Teléfono:" style="font-weight:bold;"/>
+                                <p:inputText value="#{empleadoActualizar.empleado.telefonoempleado}" style="width:700px;margin-left:-4px;"/>
+
+                                <p:outputLabel value="Correo Electrónico" style="font-weight:bold;"/>
+                                <p:inputText value="#{empleadoActualizar.empleado.emailempleado}" style="width:700px;margin-left:-4px;"/>
+
+
+                            </h:panelGrid>
+                        </p:fieldset>
+
+                        <br/>
+
+                        <p:fieldset  legend="Datos del Empleado" style="width:80%" id="pgDatosEmpleado" >
+                            <h:panelGrid columns="2" cellpadding="3">                              
+                                <p:outputLabel value="Especialidad:" style="font-weight:bold"/> 
+                                <p:selectOneMenu id="cboEspecialidad" value="#{empleadoActualizar.empleado.idespecialidad.idespecialidad}" style="width:680px;margin-left:-4px;">
+                                    <f:selectItems value="#{empleadoActualizar.especialidades}" var="especialidades" itemLabel="#{especialidades.descripcionespecialidad}" itemValue="#{especialidades.idespecialidad}" />
+                                </p:selectOneMenu>
+
+                                <p:outputLabel value="Cargo:" style="font-weight:bold"/>
+                                <p:selectOneMenu id="cboCargo" value="#{empleadoActualizar.empleado.idcargo.idcargo}" style="width:680px;margin-left:-4px;">
+                                    <f:selectItems value="#{empleadoActualizar.cargos}" var="cargos" itemLabel="#{cargos.descripcioncargo}" itemValue="#{cargos.idcargo}" />
+                                </p:selectOneMenu>
+
+
+                                <p:outputLabel value="Área:" style="font-weight:bold"/>
+                                <p:selectOneMenu id="cboArea" value="#{empleadoActualizar.empleado.idarea.idarea}" style="width:680px;margin-left:-4px;">
+                                    <f:selectItems value="#{empleadoActualizar.areas}" var="areas" itemLabel="#{areas.nombrearea}" itemValue="#{areas.idarea}" />
+                                </p:selectOneMenu>
+
+
+
+                            </h:panelGrid>
+                        </p:fieldset>
+
+                    </p:panel>
+
+                    <p:toolbar style="width: 92%">
+                        <f:facet name="right">
+                            <p:commandButton icon="ui-icon-disk" id="btnGuardar" value="Guardar"  action="#{empleadoActualizar.guardar()}" update="panel,mensaje,pgDatosPersonales">
+                                <p:confirm header="Confirmación" message="Desea actualizar la información del empleado !" icon="ui-icon-alert"/>
+                                <!--                                <p:ajax update=":contenido:cboCargo ,:contenido:cboEspecialidad" ></p:ajax>-->
+                            </p:commandButton>
+                            <p:commandButton  icon="fa fa-fw fa-remove" value="Cancelar" action="#{empleadoActualizar.cancelar()}" immediate="true">
+                                <p:confirm header="Confirmación" message="Desea cancelar la edición de la información !" icon="ui-icon-alert" />
+                            </p:commandButton>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            </p:confirmDialog>
+                        </f:facet>
+                    </p:toolbar>
+
+
+                </h:form>
+
+
+
+                <!-- Scrip para usar el calendario en español-->
+                <h:outputScript library="js" name="spanishLocale.js" />
+                <h:outputScript library="js" name="limpiar.js" />
+                <!-- Script de estilos para el contenido fel formulario-->
+                <h:outputStylesheet library="css" name="estudios.css" />
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

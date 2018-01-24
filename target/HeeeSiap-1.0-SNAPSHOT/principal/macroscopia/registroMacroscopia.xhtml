@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/plantillas/plantillaInicial.xhtml">
+
+            <ui:define name="content">
+
+                <h:form id="contenido">
+
+                    <h1 style="color: #045491;text-align: center">Registro de Macroscopía</h1>
+                    <p:growl id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true"/>
+
+                    <h:panelGrid columns="2" cellpadding="3">
+                        <p:outputLabel value="Tipo de Estudio:" style="font-weight:bold"/>
+                        <p:outputLabel value="#{registrarMacroscopia.cabeceraRM.idte.nombrete}" style="color: #045491;"/>
+                        <p:outputLabel value="Código del estudio:" style="font-weight:bold"/>
+                        <p:outputLabel value="#{registrarMacroscopia.cabeceraRM.codigoestudiocrm}" style="color: #045491;"/>
+                    </h:panelGrid>
+
+                    <br/>
+
+                    <p:accordionPanel multiple="true">
+                        <p:tab title="Detalle Informativo del Estudio">
+                            <h:panelGrid columns="1" cellpadding="3">
+                                <p:outputLabel value="Número de Historia Clínica:" style="font-weight:bold"/>
+                                <p:inputText value="#{registrarMacroscopia.cabeceraRM.idpaciente.numhistclinpaciente}" readonly="#{facesContext.renderResponse}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
+
+                                <p:outputLabel value="Fecha de toma de la muestra:" style="font-weight:bold"/>
+                                <p:inputText value="#{registrarMacroscopia.cabeceraRM.fechatomamuestracrm}" readonly="#{facesContext.renderResponse}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;">
+                                    <f:convertDateTime pattern="EEE, d MMM yyyy" timeZone="America/Guayaquil" />
+                                </p:inputText>
+
+                                <p:outputLabel value="Hora de toma de la muestra:" style="font-weight:bold"/>
+                                <p:inputText value="#{registrarMacroscopia.cabeceraRM.horatomamuestracrm}" readonly="#{facesContext.renderResponse}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;">
+                                    <f:convertDateTime pattern="HH:mm:ss" timeZone="America/Mexico_City" />
+                                </p:inputText>
+
+                                <p:outputLabel value="Fecha y Hora de recepción de la muestra:" style="font-weight:bold"/>
+                                <p:inputText value="#{registrarMacroscopia.cabeceraRM.fechacreacrm}" readonly="#{facesContext.renderResponse}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;">
+                                    <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm" timeZone="America/Guayaquil" />
+                                </p:inputText>
+                                
+                                <p:outputLabel value="Prioridad del estudio" style="font-weight:bold"/>
+                                <p:inputText value="#{registrarMacroscopia.cabeceraRM.prioridad}" readonly="#{facesContext.renderResponse}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
+                                
+                            </h:panelGrid>
+                        </p:tab>
+                        <p:tab title="Registro de Macroscopía">
+                            <h:panelGrid columns="1" cellpadding="3" id="pgDetalleMacro">
+                                <p:outputLabel value="Número de casetas " style="font-weight:bold"/>
+                                <p:spinner value="#{registrarMacroscopia.numeroCasetas}" min="0" stepFactor="1" max="99" style="margin-left:-4px; border: 1px solid #A8A8A8;"/>
+
+                            <p:outputLabel value="Detalle de la caseta " style="font-weight:bold"/>
+                            <p:inputText value="#{registrarMacroscopia.detalleCaseta}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
+
+                            <p:outputLabel value="Descripción de la Macroscopía " style="font-weight:bold"/>
+                            <p:inputTextarea value="#{registrarMacroscopia.descripcionMacroscopia}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
+                            </h:panelGrid>
+                        </p:tab>
+                    </p:accordionPanel>
+
+                    <br/>
+
+                    <p:commandButton icon="fa fa-save" value="Guardar" action="#{registrarMacroscopia.registrarMacro()}" actionListener="#{navegar.direccionarInicio()}" oncomplete="limpiar" >
+                        <p:confirm header="Confirmación" message="Desea registrar el estudio" icon="ui-icon-alert" />
+                    </p:commandButton>
+
+                    <p:commandButton  icon="fa fa-fw fa-remove" value="Cancelar" update="contenido" process="@this"  actionListener="#{navegar.direccionarInicio()}" >
+                        <p:confirm header="Confirmación" message="Desea cancelar el estudio" icon="ui-icon-alert" />
+                    </p:commandButton>
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+
+                </h:form>
+
+                <!-- Scrip para usar el calendario en español-->
+                <h:outputScript library="js" name="spanishLocale.js" />
+                <h:outputScript library="js" name="limpiar.js" />
+                <!-- Script de estilos para el contenido fel formulario-->
+                <h:outputStylesheet library="css" name="estudios.css" />
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
