@@ -119,6 +119,7 @@ public class EmpleadoCrear implements Serializable {
     }
 
     public Area getArea() {
+        System.out.println("areaid:" + AreaID);
         return area;
     }
 

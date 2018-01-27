@@ -27,20 +27,20 @@
                                 <f:validateLength maximum="10"></f:validateLength>
                             </p:inputText>                          
                             <p:messages for="txtCedIden"/>
-                            <p:tooltip id="toolTipFade1" for="txtCedIden" value="Ej. 1712345678" position="right"/>
+                            
 
 
                             <p:outputLabel for="txtNombres" value="Nombres: " />
                             <p:inputText id="txtNombres" value="#{empleadoCrear.empleado.nombresempleado}" required="true" requiredMessage="Campo requerido" style="text-transform:uppercase; width:700px;margin-left:-4px;" onkeyup="javascript:this.value = this.value.toUpperCase();" 
                                          title="Nombres. Ej: JUAN JOSE" />
                             <p:messages for="txtNombres"/>
-                            <p:tooltip id="toolTipFade2" for="txtNombres" value="Ej. JUAN JOSE" position="right"/>
+                            
 
                             <p:outputLabel for="txtApellidos" value="Apellidos: " />
                             <p:inputText id="txtApellidos" value="#{empleadoCrear.empleado.apellidosempleado}" required="true" requiredMessage="Campo requerido" style="text-transform:uppercase; width:700px;margin-left:-4px;" onkeyup="javascript:this.value = this.value.toUpperCase();" 
                                          title="Apellidos. Ej: JACOME GARCIA"/>
                             <p:messages for="txtApellidos"/>
-                            <p:tooltip id="toolTipFade3" for="txtApellidos" value="Ej. GARCIA VELEZ" position="right"/>
+                            
 
                             <h:outputLabel for="rdbGenero" value="Género: " />
                             <p:selectOneRadio id="rdbGenero" value="#{empleadoCrear.empleado.sexo}" required="true" requiredMessage="Selección requerida">
@@ -54,23 +54,19 @@
                             <p:calendar id="txtFechaNac" locale="es" pattern="dd-MM-yyyy" navigator="true"
                                         mask="true" required="true" value="#{empleadoCrear.empleado.fechanacimientoempleado}" requiredMessage="Campo requerido" style="width:700px;margin-left:-4px;"/>
                             <p:messages for="txtFechaNac"/>
-                            <p:tooltip id="toolTipFade5" for="txtFechaNac" value="Ej. dd-mm-aaaa" position="right"/>
 
                             <p:outputLabel for="txtDireccion" value="Dirección: " />
                             <p:inputText id="txtDireccion" value="#{empleadoCrear.empleado.direccionempleado}" required="true" requiredMessage="Campo requerido" style="text-transform:uppercase; width:700px;margin-left:-4px;" onkeyup="javascript:this.value = this.value.toUpperCase();"/>
                             <p:messages for="txtDireccion"/>
-                            <p:tooltip id="toolTipFade6" for="txtDireccion" value="Ej. AV. 12 DE OCTUBRE" position="right"/>
 
                             <p:outputLabel for="txtTelefono" value="Teléfono: " />
                             <p:inputText id="txtTelefono" value="#{empleadoCrear.empleado.telefonoempleado}" required="true" requiredMessage="Campo requerido" style="text-transform:uppercase; width:700px;margin-left:-4px;" onkeyup="javascript:this.value = this.value.toUpperCase();"/>
 <!--                            <p:inputMask id="txtTelefono" value="#{empleadoCrear.empleado.telefonoempleado}" required="true" requiredMessage="El campo Teléfono es requerido" style="width: 98%;" mask="(99) 999-9999? x9999"/>
                             -->                            <p:messages for="txtTelefono"/>   
-                            <p:tooltip id="toolTipFade7" for="txtTelefono" value="Ej. (02)212-3456x0001" position="right"/>
 
                             <p:outputLabel for="txtCorreo" value="Correo Electrónico: " />
-                            <p:inputText id="txtCorreo" value="#{empleadoCrear.empleado.emailempleado}" required="true" requiredMessage="El campo Correo Electrónico es requerido" style="text-transform:uppercase; width:700px;margin-left:-4px;" onkeyup="javascript:this.value = this.value.toUpperCase();"/>
+                            <p:inputText id="txtCorreo" value="#{empleadoCrear.empleado.emailempleado}" required="true" requiredMessage="El campo Correo Electrónico es requerido"/>
                             <p:messages for="txtCorreo"/>
-                            <p:tooltip id="toolTipFade11" for="txtCorreo" value="correo@heee.gob.ec" position="right"/>                            
 
                             <h:outputLabel value="Cargo: " />
                             <p:selectOneMenu id="cboCargo" value="#{empleadoCrear.cargoID}" filter="true" filterMatchMode="startsWith" style="width:680px;margin-left:-4px;" required="true" requiredMessage="Selección requerida">
@@ -78,7 +74,6 @@
                                 <f:selectItems value="#{empleadoListar.cargos}" var="cargos" itemLabel="#{cargos.descripcioncargo}" itemValue="#{cargos.idcargo}"/>
                             </p:selectOneMenu>
                             <p:messages for="cboCargo"/>
-                            <p:tooltip id="toolTipFade8" for="cboCargo" value="Cargo que desempeñará el Empleado" position="right"/>
 
                             <h:outputLabel value="Especialidad: " />
                             <p:selectOneMenu id="cboEspecialidad" value="#{empleadoCrear.especialidadID}" filter="true" filterMatchMode="startsWith" style="width:680px;margin-left:-4px;;" required="true" requiredMessage="Selección requerida">
@@ -86,7 +81,6 @@
                                 <f:selectItems value="#{empleadoListar.especialidades}" var="especialidades" itemLabel="#{especialidades.descripcionespecialidad}" itemValue="#{especialidades.idespecialidad}" />
                             </p:selectOneMenu>
                             <p:messages for="cboEspecialidad"/>
-                            <p:tooltip id="toolTipFade9" for="cboEspecialidad" value="Especialidad profesional del Empleado" position="right"/>
 
                             <h:outputLabel value="Área: " />
                             <p:selectOneMenu id="cboArea" value="#{empleadoCrear.areaID}" filter="true" filterMatchMode="startsWith" style="width:680px;margin-left:-4px;" required="true" requiredMessage="Selección requerida">
@@ -94,7 +88,6 @@
                                 <f:selectItems value="#{empleadoListar.areas}" var="areas" itemLabel="#{areas.nombrearea}" itemValue="#{areas.idarea}" />
                             </p:selectOneMenu>
                             <p:messages for="cboArea"/>
-                            <p:tooltip id="toolTipFade10" for="cboArea" value="Área del Empleado" position="right"/>
 
                         </h:panelGrid>
                     </p:fieldset>

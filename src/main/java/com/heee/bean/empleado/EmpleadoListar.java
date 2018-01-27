@@ -59,10 +59,10 @@ public class EmpleadoListar implements Serializable {
         getCtrEmpleadoActualizar().setEmpleado(emp);
         return "/principal/administrador/actualizarEmpleado.HeeSiap";
     }
-   
 
     //Getter and Setter
     public List<Cargo> getCargos() {
+        cargos = JPAFactoryDAO.getFactory().getCargoDAO().find();
         return cargos;
     }
 
@@ -71,6 +71,7 @@ public class EmpleadoListar implements Serializable {
     }
 
     public List<Especialidad> getEspecialidades() {
+        especialidades = JPAFactoryDAO.getFactory().getEspecialidadDAO().find();
         return especialidades;
     }
 
@@ -116,6 +117,7 @@ public class EmpleadoListar implements Serializable {
     }
 
     public List<Area> getAreas() {
+        areas = JPAFactoryDAO.getFactory().getAreaDAO().find();
         return areas;
     }
 

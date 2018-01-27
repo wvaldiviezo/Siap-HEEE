@@ -7,6 +7,8 @@ package com.heee.bean.model.jpa;
 
 import com.heee.bean.model.dao.AreaDAO;
 import com.heee.bean.model.entity.Area;
+import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
@@ -16,5 +18,6 @@ public class JPAAreaDAO extends JPAGenericDAO<Area, Integer> implements AreaDAO{
     public JPAAreaDAO() {
         super(Area.class);
     }
+    
     
 }

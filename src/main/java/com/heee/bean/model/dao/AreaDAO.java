@@ -6,11 +6,9 @@
 package com.heee.bean.model.dao;
 
 import com.heee.bean.model.entity.Area;
+import java.util.List;
 
-/**
- *
- * @author wilmer.valdiviezo
- */
 public interface AreaDAO extends GenericDAO<Area, Integer>{
+    
     
 }
