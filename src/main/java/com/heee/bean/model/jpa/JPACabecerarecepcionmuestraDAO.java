@@ -16,12 +16,27 @@ public class JPACabecerarecepcionmuestraDAO extends JPAGenericDAO<Cabecerarecepc
     public List<Cabecerarecepcionmuestra> buscarEstudiosAceptados() {
         List estudiosAceptados = null;
         try {
-            String consulta = "SELECT * FROM cabecerarecepcionmuestra WHERE estadoestudiocrm = 'macroscopia'";
+            String consulta = "SELECT * FROM cabecerarecepcionmuestra WHERE estadoestudiocrm = 'Macroscopia'";
             Query query = em.createNativeQuery(consulta, Cabecerarecepcionmuestra.class);
             estudiosAceptados = query.getResultList();
             return estudiosAceptados;
         } catch (Exception e) {
             System.out.println("No hay estudios aceptados");
+            return null;
+        }        
+    }
+    
+      /*Método que consulta los estudios con estado TECNICO */
+    @Override
+    public List<Cabecerarecepcionmuestra> buscarEstudiosAsignadosTecnicos() {
+        List estudiosAceptados = null;
+        try {
+            String consulta = "SELECT * FROM cabecerarecepcionmuestra where estadoestudiocrm = 'Tecnico'";
+            Query query = em.createNativeQuery(consulta, Cabecerarecepcionmuestra.class);
+            estudiosAceptados = query.getResultList();
+            return estudiosAceptados;
+        } catch (Exception e) {
+            System.out.println("No hay estudios para el área técnica");
             return null;
         }        
     }

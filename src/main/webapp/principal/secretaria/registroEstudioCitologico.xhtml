@@ -393,18 +393,13 @@
                         </p:tab>
                         <p:tab id="estadoEstudio" title="Estado">
                             <p:panel header="Estado del Estudio">
-
-
                                 <h:panelGrid columns="3" id="pgEstado" columnClasses="label, value" >
 
                                     <h:outputLabel for="rdbEstudio" value="Estudio: " />
-<<<<<<< HEAD
-                                    <p:selectOneRadio id="rdbEstudio" value="#{citologicoCrear.cabecera.estadoestudiocrm}" required="true" label="Estado de estudio">
-                                        <f:selectItem itemValue="Aceptado" itemLabel="Aceptado" />
-=======
+
                                     <p:selectOneRadio id="rdbConsulta" value="#{citologicoCrear.cabecera.estadoestudiocrm}" required="true" label="Estado de estudio">
                                         <f:selectItem itemValue="Macroscopia" itemLabel="Aceptado" />
->>>>>>> wil
+
                                         <f:selectItem itemValue="Rechazado" itemLabel="Rechazado" />
                                         <p:ajax  update="txtRechazo" />
                                     </p:selectOneRadio>

@@ -55,7 +55,7 @@ public class ListarEstudios implements Serializable {
         this.ltsPacientes = ltsPacientes;
     }
 
-    /*Método para filtrar los estudios con estado ACEPTADO que fueron registrados por la secretaria*/
+    /*Método para obtener los estudios con estado ACEPTADO que fueron registrados por la secretaria*/
     public List<Cabecerarecepcionmuestra> getLtsEstudioLista() {  
         //cantones = JPAFactoryDAO.getFactory().getCantonDAO().buscarCantonPorProvincia(provinciaID);
         ltsEstudioLista = JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().buscarEstudiosAceptados();

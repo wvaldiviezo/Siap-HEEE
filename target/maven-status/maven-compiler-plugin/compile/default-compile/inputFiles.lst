@@ -34,6 +34,7 @@ E:\Tesis\Siap-HEEE\src\main\java\com\heee\bean\model\entity\BiomoleCarcadorSub.j
 E:\Tesis\Siap-HEEE\src\main\java\com\heee\bean\model\jpa\JPAHospitalDAO.java
 E:\Tesis\Siap-HEEE\src\main\java\com\heee\bean\citologico\CitologicoCrear.java
 E:\Tesis\Siap-HEEE\src\main\java\com\heee\bean\estudiosSecretaria\ListarEstudios.java
+E:\Tesis\Siap-HEEE\src\main\java\com\heee\bean\estudiosTecnico\ListarEstudios.java
 E:\Tesis\Siap-HEEE\src\main\java\com\heee\bean\model\entity\Provincia.java
 E:\Tesis\Siap-HEEE\src\main\java\com\heee\bean\model\jpa\JPAEHistMarcadorDAO.java
 E:\Tesis\Siap-HEEE\src\main\java\com\heee\bean\model\dao\EstudiosCitologicoDAO.java

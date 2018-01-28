@@ -158,6 +158,7 @@ com\heee\bean\menu\Ingresar.class
 com\heee\bean\model\jpa\JPAEspecialidadDAO.class
 com\heee\bean\quirurgico\QuirurgicoCrear.class
 com\heee\bean\model\entity\Canton.class
+com\heee\bean\estudiosTecnico\ListarEstudios.class
 com\heee\bean\model\entity\Biologiamolecular_.class
 com\heee\bean\model\entity\Estudiosamputaciones.class
 com\heee\bean\model\entity\Categoriacitologico.class
