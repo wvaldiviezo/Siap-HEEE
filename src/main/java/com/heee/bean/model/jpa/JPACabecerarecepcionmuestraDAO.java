@@ -11,7 +11,7 @@ public class JPACabecerarecepcionmuestraDAO extends JPAGenericDAO<Cabecerarecepc
         super(Cabecerarecepcionmuestra.class);
     }
 
-    /*Método que consulta los estudios con estado ACEPTADO*/
+    /*Método que consulta los estudios con estado Macroscopia para mostrar en el menú de Macroscopía*/
     @Override
     public List<Cabecerarecepcionmuestra> buscarEstudiosAceptados() {
         List estudiosAceptados = null;
@@ -23,22 +23,37 @@ public class JPACabecerarecepcionmuestraDAO extends JPAGenericDAO<Cabecerarecepc
         } catch (Exception e) {
             System.out.println("No hay estudios aceptados");
             return null;
-        }        
+        }
     }
-    
-      /*Método que consulta los estudios con estado TECNICO */
+
+    /*Método que consulta los estudios con estado Tecnico Normal para mostrar en el menu del área técnica normal*/
     @Override
     public List<Cabecerarecepcionmuestra> buscarEstudiosAsignadosTecnicos() {
         List estudiosAceptados = null;
         try {
-            String consulta = "SELECT * FROM cabecerarecepcionmuestra where estadoestudiocrm = 'Tecnico'";
+            String consulta = "SELECT * FROM cabecerarecepcionmuestra where estadoestudiocrm = 'Tecnico Normal'";
             Query query = em.createNativeQuery(consulta, Cabecerarecepcionmuestra.class);
             estudiosAceptados = query.getResultList();
             return estudiosAceptados;
         } catch (Exception e) {
             System.out.println("No hay estudios para el área técnica");
             return null;
-        }        
+        }
+    }
+    
+        /*Método que consulta los estudios con estado Tecnico Normal para mostrar en el menu del área técnica normal*/
+    @Override
+    public List<Cabecerarecepcionmuestra> buscarEstudiosAsignadosTecnicosEsp() {
+        List estudiosAceptados = null;
+        try {
+            String consulta = "SELECT * FROM cabecerarecepcionmuestra where estadoestudiocrm = 'Tecnico Especial'";
+            Query query = em.createNativeQuery(consulta, Cabecerarecepcionmuestra.class);
+            estudiosAceptados = query.getResultList();
+            return estudiosAceptados;
+        } catch (Exception e) {
+            System.out.println("No hay estudios para el área técnica");
+            return null;
+        }
     }
 
 }

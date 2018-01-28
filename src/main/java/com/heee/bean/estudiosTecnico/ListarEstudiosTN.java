@@ -9,9 +9,9 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 
-@ManagedBean(name = "estudiosParaTecnico")
+@ManagedBean(name = "estudiosParaTecnicoN")
 @ViewScoped
-public class ListarEstudios implements Serializable {
+public class ListarEstudiosTN implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
@@ -26,7 +26,7 @@ public class ListarEstudios implements Serializable {
     //private Cabecerarecepcionmuestra crMuestra;
     //private Detallerecepcionmuestra detalleCRM;
 
-    public ListarEstudios() {
+    public ListarEstudiosTN() {
 
     }
 

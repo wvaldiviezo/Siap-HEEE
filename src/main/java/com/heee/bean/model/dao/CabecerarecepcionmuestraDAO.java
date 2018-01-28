@@ -5,5 +5,6 @@ import java.util.List;
 public interface CabecerarecepcionmuestraDAO extends GenericDAO<Cabecerarecepcionmuestra, Integer>{
     public List<Cabecerarecepcionmuestra> buscarEstudiosAceptados();
     public List<Cabecerarecepcionmuestra> buscarEstudiosAsignadosTecnicos();
+    public List<Cabecerarecepcionmuestra> buscarEstudiosAsignadosTecnicosEsp();
     
 }

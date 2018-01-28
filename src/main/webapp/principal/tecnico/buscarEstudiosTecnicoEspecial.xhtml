@@ -15,10 +15,10 @@
                 <h:form id="contenidoBuscar">
                     <p:growl id="message" showDetail="true" />
 
-                    <h1 style="color: #045491;text-align: center">Estudios Asignados a Macroscopía</h1>
+                    <h1 style="color: #045491;text-align: center">Estudios Asignados al Área Técnica Especial</h1>
 
-                    <p:dataTable id="busquedaEstudios" value="#{estudiosParaMacro.ltsEstudioLista}" var="itemEstudio"  widgetVar="estudiosTabla" 
-                                 filteredValue="#{estudiosParaMacro.ltsEstudioFiltrados}" rows="10" paginator="true" 
+                    <p:dataTable id="busquedaEstudios" value="#{estudiosParaTecnicoE.ltsEstudioCabecera}" var="itemEstudio"  widgetVar="estudiosTabla" 
+                                 filteredValue="#{estudiosParaTecnicoE.ltsEstudioFiltradosCRM}" rows="10" paginator="true" 
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
                                  rowsPerPageTemplate="10,15,20"  sortOrder="descending"
                                  paginatorPosition="top" emptyMessage="No hay ningún registro con esa opción">
