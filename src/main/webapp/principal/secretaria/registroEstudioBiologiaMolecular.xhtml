@@ -211,16 +211,51 @@
                                 <br/>
                                 <p:accordionPanel>
                                     <p:tab title="Antecedentes">
-                                        <h:panelGrid columns="2" >
+
+
+                                        <h:panelGrid columns="2" cellpadding="5">
 
                                             <h:panelGrid columns="1">
+                                                <h:outputLabel for="txtResponsable" value="Responsable de Toma de muestra: " />
+                                                <p:inputText id="txtResponsable" value="#{biologiaMolecularCrear.paciente.apellidopaciente}" />
+                                                <p:messages for="txtResponsable"/>
+                                                <h:outputLabel for="txtMenarca" value="Menarca: " />
+                                                <p:inputText id="txtMenarca" value="#{biologiaMolecularCrear.paciente.apellidopaciente}" />
+                                                <p:messages for="txtMenarca"/>
+                                                <h:outputLabel for="txtGestas" value="Gestas: " />
+                                                <p:inputText id="txtGestas" value="#{biologiaMolecularCrear.paciente.apellidopaciente}" />
+                                                <p:messages for="txtGestas"/>
+                                                <h:outputLabel for="txtPartos" value="Partos: " />
+                                                <p:inputText id="txtPartos" value="#{biologiaMolecularCrear.paciente.apellidopaciente}" />
+                                                <p:messages for="txtPartos"/>
+                                                <h:outputLabel for="txtCesáreas" value="Cesáreas: " />
+                                                <p:inputText id="txtCesáreas" value="#{biologiaMolecularCrear.paciente.apellidopaciente}" />
+                                                <p:messages for="txtCesáreas"/>
+                                                <h:outputLabel for="txtAbortos" value="Abortos: " />
+                                                <p:inputText id="txtAbortos" value="#{biologiaMolecularCrear.paciente.apellidopaciente}" />
+                                                <p:messages for="txtAbortos"/>
+
+
+                                            </h:panelGrid>
+                                            <h:panelGrid columns="1">
+                                                <h3>Inicio de vida sexual:</h3>
+                                                <p:selectOneRadio id="rdbInicio" value="#{biologiaMolecularCrear.cabecera.prioridad}" required="true" label="Prioridad">
+                                                    <f:selectItem itemValue="True" itemLabel="Si" />
+                                                    <f:selectItem itemValue="False" itemLabel="No" />
+                                                </p:selectOneRadio>
+                                                <h3>Fecha última menstruación:</h3>
+
+                                                <p:calendar id="txtFechaMen" locale="es" pattern="dd-MM-yyyy" navigator="true" mask="false" value="#{biologiaMolecularCrear.cabecera.fechatomamuestracrm}" required="false" label="Fecha de toma de muestra" />
+                                                <p:watermark for="txtFechaMen" value="dd-mm-aaaa" />
+                                                <p:messages for="txtFechaMen"/>
                                                 <h3>Citología:</h3>
                                                 <!--value="" implementar valor a donde va variable en selectMany checkbox--> 
                                                 <p:selectManyCheckbox id="gridCitologia" value="#{biologiaMolecularListar.categoriasID}" layout="grid" columns="1">
                                                     <f:selectItems value="#{biologiaMolecularListar.listarMarcadorSubcategoria('1')}" var="marcadorSubcategoriaCitologia" itemLabel="#{marcadorSubcategoriaCitologia.nombremaradorbm}" itemValue="#{marcadorSubcategoriaCitologia.idmarcadorsubcategoriabm}" />
-                                                </p:selectManyCheckbox>  
+                                                </p:selectManyCheckbox> 
+
                                             </h:panelGrid>
-                                            
+
                                             <h:panelGrid columns="1">
                                                 <h3>Situación gineco-obstétrica:</h3>
                                                 <!--value="" implementar valor a donde va variable en selectMany checkbox--> 
@@ -228,13 +263,21 @@
                                                     <f:selectItems value="#{biologiaMolecularListar.listarMarcadorSubcategoria('2')}" var="marcadorSubcategoriaSituaciónGinecoObstetrica" itemLabel="#{marcadorSubcategoriaSituaciónGinecoObstetrica.nombremaradorbm}" itemValue="#{marcadorSubcategoriaSituaciónGinecoObstetrica.idmarcadorsubcategoriabm}" />
                                                 </p:selectManyCheckbox>  
                                             </h:panelGrid>
-                                            
+
                                             <h:panelGrid columns="1">
                                                 <h3>Antecedentes de vacunación VPH:</h3>
                                                 <!--value="" implementar valor a donde va variable en selectMany checkbox--> 
-                                                <p:selectManyCheckbox id="gridVacunacion" value="#{biologiaMolecularListar.categoriasID}" layout="grid" columns="1">
-                                                    <f:selectItems value="#{biologiaMolecularListar.listarMarcadorSubcategoria('3')}" var="marcadorSubcategoriaVacunacion" itemLabel="#{marcadorSubcategoriaVacunacion.nombremaradorbm}" itemValue="#{marcadorSubcategoriaVacunacion.idmarcadorsubcategoriabm}" />
-                                                </p:selectManyCheckbox>  
+
+                                                <p:selectOneRadio id="rdbVaCunacion" value="#{biologiaMolecularListar.categoriasID}"  columns="1">
+                                                    <f:selectItems value="#{biologiaMolecularListar.listarMarcadorSubcategoria('3')}" var="marcadorSubcategoriaVacunacion" itemLabel="#{marcadorSubcategoriaVacunacion.nombremaradorbm}" itemValue="#{marcadorSubcategoriaVacunacion.idmarcadorsubcategoriabm}"/>
+                                                </p:selectOneRadio>
+                                                <h3>Dosis:</h3>
+                                                <p:selectOneRadio id="rdbDosis" value="#{biologiaMolecularCrear.cabecera.prioridad}" required="true" label="Prioridad">
+                                                    <f:selectItem itemValue="Una" itemLabel="Una" />
+                                                    <f:selectItem itemValue="Dos" itemLabel="Dos" />
+                                                    <f:selectItem itemValue="Tres" itemLabel="Tres" />
+                                                    <f:selectItem itemValue="Completa" itemLabel="Completa" />
+                                                </p:selectOneRadio>
                                             </h:panelGrid>
                                             <h:panelGrid columns="1">
                                                 <h3>A la exploración se observa:</h3>
@@ -243,35 +286,69 @@
                                                     <f:selectItems value="#{biologiaMolecularListar.listarMarcadorSubcategoria('4')}" var="marcadorSubcategoriaExploracion" itemLabel="#{marcadorSubcategoriaExploracion.nombremaradorbm}" itemValue="#{marcadorSubcategoriaExploracion.idmarcadorsubcategoriabm}" />
                                                 </p:selectManyCheckbox>  
                                             </h:panelGrid>
-                                            
+
                                             <h:panelGrid columns="1">
                                                 <h3>Factores de riesgo:</h3>
                                                 <!--value="" implementar valor a donde va variable en selectMany checkbox--> 
                                                 <p:selectManyCheckbox id="gridFactorRiesgo" value="#{biologiaMolecularListar.categoriasID}" layout="grid" columns="1">
                                                     <f:selectItems value="#{biologiaMolecularListar.listarMarcadorSubcategoria('5')}" var="marcadorSubcategoriaFactorRiesgo" itemLabel="#{marcadorSubcategoriaFactorRiesgo.nombremaradorbm}" itemValue="#{marcadorSubcategoriaFactorRiesgo.idmarcadorsubcategoriabm}" />
-                                                </p:selectManyCheckbox>  
+                                                </p:selectManyCheckbox> 
+                                                <h3>Muestra repetida:</h3>
+                                                <p:selectOneRadio id="rdbRepetida" value="#{biologiaMolecularCrear.cabecera.prioridad}" required="true" label="Prioridad">
+                                                    <f:selectItem itemValue="Si" itemLabel="Si" />
+                                                    <f:selectItem itemValue="No" itemLabel="No" />
+                                                </p:selectOneRadio>
+                                                <h3>Numero citológico anterior:</h3>
+                                                <h:outputLabel for="txtCitologicoAnterior" value=" " />
+                                                <p:inputText id="txtCitologicoAnterior" value="#{biologiaMolecularCrear.paciente.apellidopaciente}" />
+                                                <p:messages for="txtCitologicoAnterior"/>
                                             </h:panelGrid>
-                                            
+
                                         </h:panelGrid>
                                     </p:tab>
                                     <p:tab title="Resultado Citolgía Cervical">
                                         <h:panelGrid columns="2" >
                                             <h:panelGrid columns="1">
-                                                <h3>Factores de riesgo:</h3>
+                                                <h3>Repetir Estudio:</h3>
+                                                <p:selectOneRadio id="rdbRepetir" value="#{biologiaMolecularCrear.cabecera.prioridad}" required="true" label="Prioridad">
+                                                    <f:selectItem itemValue="Si" itemLabel="Si" />
+                                                    <f:selectItem itemValue="No" itemLabel="No" />
+                                                </p:selectOneRadio>
+                                            </h:panelGrid>
+                                            <h:panelGrid columns="1">
+                                                <h3>Revisada por patólogo:</h3>
+                                                <p:selectOneRadio id="rdbRevisada" value="#{biologiaMolecularCrear.cabecera.prioridad}" required="true" label="Prioridad">
+                                                    <f:selectItem itemValue="Si" itemLabel="Si" />
+                                                    <f:selectItem itemValue="No" itemLabel="No" />
+                                                </p:selectOneRadio>
+                                            </h:panelGrid>
+                                            <h:panelGrid columns="1">
+                                                <h3>Carácteristica de la muestra:</h3>
                                                 <!--value="" implementar valor a donde va variable en selectMany checkbox--> 
-                                                <p:selectManyCheckbox id="gridCaracteristicaMuestra" value="#{biologiaMolecularListar.categoriasID}" layout="grid" columns="1">
-                                                    <f:selectItems value="#{biologiaMolecularListar.listarMarcadorSubcategoria('6')}" var="marcadorSubcategoriaCaracteristicaMuestra" itemLabel="#{marcadorSubcategoriaCaracteristicaMuestra.nombremaradorbm}" itemValue="#{marcadorSubcategoriaCaracteristicaMuestra.idmarcadorsubcategoriabm}" />
-                                                </p:selectManyCheckbox>  
+
+                                                <p:selectOneRadio id="rdbCaracteristicaMuestra" value="#{biologiaMolecularListar.categoriasID}"  columns="1">
+                                                    <f:selectItems value="#{biologiaMolecularListar.listarMarcadorSubcategoria('6')}" var="marcadorSubcategoriaCaracteristicaMuestra" itemLabel="#{marcadorSubcategoriaCaracteristicaMuestra.nombremaradorbm}" itemValue="#{marcadorSubcategoriaCaracteristicaMuestra.idmarcadorsubcategoriabm}"/>
+                                                </p:selectOneRadio>
+                                                <p:inputText id="txtCaracteristicaMuestra"  />
+                                                <p:messages for="txtCaracteristicaMuestra"/>
                                             </h:panelGrid>
                                             <h:panelGrid columns="1">
                                                 <h3>Diagnóstico Citológico:</h3>
                                                 <!--value="" implementar valor a donde va variable en selectMany checkbox--> 
                                                 <p:selectManyCheckbox id="gridDiagnosticoCitologico" value="#{biologiaMolecularListar.categoriasID}" layout="grid" columns="1">
                                                     <f:selectItems value="#{biologiaMolecularListar.listarMarcadorSubcategoria('7')}" var="marcadorSubcategoriaDiagnosticoCitologico" itemLabel="#{marcadorSubcategoriaDiagnosticoCitologico.nombremaradorbm}" itemValue="#{marcadorSubcategoriaDiagnosticoCitologico.idmarcadorsubcategoriabm}" />
-                                                </p:selectManyCheckbox>  
+                                                </p:selectManyCheckbox>
+                                                <h:outputLabel for="txtCaracteristicaMuestra" value="Microorganismos: " />
+                                                <p:inputText id="txtMicroorganismos"  />
+                                                <p:messages for="txtMicroorganismos"/>
+                                                <h:outputLabel for="txtHallasogs" value="Otros Hallasgos Neoplasicos: " />
+                                                <p:inputText id="txtHallasogs"  />
+                                                <p:messages for="txtHallasogs"/>
+
+
                                             </h:panelGrid>
                                         </h:panelGrid>
-                                        </p:tab>
+                                    </p:tab>
                                 </p:accordionPanel>
                             </p:panel>
                         </p:tab>
@@ -283,7 +360,7 @@
 
                                     <h:outputLabel for="rdbEstudio" value="Estudio: " />
                                     <p:selectOneRadio id="rdbConsulta" value="#{biologiaMolecularCrear.cabecera.estadoestudiocrm}" required="true" label="Estado de estudio">
-                                        <f:selectItem itemValue="Tecnico Especial" itemLabel="Aceptado" />
+                                        <f:selectItem itemValue="Aceptado" itemLabel="Aceptado" />
                                         <f:selectItem itemValue="Rechazado" itemLabel="Rechazado" />
                                         <p:ajax  update="txtRechazo" />
                                     </p:selectOneRadio>

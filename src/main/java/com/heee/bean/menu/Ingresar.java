@@ -15,9 +15,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-
-
-
 @ManagedBean(name = "ingresar")
 @RequestScoped
 //@SessionScoped
@@ -30,47 +27,50 @@ public class Ingresar implements Serializable {
 //    private Usuario Usuario = new Usuario();
     private final FacesContext faceContext;
 //    private final HttpServletRequest httpServletRequest;
+
     /**
      * Creates a new instance of ingresar
      */
     public Ingresar() {
         this.faceContext = FacesContext.getCurrentInstance();
-        nombreUsuario=null;
-        contrasenia=null;
+        nombreUsuario = null;
+        contrasenia = null;
 //        this.httpServletRequest = ((HttpServletRequest)this.faceContext.getExternalContext().getRequest());
-        
-    }
-    //
-    public String validarIngreso(){
-        
-    String redireccion = null;
-    System.out.println("Ingreso validacion");
-    System.out.println("Nombre:"+nombreUsuario);
-    System.out.println("Contrasenia:"+contrasenia);
-        String[] usuarioNombreCampo= {"usuariousuario"};
-        String[] usuarioNombreValor= {nombreUsuario};
 
-        List<Usuario> usuarioLista=JPAFactoryDAO.getFactory().getUsuarioDAO().find(usuarioNombreCampo, usuarioNombreValor);
-       
-            if (usuarioLista.isEmpty()){
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Datos Erróneos verifique usuario o contraseña"));
-            }else{
-                for(Usuario usuario :usuarioLista){
-                
-                if (usuario.getClaveusuario().equals(contrasenia)){
-                
-                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
-               
-                redireccion = "/principal/bienvenida?faces-redirect=true";  
-                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Datos Correctos"));
-                }else{
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Datos Erróneos verifique usuario o contraseña"));
-                System.out.println("dato incorrecto");
+    }
+
+    //
+    public String validarIngreso() {
+
+        String redireccion = null;
+        System.out.println("Ingreso validacion");
+        System.out.println("Nombre:" + nombreUsuario);
+        System.out.println("Contrasenia:" + contrasenia);
+        String[] usuarioNombreCampo = {"usuariousuario"};
+        String[] usuarioNombreValor = {nombreUsuario};
+
+        List<Usuario> usuarioLista = JPAFactoryDAO.getFactory().getUsuarioDAO().find(usuarioNombreCampo, usuarioNombreValor);
+
+        if (usuarioLista.isEmpty()) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Datos Erróneos verifique usuario o contraseña"));
+        } else {
+
+            for (Usuario usuario : usuarioLista) {
+
+                if (usuario.getClaveusuario().equals(contrasenia)) {
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Datos Correlklkklkllklkctos"));
+
+                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
+
+                    redireccion = "/principal/bienvenida?faces-redirect=true";
+
+                } else {
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Datos Erróneos verifique usuario o contraseña"));
+                    System.out.println("dato incorrecto");
                 }
-                }
-            
             }
-       
+
+        }
 
         return redireccion;
     }
@@ -107,7 +107,4 @@ public class Ingresar implements Serializable {
 //    public void setEmpleado(Empleado Empleado) {
 //        this.Empleado = Empleado;
 //    }
-    
-    
-    
 }

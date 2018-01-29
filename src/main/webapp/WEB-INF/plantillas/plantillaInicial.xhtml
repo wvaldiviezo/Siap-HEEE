@@ -23,6 +23,8 @@
         <div id="top">
             <h:graphicImage value="/resources/images/banner.png" style="background-size: 50%;"></h:graphicImage>
             <ui:insert name="top">
+                
+                <p:growl id="mensaje" autoUpdate="false" severity="warn, fatal" showSummary="true" showDetail="true"/>
                 <h:form>
                         <p:menubar model="#{menuController.model}">
                         <f:facet name="options">
@@ -37,7 +39,9 @@
         </div>
         
         <div id="content" class="center_content" >
-            <ui:insert name="content"></ui:insert>
+            <ui:insert name="content">
+                <p:growl id="mensaje2" autoUpdate="false" severity="warn, fatal" showSummary="true" showDetail="true"/>
+            </ui:insert>
             
         </div>
         
