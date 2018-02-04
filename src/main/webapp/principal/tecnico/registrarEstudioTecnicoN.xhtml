@@ -14,14 +14,14 @@
 
                 <h:form id="contenido">
 
-                    <h1 style="color: #045491;text-align: center">Registro de Macroscopía</h1>
+                    <h1 style="color: #045491;text-align: center">Registro de Información Técnica Normal</h1>
                     <p:growl id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true"/>
 
                     <h:panelGrid columns="2" cellpadding="3">
                         <p:outputLabel value="Tipo de Estudio:" style="font-weight:bold"/>
-                        <p:outputLabel value="" style="color: #045491;"/>
+                        <p:outputLabel value="#{registrarEstudioTN.cabeceraRM.idte.nombrete}" style="color: #045491;"/>
                         <p:outputLabel value="Código del estudio:" style="font-weight:bold"/>
-                        <p:outputLabel value="" style="color: #045491;"/>
+                        <p:outputLabel value="#{registrarEstudioTN.cabeceraRM.codigoestudiocrm}" style="color: #045491;"/>
                     </h:panelGrid>
 
                     <br/>
@@ -30,22 +30,34 @@
                         <p:tab title="Detalle Informativo del Estudio">
                             <h:panelGrid columns="1" cellpadding="3">
                                 <p:outputLabel value="Número de Historia Clínica:" style="font-weight:bold"/>
-                                <p:inputText value="" readonly="#{facesContext.renderResponse}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
+                                <p:inputText value="#{registrarEstudioTN.cabeceraRM.idpaciente.numhistclinpaciente}" readonly="#{facesContext.renderResponse}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
 
                                 <p:outputLabel value="Prioridad del estudio" style="font-weight:bold"/>
-                                <p:inputText value="" readonly="#{facesContext.renderResponse}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
+                                <p:inputText value="#{registrarEstudioTN.cabeceraRM.prioridad}" readonly="#{facesContext.renderResponse}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
 
                             </h:panelGrid>
                         </p:tab>
-                        <p:tab title="Registro de Información Técnica">
+                        <p:tab title="Registro de Información Técnica Normal">
                             <h:panelGrid columns="1" cellpadding="3" id="pgDetalleMacro">
-                                <p:outputLabel value="Número de casetas " style="font-weight:bold"/>
+                                <p:outputLabel value="H/E: " style="font-weight:bold"/>
                                 <p:spinner value="" min="0" stepFactor="1" max="99" style="margin-left:-4px; border: 1px solid #A8A8A8;"/>
 
-                                <p:outputLabel value="Detalle de la caseta " style="font-weight:bold"/>
-                                <p:inputText value="" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
+                                <p:outputLabel value="Número de Giemsas " style="font-weight:bold"/>
+                                <p:spinner value="" min="0" stepFactor="1" max="99" style="margin-left:-4px; border: 1px solid #A8A8A8;"/>
+                                
+                                <p:outputLabel value="Número de Placas: " style="font-weight:bold"/>
+                                <p:spinner value="" min="0" stepFactor="1" max="99" style="margin-left:-4px; border: 1px solid #A8A8A8;"/>
+                                
+                                <p:outputLabel value="Número de Casetas: " style="font-weight:bold"/>
+                                <p:spinner value="" min="0" stepFactor="1" max="99" style="margin-left:-4px; border: 1px solid #A8A8A8;"/>
+                                
+                                <p:outputLabel value="Número de Fragmentos: " style="font-weight:bold"/>
+                                <p:spinner value="" min="0" stepFactor="1" max="99" style="margin-left:-4px; border: 1px solid #A8A8A8;"/>
+                                
+                                <p:outputLabel value="Número de PAP: " style="font-weight:bold"/>
+                                <p:spinner value="" min="0" stepFactor="1" max="99" style="margin-left:-4px; border: 1px solid #A8A8A8;"/>
 
-                                <p:outputLabel value="Descripción de la Macroscopía " style="font-weight:bold"/>
+                                <p:outputLabel value="Observación: " style="font-weight:bold"/>
                                 <p:inputTextarea value="" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
                             </h:panelGrid>
                         </p:tab>

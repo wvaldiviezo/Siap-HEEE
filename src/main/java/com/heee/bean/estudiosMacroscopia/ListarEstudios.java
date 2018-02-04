@@ -57,22 +57,8 @@ public class ListarEstudios implements Serializable {
 
     /*Método para obtener los estudios con estado ACEPTADO que fueron registrados por la secretaria*/
     public List<Cabecerarecepcionmuestra> getLtsEstudioLista() {  
-        //cantones = JPAFactoryDAO.getFactory().getCantonDAO().buscarCantonPorProvincia(provinciaID);
         ltsEstudioLista = JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().buscarEstudiosAceptados();
         return ltsEstudioLista;
-        /*
-        this.ltsEstudioLista = null;
-        if (this.ltsEstudioLista == null) {
-            this.ltsEstudioLista = JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().find();
-            for(Cabecerarecepcionmuestra crm : ltsEstudioLista){
-                if(crm.getEstadoestudiocrm().equals("Aceptado")){
-                    System.out.println("111111111"+crm);
-                    
-                }
-            }
-        }
-        return ltsEstudioLista;
-*/
     }
 
     public void setLtsEstudioLista(List<Cabecerarecepcionmuestra> ltsEstudioLista) {

@@ -7,6 +7,7 @@ import com.heee.bean.model.jpa.JPAFactoryDAO;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.view.ViewScoped;
 
 @ManagedBean(name = "estudiosParaTecnicoN")
@@ -23,11 +24,22 @@ public class ListarEstudiosTN implements Serializable {
     private Paciente paciente;
     //private List<Detallerecepcionmuestra> ltsDetalleLista;
 
-    //private Cabecerarecepcionmuestra crMuestra;
+    private Cabecerarecepcionmuestra crMuestra;
     //private Detallerecepcionmuestra detalleCRM;
+    
+    @ManagedProperty("#{registrarEstudioTN}")
+    private RegistrarEstudioTN ctrRegistarTN;
 
     public ListarEstudiosTN() {
 
+    }
+    
+    /*Método que llama al controlador RegistrarMacroscopia para hacer el regsitro de la macroscopía
+    del estudio seleccionado*/
+    public String registrarEstudioTN(int idCRM) {
+        Cabecerarecepcionmuestra crm = (Cabecerarecepcionmuestra) JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().read(Integer.valueOf(idCRM));
+        getCtrRegistarTN().setCabeceraRM(crm);
+        return "/principal/tecnico/registrarEstudioTecnicoN.HeeSiap";
     }
 
     //Getter & Setters
@@ -93,4 +105,13 @@ public class ListarEstudiosTN implements Serializable {
         this.paciente = paciente;
     }
 
+    public RegistrarEstudioTN getCtrRegistarTN() {
+        return ctrRegistarTN;
+    }
+
+    public void setCtrRegistarTN(RegistrarEstudioTN ctrRegistarTN) {
+        this.ctrRegistarTN = ctrRegistarTN;
+    }
+
+    
 }
