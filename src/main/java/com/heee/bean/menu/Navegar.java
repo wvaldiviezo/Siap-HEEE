@@ -17,11 +17,13 @@ public class Navegar implements Serializable {
     /*Método para direccionar a la Página principal*/
     public void direccionarInicio() {
         try {
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje:", "Hasta pronto");
+            FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje:", "Accion correcta");
         FacesContext.getCurrentInstance().addMessage(null, message);
             System.out.println("LOGRO REDIRECCIONAR A UN NUEVO FORMULARIO");
 //            FacesContext.getCurrentInstance().getExternalContext().redirect("../Inicio/paginaInicial.xhtml");
-            FacesContext.getCurrentInstance().getExternalContext().redirect("../bienvenida.HeeSiap");
+        
+        FacesContext.getCurrentInstance().getExternalContext().redirect("../bienvenida.HeeSiap");
             
         } catch (Exception e) {
             System.out.println("FALLO LA REDIRECCION A UN NUEVO FORMULARIO");

@@ -58,7 +58,8 @@ public class Ingresar implements Serializable {
             for (Usuario usuario : usuarioLista) {
 
                 if (usuario.getClaveusuario().equals(contrasenia)) {
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Datos Correlklkklkllklkctos"));
+                    FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Bienvenido"));
 
                     FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
 
