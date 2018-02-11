@@ -40,8 +40,8 @@ public class JPACabecerarecepcionmuestraDAO extends JPAGenericDAO<Cabecerarecepc
             return null;
         }
     }
-    
-        /*Método que consulta los estudios con estado Tecnico Normal para mostrar en el menu del área técnica normal*/
+
+    /*Método que consulta los estudios con estado Tecnico Normal para mostrar en el menu del área técnica normal*/
     @Override
     public List<Cabecerarecepcionmuestra> buscarEstudiosAsignadosTecnicosEsp() {
         List estudiosAceptados = null;
@@ -56,4 +56,18 @@ public class JPACabecerarecepcionmuestraDAO extends JPAGenericDAO<Cabecerarecepc
         }
     }
 
+    /*Método que consulta los estudios con estado Microscopía para mostrar en el menu de distribución e trabajo a los Patólogos*/
+    @Override
+    public List<Cabecerarecepcionmuestra> buscarEstudiosParaAsignarMIcroscopia() {
+        List estudiosAceptados = null;
+        try {
+            String consulta = "SELECT * FROM cabecerarecepcionmuestra where estadoestudiocrm = 'Microscopía'";
+            Query query = em.createNativeQuery(consulta, Cabecerarecepcionmuestra.class);
+            estudiosAceptados = query.getResultList();
+            return estudiosAceptados;
+        } catch (Exception e) {
+            System.out.println("No hay estudios para el área microscópica");
+            return null;
+        }
+    }
 }

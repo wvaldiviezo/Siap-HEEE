@@ -15,10 +15,10 @@
                 <h:form id="contenidoBuscar">
                     <p:growl id="message" showDetail="true" />
 
-                    <h1 style="color: #045491;text-align: center">Estudios Recibidos Asignar a Microscopía</h1>
+                    <h1 style="color: #045491;text-align: center">Distribución de Estudios para Patología</h1>
 
-                    <p:dataTable id="busquedaEstudios" value="#{estudiosParaTecnicoN.ltsEstudioCabecera}" var="itemEstudio"  widgetVar="estudiosTabla" 
-                                 filteredValue="#{estudiosParaTecnicoN.ltsEstudioFiltradosCRM}" rows="10" paginator="true" 
+                    <p:dataTable id="busquedaEstudios" value="#{distribucionEstudiosPatologo.ltsEstudioCabecera}" var="itemEstudio"  widgetVar="estudiosTabla" 
+                                 filteredValue="#{distribucionEstudiosPatologo.ltsEstudioFiltradosCRM}" rows="10" paginator="true" 
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
                                  rowsPerPageTemplate="10,15,20"  sortOrder="descending"
                                  paginatorPosition="top" emptyMessage="No hay ningún registro con esa opción">
