@@ -57,7 +57,8 @@ public abstract class FactoryDAO {
     
     //Inmunohistoquimica
     public abstract MarcadoresEIHQDAO getMarcadoresEIHQDAO();
-    
+    public abstract EstudiosInmunohistoquimicaDAO getEstudiosInmunohistoquimicaDAO();
+    public abstract EInHistMarcadorDAO getEInHistMarcadorDAO();
     //Histoquimica
     public abstract EstudiosHistoquimicaDAO getEstudiosHistoquimicaDAO();
     public abstract EstudiosRevisionDAO getEstudiosRevisionDAO();

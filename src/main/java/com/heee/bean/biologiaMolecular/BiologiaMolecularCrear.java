@@ -36,6 +36,10 @@ public class BiologiaMolecularCrear implements Serializable {
     private String nombreEstudio;
     private contadorEstudioCrear contadorEstudio;
     
+    private String[] marcadoresPredisposicionGenetica;
+    private String[] marcadoresBiomarcadoresOncologicos;
+    private String[] marcadoresInfeccionesVirales;
+    private String[] marcadoresMoleculares;
 
     public BiologiaMolecularCrear() {
         doctoresEnBase = null;
@@ -157,6 +161,38 @@ public class BiologiaMolecularCrear implements Serializable {
 
     public void setContadorEstudio(contadorEstudioCrear contadorEstudio) {
         this.contadorEstudio = contadorEstudio;
+    }
+
+    public String[] getMarcadoresPredisposicionGenetica() {
+        return marcadoresPredisposicionGenetica;
+    }
+
+    public void setMarcadoresPredisposicionGenetica(String[] marcadoresPredisposicionGenetica) {
+        this.marcadoresPredisposicionGenetica = marcadoresPredisposicionGenetica;
+    }
+
+    public String[] getMarcadoresBiomarcadoresOncologicos() {
+        return marcadoresBiomarcadoresOncologicos;
+    }
+
+    public void setMarcadoresBiomarcadoresOncologicos(String[] marcadoresBiomarcadoresOncologicos) {
+        this.marcadoresBiomarcadoresOncologicos = marcadoresBiomarcadoresOncologicos;
+    }
+
+    public String[] getMarcadoresInfeccionesVirales() {
+        return marcadoresInfeccionesVirales;
+    }
+
+    public void setMarcadoresInfeccionesVirales(String[] marcadoresInfeccionesVirales) {
+        this.marcadoresInfeccionesVirales = marcadoresInfeccionesVirales;
+    }
+
+    public String[] getMarcadoresMoleculares() {
+        return marcadoresMoleculares;
+    }
+
+    public void setMarcadoresMoleculares(String[] marcadoresMoleculares) {
+        this.marcadoresMoleculares = marcadoresMoleculares;
     }
     
     

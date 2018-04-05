@@ -31,7 +31,9 @@ import com.heee.bean.model.dao.CategoriaCitologicoDAO;
 import com.heee.bean.model.dao.DetallerecepcionmuestraDAO;
 import com.heee.bean.model.dao.ECitologicoSubcategoriaDAO;
 import com.heee.bean.model.dao.EHistMarcadorDAO;
+import com.heee.bean.model.dao.EInHistMarcadorDAO;
 import com.heee.bean.model.dao.EstudiosCitologicoDAO;
+import com.heee.bean.model.dao.EstudiosInmunohistoquimicaDAO;
 import com.heee.bean.model.dao.EstudiosRevisionDAO;
 import com.heee.bean.model.dao.MarcadorSubcategoriaBiologiaMDAO;
 import com.heee.bean.model.dao.SubcategoriaBiologiaMDAO;
@@ -218,4 +220,16 @@ public class JPAFactoryDAO extends FactoryDAO {
     public MarcadorSubcategoriaBiologiaMDAO getMarcadorSubcategoriaBiologiaMDAO(){
          return new JPAMarcadorSubcategoriaBiologiaMDAO();
     }
+
+    @Override
+    public EstudiosInmunohistoquimicaDAO getEstudiosInmunohistoquimicaDAO() {
+        return new JPAEstudiosInmunohistoquimicaDAO();
+    }
+
+    @Override
+    public EInHistMarcadorDAO getEInHistMarcadorDAO() {
+        return new JPAEInHistMarcadorDAO();
+    }
+
+  
 }

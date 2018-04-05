@@ -1,36 +1,31 @@
 package com.heee.bean.inmunohistoquimica;
 
-import com.heee.bean.histoquimica.*;
 import com.heee.bean.contadorEstudios.contadorEstudioCrear;
-import com.heee.bean.model.dao.TipoEstudioDAO;
 import com.heee.bean.model.entity.Cabecerarecepcionmuestra;
 import com.heee.bean.model.entity.Doctor;
-import com.heee.bean.model.entity.Estudiosamputaciones;
-import com.heee.bean.model.entity.Estudioshistoquimica;
+import com.heee.bean.model.entity.EinhMarcadores;
+import com.heee.bean.model.entity.Estudiosinmunohistoquimica;
 import com.heee.bean.model.entity.Hospital;
-//import Model.Entity.MarcadorEsParteDeEh;
-//import Model.Entity.MarcadorEsParteDeEhPK;
-import com.heee.bean.model.entity.Marcadoreseh;
+import com.heee.bean.model.entity.Marcadoreseihq;
 import com.heee.bean.model.entity.Paciente;
 import com.heee.bean.model.entity.Parroquia;
 import com.heee.bean.model.entity.Partes;
 import com.heee.bean.model.entity.Tipoestudio;
 import com.heee.bean.model.jpa.JPAFactoryDAO;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-@ManagedBean(name = "inmunoHistoquimicaCrear")
+@ManagedBean(name = "inmunohistoquimicaCrear")
 @ViewScoped
 @RequestScoped
 
 public class InmunoHistoquimicaCrear implements Serializable {
 
     private List<Hospital> hospitalesEnBase;
-    private List<Estudioshistoquimica> estudioshistoquimicaEnBase;
+    private List<Estudiosinmunohistoquimica> estudiosInmunohistoquimicaEnBase;
     private List<Cabecerarecepcionmuestra> cabecerasEnBase;
     private List<Doctor> doctoresEnBase;
     private List<Paciente> pacientesEnBase;
@@ -46,18 +41,20 @@ public class InmunoHistoquimicaCrear implements Serializable {
     private int numeroEstudio;
     private String nombreEstudio;
     private Partes partes;
-    private Estudiosamputaciones estudioAmputaciones;
-    private Estudioshistoquimica estudioHistoquimica;
+    private Estudiosinmunohistoquimica estudioInmunohistoquimica;
     private contadorEstudioCrear contadorEstudio;
-    //private MarcadorEsParteDeEh marcadorParteEH;
-    //private MarcadorEsParteDeEhPK marcadorParteEHpk;
-    private Date fechaCreacion = new Date();
+    private EinhMarcadores marcadorInmunohistoquimicaSeleccionado;
+    private Marcadoreseihq marcadorInmMarcadoreseihq;
 
     public InmunoHistoquimicaCrear() {
         doctoresEnBase = null;
         pacientesEnBase = null;
         hospitalesEnBase = null;
-        tiposEstudiosEnBase=null;
+        tiposEstudiosEnBase = null;
+        estudiosInmunohistoquimicaEnBase = null;
+        cabecerasEnBase = null;
+        marcadoresSeleccionados = null;
+
         this.cabecera = new Cabecerarecepcionmuestra();
         this.doctor = new Doctor();
         this.partes = new Partes();
@@ -65,20 +62,19 @@ public class InmunoHistoquimicaCrear implements Serializable {
         this.hospital = new Hospital();
         this.parroquia = new Parroquia();
         this.contadorEstudio = new contadorEstudioCrear();
+        this.estudioInmunohistoquimica = new Estudiosinmunohistoquimica();
+        this.marcadorInmunohistoquimicaSeleccionado = new EinhMarcadores();
+        this.marcadorInmMarcadoreseihq = new Marcadoreseihq();
         parroquiaID = 0;
         partesID = 0;
         numeroEstudio = 0;
-        nombreEstudio="";
-        
-        //this.marcadorParteEH = new MarcadorEsParteDeEh();
-       // this.marcadorParteEHpk = new MarcadorEsParteDeEhPK();
+        nombreEstudio = "";
 
     }
 
     public void regristrarHistoquimica() {
-        System.out.println("ingreso a guardar himunohistoquimica");
-        try {
-             this.parroquia.setIdparroquia(this.parroquiaID);
+
+        this.parroquia.setIdparroquia(this.parroquiaID);
         this.hospital.setIdparroquia(parroquia);
         JPAFactoryDAO.getFactory().getHospitalDAO().create(hospital);
 
@@ -96,22 +92,21 @@ public class InmunoHistoquimicaCrear implements Serializable {
         tiposEstudiosEnBase = JPAFactoryDAO.getFactory().getTipoEstudioDAO().find(atributo, valor);
         this.cabecera.setIdte(tiposEstudiosEnBase.get(tiposEstudiosEnBase.size() - 1));
         JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().create(cabecera);
-        this.cabecera.setFechacreacrm(this.fechaCreacion);
 
-        
+        cabecerasEnBase = JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().find();
+        estudioInmunohistoquimica.setIdcabecerarecepcionmuestraeihq(cabecerasEnBase.get(cabecerasEnBase.size() - 1).getIdcrm());
+        JPAFactoryDAO.getFactory().getEstudiosInmunohistoquimicaDAO().create(estudioInmunohistoquimica);
+        System.out.println("termino de guardar");
+        estudiosInmunohistoquimicaEnBase = JPAFactoryDAO.getFactory().getEstudiosInmunohistoquimicaDAO().find();
+        contadorEstudio.contarEstudio();
 
-        
-//        contadorEstudio.contarEstudio();
+        for (String marcador : marcadoresSeleccionados) {
 
-//            for (String marcadoresSeleccionado : marcadoresSeleccionados) {
-//                System.out.println("marcador:" + marcadoresSeleccionado);
-//                //this.marcadorParteEHpk.setIdeh(estudioshistoquimicaEnBase.get(estudioshistoquimicaEnBase.size() - 1).getIdeh());
-//               // this.marcadorParteEHpk.setIdmarcadoreh(Integer.parseInt(marcadoresSeleccionado));
-//               // this.marcadorParteEH.setMarcadorEsParteDeEhPK(marcadorParteEHpk);
-//                //JPAFactoryDAO.getFactory().getMarcadoresParteEHDAO().create(marcadorParteEH);
-//            }
-        } catch (Exception e) {
-            System.out.println("Hubo errores al guardar el estudio");
+            marcadorInmunohistoquimicaSeleccionado.setIdeihq(estudiosInmunohistoquimicaEnBase.get(estudiosInmunohistoquimicaEnBase.size() - 1));
+            marcadorInmMarcadoreseihq.setIdmarcadorihq(Integer.parseInt(marcador));
+            marcadorInmunohistoquimicaSeleccionado.setIdmarcadorihq(marcadorInmMarcadoreseihq);
+            marcadorInmunohistoquimicaSeleccionado.setIdeihq(estudioInmunohistoquimica);
+            JPAFactoryDAO.getFactory().getEInHistMarcadorDAO().create(marcadorInmunohistoquimicaSeleccionado);
         }
 
     }
@@ -204,38 +199,12 @@ public class InmunoHistoquimicaCrear implements Serializable {
         this.partes = partes;
     }
 
-    public Estudioshistoquimica getEstudioHistoquimica() {
-        return estudioHistoquimica;
+    public Estudiosinmunohistoquimica getEstudioInmunohistoquimica() {
+        return estudioInmunohistoquimica;
     }
 
-    public void setEstudioHistoquimica(Estudioshistoquimica estudioHistoquimica) {
-        this.estudioHistoquimica = estudioHistoquimica;
+    public void setEstudioInmunohistoquimica(Estudiosinmunohistoquimica estudioInmunohistoquimica) {
+        this.estudioInmunohistoquimica = estudioInmunohistoquimica;
     }
-/*
-    public MarcadorEsParteDeEh getMarcadorParteEH() {
-        return marcadorParteEH;
-    }
-
-    public void setMarcadorParteEH(MarcadorEsParteDeEh marcadorParteEH) {
-        this.marcadorParteEH = marcadorParteEH;
-    }
-
-    public MarcadorEsParteDeEhPK getMarcadorParteEHpk() {
-        return marcadorParteEHpk;
-    }
-
-    public void setMarcadorParteEHpk(MarcadorEsParteDeEhPK marcadorParteEHpk) {
-        this.marcadorParteEHpk = marcadorParteEHpk;
-    }
-*/
-
-    public Date getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
-    
 
 }
