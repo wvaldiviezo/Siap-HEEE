@@ -22,16 +22,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author EPN
+ * @author MPCS
  */
 @Entity
-@Table(name = "biomole_carcador_sub")
+@Table(name = "marcador_bio")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "BiomoleCarcadorSub.findAll", query = "SELECT b FROM BiomoleCarcadorSub b"),
-    @NamedQuery(name = "BiomoleCarcadorSub.findByIdbiomsubcat", query = "SELECT b FROM BiomoleCarcadorSub b WHERE b.idbiomsubcat = :idbiomsubcat"),
-    @NamedQuery(name = "BiomoleCarcadorSub.findByDescripcionmarcador", query = "SELECT b FROM BiomoleCarcadorSub b WHERE b.descripcionmarcador = :descripcionmarcador")})
-public class BiomoleCarcadorSub implements Serializable {
+    @NamedQuery(name = "MarcadorBio.findAll", query = "SELECT m FROM MarcadorBio m")
+    , @NamedQuery(name = "MarcadorBio.findByIdbiomsubcat", query = "SELECT m FROM MarcadorBio m WHERE m.idbiomsubcat = :idbiomsubcat")
+    , @NamedQuery(name = "MarcadorBio.findByDescripcionmarcador", query = "SELECT m FROM MarcadorBio m WHERE m.descripcionmarcador = :descripcionmarcador")})
+public class MarcadorBio implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -49,10 +49,10 @@ public class BiomoleCarcadorSub implements Serializable {
     @ManyToOne(optional = false)
     private Marcadorsubcategoriabm idmarcadorsubcategoriabm;
 
-    public BiomoleCarcadorSub() {
+    public MarcadorBio() {
     }
 
-    public BiomoleCarcadorSub(Integer idbiomsubcat) {
+    public MarcadorBio(Integer idbiomsubcat) {
         this.idbiomsubcat = idbiomsubcat;
     }
 
@@ -98,10 +98,10 @@ public class BiomoleCarcadorSub implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof BiomoleCarcadorSub)) {
+        if (!(object instanceof MarcadorBio)) {
             return false;
         }
-        BiomoleCarcadorSub other = (BiomoleCarcadorSub) object;
+        MarcadorBio other = (MarcadorBio) object;
         if ((this.idbiomsubcat == null && other.idbiomsubcat != null) || (this.idbiomsubcat != null && !this.idbiomsubcat.equals(other.idbiomsubcat))) {
             return false;
         }
@@ -110,7 +110,7 @@ public class BiomoleCarcadorSub implements Serializable {
 
     @Override
     public String toString() {
-        return "com.heee.bean.model.entity.BiomoleCarcadorSub[ idbiomsubcat=" + idbiomsubcat + " ]";
+        return "com.heee.bean.model.entity.MarcadorBio[ idbiomsubcat=" + idbiomsubcat + " ]";
     }
     
 }

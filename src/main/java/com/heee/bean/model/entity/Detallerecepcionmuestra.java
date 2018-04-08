@@ -25,40 +25,51 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author EPN
+ * @author MPCS
  */
 @Entity
 @Table(name = "detallerecepcionmuestra")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Detallerecepcionmuestra.findAll", query = "SELECT d FROM Detallerecepcionmuestra d"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByIddrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.iddrm = :iddrm"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByCodigobarras", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.codigobarras = :codigobarras"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByDiagnosticomacrosdrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.diagnosticomacrosdrm = :diagnosticomacrosdrm"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByNumerocasetas", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.numerocasetas = :numerocasetas"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByDetallecaseta", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.detallecaseta = :detallecaseta"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByDiagnosticotecnormaldrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.diagnosticotecnormaldrm = :diagnosticotecnormaldrm"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByCalidadmuestradrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.calidadmuestradrm = :calidadmuestradrm"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByMotivocalidadmuestradrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.motivocalidadmuestradrm = :motivocalidadmuestradrm"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByDiagnosticomicrosdrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.diagnosticomicrosdrm = :diagnosticomicrosdrm"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByOpcionsolicnuevcortesdrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.opcionsolicnuevcortesdrm = :opcionsolicnuevcortesdrm"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByRealizarnuevoscortes", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.realizarnuevoscortes = :realizarnuevoscortes"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByNumcortesdrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.numcortesdrm = :numcortesdrm"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByObservacionsolicnuevcortesdrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.observacionsolicnuevcortesdrm = :observacionsolicnuevcortesdrm"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByConclusiondiagnosticadrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.conclusiondiagnosticadrm = :conclusiondiagnosticadrm"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByEstudioespecialdrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.estudioespecialdrm = :estudioespecialdrm"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByObservacionestudioespecialdrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.observacionestudioespecialdrm = :observacionestudioespecialdrm"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByEstadoestudiodrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.estadoestudiodrm = :estadoestudiodrm"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByFechacreadrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.fechacreadrm = :fechacreadrm"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByIdusuariocreadrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.idusuariocreadrm = :idusuariocreadrm"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByFechaactualizadrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.fechaactualizadrm = :fechaactualizadrm"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByIdusuarioactualizadrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.idusuarioactualizadrm = :idusuarioactualizadrm"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByFechacreamacroscopia", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.fechacreamacroscopia = :fechacreamacroscopia"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByUsuaruicreamacroscopia", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.usuaruicreamacroscopia = :usuaruicreamacroscopia"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByFechacreaareatecnica", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.fechacreaareatecnica = :fechacreaareatecnica"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByUsuariocreaareatecnica", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.usuariocreaareatecnica = :usuariocreaareatecnica"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByFechacreapatologo", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.fechacreapatologo = :fechacreapatologo"),
-    @NamedQuery(name = "Detallerecepcionmuestra.findByUsuariocreapatologo", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.usuariocreapatologo = :usuariocreapatologo")})
+    @NamedQuery(name = "Detallerecepcionmuestra.findAll", query = "SELECT d FROM Detallerecepcionmuestra d")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByIddrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.iddrm = :iddrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByCodigobarras", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.codigobarras = :codigobarras")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByDiagnosticomacrosdrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.diagnosticomacrosdrm = :diagnosticomacrosdrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByNumerocasetas", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.numerocasetas = :numerocasetas")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByDetallecaseta", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.detallecaseta = :detallecaseta")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByDiagnosticotecnormaldrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.diagnosticotecnormaldrm = :diagnosticotecnormaldrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByCalidadmuestradrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.calidadmuestradrm = :calidadmuestradrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByMotivocalidadmuestradrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.motivocalidadmuestradrm = :motivocalidadmuestradrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByDiagnosticomicrosdrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.diagnosticomicrosdrm = :diagnosticomicrosdrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByOpcionsolicnuevcortesdrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.opcionsolicnuevcortesdrm = :opcionsolicnuevcortesdrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByRealizarnuevoscortes", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.realizarnuevoscortes = :realizarnuevoscortes")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByNumcortesdrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.numcortesdrm = :numcortesdrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByObservacionsolicnuevcortesdrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.observacionsolicnuevcortesdrm = :observacionsolicnuevcortesdrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByConclusiondiagnosticadrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.conclusiondiagnosticadrm = :conclusiondiagnosticadrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByEstudioespecialdrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.estudioespecialdrm = :estudioespecialdrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByObservacionestudioespecialdrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.observacionestudioespecialdrm = :observacionestudioespecialdrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByEstadoestudiodrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.estadoestudiodrm = :estadoestudiodrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByFechacreadrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.fechacreadrm = :fechacreadrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByIdusuariocreadrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.idusuariocreadrm = :idusuariocreadrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByFechaactualizadrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.fechaactualizadrm = :fechaactualizadrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByIdusuarioactualizadrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.idusuarioactualizadrm = :idusuarioactualizadrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByFechacreamacroscopia", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.fechacreamacroscopia = :fechacreamacroscopia")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByUsuaruicreamacroscopia", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.usuaruicreamacroscopia = :usuaruicreamacroscopia")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByFechacreaareatecnica", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.fechacreaareatecnica = :fechacreaareatecnica")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByUsuariocreaareatecnica", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.usuariocreaareatecnica = :usuariocreaareatecnica")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByFechacreapatologo", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.fechacreapatologo = :fechacreapatologo")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByUsuariocreapatologo", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.usuariocreapatologo = :usuariocreapatologo")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByNumerohedrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.numerohedrm = :numerohedrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByNumerogiemsasdrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.numerogiemsasdrm = :numerogiemsasdrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByNumeroplacasdrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.numeroplacasdrm = :numeroplacasdrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByNumerocasetasdrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.numerocasetasdrm = :numerocasetasdrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByNumerofragmentosdrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.numerofragmentosdrm = :numerofragmentosdrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByNumeropapdrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.numeropapdrm = :numeropapdrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByObservaciontnormaldrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.observaciontnormaldrm = :observaciontnormaldrm")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByNumeroplacastespecial", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.numeroplacastespecial = :numeroplacastespecial")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByTincionespecial", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.tincionespecial = :tincionespecial")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByObservaciontespecial", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.observaciontespecial = :observaciontespecial")
+    , @NamedQuery(name = "Detallerecepcionmuestra.findByPatologoasignado", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.patologoasignado = :patologoasignado")})
 public class Detallerecepcionmuestra implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -136,6 +147,32 @@ public class Detallerecepcionmuestra implements Serializable {
     private Date fechacreapatologo;
     @Column(name = "usuariocreapatologo")
     private Integer usuariocreapatologo;
+    @Column(name = "numerohedrm")
+    private Integer numerohedrm;
+    @Column(name = "numerogiemsasdrm")
+    private Integer numerogiemsasdrm;
+    @Column(name = "numeroplacasdrm")
+    private Integer numeroplacasdrm;
+    @Column(name = "numerocasetasdrm")
+    private Integer numerocasetasdrm;
+    @Column(name = "numerofragmentosdrm")
+    private Integer numerofragmentosdrm;
+    @Column(name = "numeropapdrm")
+    private Integer numeropapdrm;
+    @Size(max = 250)
+    @Column(name = "observaciontnormaldrm")
+    private String observaciontnormaldrm;
+    @Column(name = "numeroplacastespecial")
+    private Integer numeroplacastespecial;
+    @Size(max = 150)
+    @Column(name = "tincionespecial")
+    private String tincionespecial;
+    @Size(max = 250)
+    @Column(name = "observaciontespecial")
+    private String observaciontespecial;
+    @Size(max = 100)
+    @Column(name = "patologoasignado")
+    private String patologoasignado;
     @JoinColumn(name = "idcrm", referencedColumnName = "idcrm")
     @ManyToOne(optional = false)
     private Cabecerarecepcionmuestra idcrm;
@@ -361,6 +398,94 @@ public class Detallerecepcionmuestra implements Serializable {
 
     public void setUsuariocreapatologo(Integer usuariocreapatologo) {
         this.usuariocreapatologo = usuariocreapatologo;
+    }
+
+    public Integer getNumerohedrm() {
+        return numerohedrm;
+    }
+
+    public void setNumerohedrm(Integer numerohedrm) {
+        this.numerohedrm = numerohedrm;
+    }
+
+    public Integer getNumerogiemsasdrm() {
+        return numerogiemsasdrm;
+    }
+
+    public void setNumerogiemsasdrm(Integer numerogiemsasdrm) {
+        this.numerogiemsasdrm = numerogiemsasdrm;
+    }
+
+    public Integer getNumeroplacasdrm() {
+        return numeroplacasdrm;
+    }
+
+    public void setNumeroplacasdrm(Integer numeroplacasdrm) {
+        this.numeroplacasdrm = numeroplacasdrm;
+    }
+
+    public Integer getNumerocasetasdrm() {
+        return numerocasetasdrm;
+    }
+
+    public void setNumerocasetasdrm(Integer numerocasetasdrm) {
+        this.numerocasetasdrm = numerocasetasdrm;
+    }
+
+    public Integer getNumerofragmentosdrm() {
+        return numerofragmentosdrm;
+    }
+
+    public void setNumerofragmentosdrm(Integer numerofragmentosdrm) {
+        this.numerofragmentosdrm = numerofragmentosdrm;
+    }
+
+    public Integer getNumeropapdrm() {
+        return numeropapdrm;
+    }
+
+    public void setNumeropapdrm(Integer numeropapdrm) {
+        this.numeropapdrm = numeropapdrm;
+    }
+
+    public String getObservaciontnormaldrm() {
+        return observaciontnormaldrm;
+    }
+
+    public void setObservaciontnormaldrm(String observaciontnormaldrm) {
+        this.observaciontnormaldrm = observaciontnormaldrm;
+    }
+
+    public Integer getNumeroplacastespecial() {
+        return numeroplacastespecial;
+    }
+
+    public void setNumeroplacastespecial(Integer numeroplacastespecial) {
+        this.numeroplacastespecial = numeroplacastespecial;
+    }
+
+    public String getTincionespecial() {
+        return tincionespecial;
+    }
+
+    public void setTincionespecial(String tincionespecial) {
+        this.tincionespecial = tincionespecial;
+    }
+
+    public String getObservaciontespecial() {
+        return observaciontespecial;
+    }
+
+    public void setObservaciontespecial(String observaciontespecial) {
+        this.observaciontespecial = observaciontespecial;
+    }
+
+    public String getPatologoasignado() {
+        return patologoasignado;
+    }
+
+    public void setPatologoasignado(String patologoasignado) {
+        this.patologoasignado = patologoasignado;
     }
 
     public Cabecerarecepcionmuestra getIdcrm() {

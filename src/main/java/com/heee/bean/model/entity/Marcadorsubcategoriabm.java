@@ -26,15 +26,15 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author EPN
+ * @author MPCS
  */
 @Entity
 @Table(name = "marcadorsubcategoriabm")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Marcadorsubcategoriabm.findAll", query = "SELECT m FROM Marcadorsubcategoriabm m"),
-    @NamedQuery(name = "Marcadorsubcategoriabm.findByIdmarcadorsubcategoriabm", query = "SELECT m FROM Marcadorsubcategoriabm m WHERE m.idmarcadorsubcategoriabm = :idmarcadorsubcategoriabm"),
-    @NamedQuery(name = "Marcadorsubcategoriabm.findByNombremaradorbm", query = "SELECT m FROM Marcadorsubcategoriabm m WHERE m.nombremaradorbm = :nombremaradorbm")})
+    @NamedQuery(name = "Marcadorsubcategoriabm.findAll", query = "SELECT m FROM Marcadorsubcategoriabm m")
+    , @NamedQuery(name = "Marcadorsubcategoriabm.findByIdmarcadorsubcategoriabm", query = "SELECT m FROM Marcadorsubcategoriabm m WHERE m.idmarcadorsubcategoriabm = :idmarcadorsubcategoriabm")
+    , @NamedQuery(name = "Marcadorsubcategoriabm.findByNombremaradorbm", query = "SELECT m FROM Marcadorsubcategoriabm m WHERE m.nombremaradorbm = :nombremaradorbm")})
 public class Marcadorsubcategoriabm implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,7 +47,7 @@ public class Marcadorsubcategoriabm implements Serializable {
     @Column(name = "nombremaradorbm")
     private String nombremaradorbm;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idmarcadorsubcategoriabm")
-    private List<BiomoleCarcadorSub> biomoleCarcadorSubList;
+    private List<MarcadorBio> marcadorBioList;
     @JoinColumn(name = "idsubcategoriabm", referencedColumnName = "idsubcategoriabm")
     @ManyToOne(optional = false)
     private Subcategoriabm idsubcategoriabm;
@@ -76,12 +76,12 @@ public class Marcadorsubcategoriabm implements Serializable {
     }
 
     @XmlTransient
-    public List<BiomoleCarcadorSub> getBiomoleCarcadorSubList() {
-        return biomoleCarcadorSubList;
+    public List<MarcadorBio> getMarcadorBioList() {
+        return marcadorBioList;
     }
 
-    public void setBiomoleCarcadorSubList(List<BiomoleCarcadorSub> biomoleCarcadorSubList) {
-        this.biomoleCarcadorSubList = biomoleCarcadorSubList;
+    public void setMarcadorBioList(List<MarcadorBio> marcadorBioList) {
+        this.marcadorBioList = marcadorBioList;
     }
 
     public Subcategoriabm getIdsubcategoriabm() {
