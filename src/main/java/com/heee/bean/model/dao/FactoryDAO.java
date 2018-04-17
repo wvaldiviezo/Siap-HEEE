@@ -73,4 +73,6 @@ public abstract class FactoryDAO {
     public abstract ECitologicoSubcategoriaDAO getECitologicoSubcategoriaDAO();
     public abstract SubcategoriaBiologiaMDAO getSubcategoriaBiologiaMDAO();
     public abstract MarcadorSubcategoriaBiologiaMDAO getMarcadorSubcategoriaBiologiaMDAO();
+    public abstract EstudiosBiologiaMolecularDAO getEstudiosBiologiaMolecularDAO();
+    public abstract MarcadorBioDAO getMarcadorBioDAO();
 }

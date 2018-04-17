@@ -23,7 +23,6 @@ import java.util.logging.SimpleFormatter;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-
 @ManagedBean(name = "citologicoCrear")
 @ViewScoped
 //@RequestScoped
@@ -62,7 +61,6 @@ public class CitologicoCrear implements Serializable {
     private String numeroAbortos;
     private String numeroCesareas;
     private String paaf;
-    
 
     private String[] marcadorSubcategoriaMaterial;
     private String[] marcadorSubcategoriaEdades;
@@ -83,35 +81,34 @@ public class CitologicoCrear implements Serializable {
     private int subtipoID;
 
     private boolean skip;
-    
+
     private Date fechaCreacion = new Date();
 
     /*Método Constructor*/
     public CitologicoCrear() {
 
-        
-        otroMaterial ="";
-        otroAnticoncepcion ="";
-        otroLiquidos ="";
-        edadMenarquia ="";
-        edadMenopausia ="";
-        edadInicioRelaciones="";
-        formatoFecha= new SimpleDateFormat("yyyy-MM-dd");
-        ultimaMenstruacion=null;
-        ultimoParto=null;
-        ultimaCitologia=null;
-        numeroGestaciones="";
-        numeroPartos="";
-        numeroAbortos="";
-        numeroCesareas="";
-        paaf="";
+        otroMaterial = "";
+        otroAnticoncepcion = "";
+        otroLiquidos = "";
+        edadMenarquia = "";
+        edadMenopausia = "";
+        edadInicioRelaciones = "";
+        formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+        ultimaMenstruacion = null;
+        ultimoParto = null;
+        ultimaCitologia = null;
+        numeroGestaciones = "";
+        numeroPartos = "";
+        numeroAbortos = "";
+        numeroCesareas = "";
+        paaf = "";
 
         doctoresEnBase = null;
         pacientesEnBase = null;
         hospitalesEnBase = null;
         tiposEstudioEnBase = null;
         cabecerasEnBase = null;
-        
+
         this.cabecera = new Cabecerarecepcionmuestra();
         this.paciente = new Paciente();
         this.doctor = new Doctor();
@@ -125,7 +122,7 @@ public class CitologicoCrear implements Serializable {
         subtipoID = 0;
         nombreEstudio = "";
         estudioCitologicosEnBase = null;
-        
+
         marcadorSubcategoriaMaterial = null;
         marcadorSubcategoriaEdades = null;
         marcadorSubcategoriaParidad = null;
@@ -136,9 +133,9 @@ public class CitologicoCrear implements Serializable {
         marcadorSubcategoriaLavado = null;
         marcadorSubcategoriaPaaf = null;
         marcadorSubcategoriaCepillado = null;
-        
+
         this.estudioCitologicoPorSubcategoria = new ECitologicoSubcategoria();
-        this.marcadoresSubcategoriaCitologico= new Subcategoriacitologico();
+        this.marcadoresSubcategoriaCitologico = new Subcategoriacitologico();
         this.organosSistemas = new Organossistemas();
         this.subtipo = new Subtipo();
         this.estudioCitologico = new Estudiocitologico();
@@ -173,152 +170,162 @@ public class CitologicoCrear implements Serializable {
         JPAFactoryDAO.getFactory().getEstudiosCitologicoDAO().create(estudioCitologico);
 
         contadorEstudio.contarEstudio();
-        estudioCitologicosEnBase=JPAFactoryDAO.getFactory().getEstudiosCitologicoDAO().find();
-   
+        estudioCitologicosEnBase = JPAFactoryDAO.getFactory().getEstudiosCitologicoDAO().find();
+
         if (marcadorSubcategoriaMaterial != null) {
-            for (String marcador : marcadorSubcategoriaMaterial) { 
-                estudioCitologicoPorSubcategoria.setIdcec(estudioCitologicosEnBase.get(estudioCitologicosEnBase.size()-1));
-                marcadoresSubcategoriaCitologico.setIdsubcategoria(Integer.parseInt(marcador));
-                estudioCitologicoPorSubcategoria.setIdsubcategoria(this.marcadoresSubcategoriaCitologico);
-                if(marcador.equals("6")){  
+            for (String marcador : marcadorSubcategoriaMaterial) {
+
+                if (marcador.equals("6")) {
+                    estudioCitologicoPorSubcategoria.setIdcec(estudioCitologicosEnBase.get(estudioCitologicosEnBase.size() - 1));
+                    marcadoresSubcategoriaCitologico.setIdsubcategoria(Integer.parseInt(marcador));
+                    estudioCitologicoPorSubcategoria.setIdsubcategoria(this.marcadoresSubcategoriaCitologico);
                     estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(otroMaterial);
+                    estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(null);
+                } else {
+                    estudioCitologicoPorSubcategoria.setIdcec(estudioCitologicosEnBase.get(estudioCitologicosEnBase.size() - 1));
+                    marcadoresSubcategoriaCitologico.setIdsubcategoria(Integer.parseInt(marcador));
+                    estudioCitologicoPorSubcategoria.setIdsubcategoria(this.marcadoresSubcategoriaCitologico);
+                    JPAFactoryDAO.getFactory().getECitologicoSubcategoriaDAO().create(estudioCitologicoPorSubcategoria);
                 }
-                JPAFactoryDAO.getFactory().getECitologicoSubcategoriaDAO().create(estudioCitologicoPorSubcategoria);
-                
             }
             System.out.println("paso material");
-        } 
-        if(marcadorSubcategoriaAnticoncepcion!=null){
-             for (String marcador : marcadorSubcategoriaAnticoncepcion) {
-                System.out.println("macador seleccionado"+marcador);
-                estudioCitologicoPorSubcategoria.setIdcec(estudioCitologicosEnBase.get(estudioCitologicosEnBase.size()-1));
-                marcadoresSubcategoriaCitologico.setIdsubcategoria(Integer.parseInt(marcador));
-                estudioCitologicoPorSubcategoria.setIdsubcategoria(this.marcadoresSubcategoriaCitologico);
-                System.out.println("marcador:"+otroMaterial);
-                if(marcador.equals("17")){  
-                    estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(otroAnticoncepcion);
-                }
-                JPAFactoryDAO.getFactory().getECitologicoSubcategoriaDAO().create(estudioCitologicoPorSubcategoria);
-                
-            }
-             System.out.println("paso anticoncepcion");
         }
-        if(marcadorSubcategoriaEdades!=null){
+        if (marcadorSubcategoriaAnticoncepcion != null) {
+            for (String marcador : marcadorSubcategoriaAnticoncepcion) {
+                if (marcador.equals("17")) {
+                    estudioCitologicoPorSubcategoria.setIdcec(estudioCitologicosEnBase.get(estudioCitologicosEnBase.size() - 1));
+                    marcadoresSubcategoriaCitologico.setIdsubcategoria(Integer.parseInt(marcador));
+                    estudioCitologicoPorSubcategoria.setIdsubcategoria(this.marcadoresSubcategoriaCitologico);
+                    estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(otroAnticoncepcion);
+                    JPAFactoryDAO.getFactory().getECitologicoSubcategoriaDAO().create(estudioCitologicoPorSubcategoria);
+                    estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(null);
+                } else {
+                    estudioCitologicoPorSubcategoria.setIdcec(estudioCitologicosEnBase.get(estudioCitologicosEnBase.size() - 1));
+                    marcadoresSubcategoriaCitologico.setIdsubcategoria(Integer.parseInt(marcador));
+                    estudioCitologicoPorSubcategoria.setIdsubcategoria(this.marcadoresSubcategoriaCitologico);
+                    JPAFactoryDAO.getFactory().getECitologicoSubcategoriaDAO().create(estudioCitologicoPorSubcategoria);
+                }
+            }
+            System.out.println("paso anticoncepcion");
+        }
+        if (marcadorSubcategoriaEdades != null) {
             for (String marcador : marcadorSubcategoriaEdades) {
-                System.out.println("macador seleccionado"+marcador);
-                estudioCitologicoPorSubcategoria.setIdcec(estudioCitologicosEnBase.get(estudioCitologicosEnBase.size()-1));
+                System.out.println("macador seleccionado" + marcador);
+                estudioCitologicoPorSubcategoria.setIdcec(estudioCitologicosEnBase.get(estudioCitologicosEnBase.size() - 1));
                 marcadoresSubcategoriaCitologico.setIdsubcategoria(Integer.parseInt(marcador));
                 estudioCitologicoPorSubcategoria.setIdsubcategoria(this.marcadoresSubcategoriaCitologico);
-                if(marcador.equals("7")){  
+                if (marcador.equals("7")) {
                     estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(edadMenarquia);
                 }
-                if(marcador.equals("8")){  
+                if (marcador.equals("8")) {
                     estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(edadMenopausia);
                 }
-                if(marcador.equals("9")){  
+                if (marcador.equals("9")) {
                     estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(edadInicioRelaciones);
                 }
                 JPAFactoryDAO.getFactory().getECitologicoSubcategoriaDAO().create(estudioCitologicoPorSubcategoria);
-                
-            } 
+                estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(null);
+
+            }
             System.out.println("paso edades");
         }
-        if(marcadorSubcategoriaFechas!=null){
-            for (String marcador : marcadorSubcategoriaFechas) {      
-                    estudioCitologicoPorSubcategoria.setIdcec(estudioCitologicosEnBase.get(estudioCitologicosEnBase.size()-1));
-                    marcadoresSubcategoriaCitologico.setIdsubcategoria(Integer.parseInt(marcador));
-                    estudioCitologicoPorSubcategoria.setIdsubcategoria(this.marcadoresSubcategoriaCitologico);
-                    if(marcador.equals("19")){  
+        if (marcadorSubcategoriaFechas != null) {
+            for (String marcador : marcadorSubcategoriaFechas) {
+                estudioCitologicoPorSubcategoria.setIdcec(estudioCitologicosEnBase.get(estudioCitologicosEnBase.size() - 1));
+                marcadoresSubcategoriaCitologico.setIdsubcategoria(Integer.parseInt(marcador));
+                estudioCitologicoPorSubcategoria.setIdsubcategoria(this.marcadoresSubcategoriaCitologico);
+                if (marcador.equals("19")) {
                     estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(formatoFecha.format(ultimaMenstruacion));
-                    }
-                    if(marcador.equals("20")){  
-                        estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(formatoFecha.format(ultimoParto));
-                    }
-                    if(marcador.equals("21")){  
-                        estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(formatoFecha.format(ultimoParto));
-                    }
-                        JPAFactoryDAO.getFactory().getECitologicoSubcategoriaDAO().create(estudioCitologicoPorSubcategoria);
-                    }
+                }
+                if (marcador.equals("20")) {
+                    estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(formatoFecha.format(ultimoParto));
+                }
+                if (marcador.equals("21")) {
+                    estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(formatoFecha.format(ultimoParto));
+                }
+                JPAFactoryDAO.getFactory().getECitologicoSubcategoriaDAO().create(estudioCitologicoPorSubcategoria);
+                estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(null);
+            }
             System.out.println("paso fechas");
         }
-        if(marcadorSubcategoriaParidad!=null){
+        if (marcadorSubcategoriaParidad != null) {
             for (String marcador : marcadorSubcategoriaParidad) {
 
-                    System.out.println("macador seleccionado"+marcador);
-                    estudioCitologicoPorSubcategoria.setIdcec(estudioCitologicosEnBase.get(estudioCitologicosEnBase.size()-1));
-                    marcadoresSubcategoriaCitologico.setIdsubcategoria(Integer.parseInt(marcador));
-                    estudioCitologicoPorSubcategoria.setIdsubcategoria(this.marcadoresSubcategoriaCitologico);
-                    if(marcador.equals("10")){  
+                System.out.println("macador seleccionado" + marcador);
+                estudioCitologicoPorSubcategoria.setIdcec(estudioCitologicosEnBase.get(estudioCitologicosEnBase.size() - 1));
+                marcadoresSubcategoriaCitologico.setIdsubcategoria(Integer.parseInt(marcador));
+                estudioCitologicoPorSubcategoria.setIdsubcategoria(this.marcadoresSubcategoriaCitologico);
+                if (marcador.equals("10")) {
                     estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(numeroGestaciones);
-                    }
-                    if(marcador.equals("11")){  
-                        estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(numeroPartos);
-                    }
-                    if(marcador.equals("12")){  
-                        estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(numeroAbortos);
-                    }
-                    if(marcador.equals("13")){  
-                        estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(numeroCesareas);
-                    }
-                        JPAFactoryDAO.getFactory().getECitologicoSubcategoriaDAO().create(estudioCitologicoPorSubcategoria);
-                    
-                    
+                }
+                if (marcador.equals("11")) {
+                    estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(numeroPartos);
+                }
+                if (marcador.equals("12")) {
+                    estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(numeroAbortos);
+                }
+                if (marcador.equals("13")) {
+                    estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(numeroCesareas);
+                }
+                JPAFactoryDAO.getFactory().getECitologicoSubcategoriaDAO().create(estudioCitologicoPorSubcategoria);
+                estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(null);
+
             }
             System.out.println("paso paridad");
         }
-        if(marcadorSubcategoriaLiquidos!=null){
+        if (marcadorSubcategoriaLiquidos != null) {
             for (String marcador : marcadorSubcategoriaLiquidos) {
-                System.out.println("macador seleccionado"+marcador);
-                estudioCitologicoPorSubcategoria.setIdcec(estudioCitologicosEnBase.get(estudioCitologicosEnBase.size()-1));
+                System.out.println("macador seleccionado" + marcador);
+                estudioCitologicoPorSubcategoria.setIdcec(estudioCitologicosEnBase.get(estudioCitologicosEnBase.size() - 1));
                 marcadoresSubcategoriaCitologico.setIdsubcategoria(Integer.parseInt(marcador));
                 estudioCitologicoPorSubcategoria.setIdsubcategoria(this.marcadoresSubcategoriaCitologico);
-                if(marcador.equals("28")){  
-                        estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(otroLiquidos);
-                    }
+                if (marcador.equals("28")) {
+                    estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(otroLiquidos);
+                }
                 JPAFactoryDAO.getFactory().getECitologicoSubcategoriaDAO().create(estudioCitologicoPorSubcategoria);
+                estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(null);
             }
             System.out.println("paso liquidos");
         }
-        if(marcadorSubcategoriaLavado!=null){
+        if (marcadorSubcategoriaLavado != null) {
             for (String marcador : marcadorSubcategoriaLavado) {
-                System.out.println("macador seleccionado"+marcador);
-                estudioCitologicoPorSubcategoria.setIdcec(estudioCitologicosEnBase.get(estudioCitologicosEnBase.size()-1));
+                System.out.println("macador seleccionado" + marcador);
+                estudioCitologicoPorSubcategoria.setIdcec(estudioCitologicosEnBase.get(estudioCitologicosEnBase.size() - 1));
                 marcadoresSubcategoriaCitologico.setIdsubcategoria(Integer.parseInt(marcador));
                 estudioCitologicoPorSubcategoria.setIdsubcategoria(this.marcadoresSubcategoriaCitologico);
                 JPAFactoryDAO.getFactory().getECitologicoSubcategoriaDAO().create(estudioCitologicoPorSubcategoria);
             }
             System.out.println("paso lavado");
         }
-        if(marcadorSubcategoriaCepillado!=null){
+        if (marcadorSubcategoriaCepillado != null) {
             for (String marcador : marcadorSubcategoriaCepillado) {
-                System.out.println("macador seleccionado"+marcador);
-                estudioCitologicoPorSubcategoria.setIdcec(estudioCitologicosEnBase.get(estudioCitologicosEnBase.size()-1));
+                System.out.println("macador seleccionado" + marcador);
+                estudioCitologicoPorSubcategoria.setIdcec(estudioCitologicosEnBase.get(estudioCitologicosEnBase.size() - 1));
                 marcadoresSubcategoriaCitologico.setIdsubcategoria(Integer.parseInt(marcador));
                 estudioCitologicoPorSubcategoria.setIdsubcategoria(this.marcadoresSubcategoriaCitologico);
                 JPAFactoryDAO.getFactory().getECitologicoSubcategoriaDAO().create(estudioCitologicoPorSubcategoria);
             }
             System.out.println("paso cepillado");
         }
-        if(marcadorSubcategoriaPaaf !=null){
+        if (marcadorSubcategoriaPaaf != null) {
             for (String marcador : marcadorSubcategoriaPaaf) {
-                System.out.println("macador seleccionado"+marcador);
-                estudioCitologicoPorSubcategoria.setIdcec(estudioCitologicosEnBase.get(estudioCitologicosEnBase.size()-1));
+                System.out.println("macador seleccionado" + marcador);
+                estudioCitologicoPorSubcategoria.setIdcec(estudioCitologicosEnBase.get(estudioCitologicosEnBase.size() - 1));
                 marcadoresSubcategoriaCitologico.setIdsubcategoria(Integer.parseInt(marcador));
                 estudioCitologicoPorSubcategoria.setIdsubcategoria(this.marcadoresSubcategoriaCitologico);
-                if(marcador.equals("31")){  
-                        estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(paaf);
-                    }
+                if (marcador.equals("31")) {
+                    estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(paaf);
+                }
                 JPAFactoryDAO.getFactory().getECitologicoSubcategoriaDAO().create(estudioCitologicoPorSubcategoria);
+                estudioCitologicoPorSubcategoria.setDescripcionsubcategoria(null);
             }
             System.out.println("paso paaf");
         }
-            
 
         System.out.println("Salio del metodo registrarCitologico");
     }
 
     /*Getters & Setters*/
-
     public String getOtroMaterial() {
         return otroMaterial;
     }
@@ -391,8 +398,6 @@ public class CitologicoCrear implements Serializable {
         this.ultimaCitologia = ultimaCitologia;
     }
 
-    
-
     public String getNumeroGestaciones() {
         return numeroGestaciones;
     }
@@ -432,9 +437,7 @@ public class CitologicoCrear implements Serializable {
     public void setPaaf(String paaf) {
         this.paaf = paaf;
     }
-    
-    
-    
+
     public List<Hospital> getHospitalesEnBase() {
         return hospitalesEnBase;
     }
@@ -658,13 +661,13 @@ public class CitologicoCrear implements Serializable {
     public void setMarcadorSubcategoriaCepillado(String[] marcadorSubcategoriaCepillado) {
         this.marcadorSubcategoriaCepillado = marcadorSubcategoriaCepillado;
     }
-    
-     public Date getFechaCreacion() {
+
+    public Date getFechaCreacion() {
         return this.fechaCreacion;
     }
 
     public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
-    
+
 }

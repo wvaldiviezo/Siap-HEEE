@@ -1,9 +1,12 @@
 package com.heee.bean.biologiaMolecular;
 
 import com.heee.bean.contadorEstudios.contadorEstudioCrear;
+import com.heee.bean.model.entity.Biologiamolecular;
 import com.heee.bean.model.entity.Cabecerarecepcionmuestra;
 import com.heee.bean.model.entity.Doctor;
 import com.heee.bean.model.entity.Hospital;
+import com.heee.bean.model.entity.MarcadorBio;
+import com.heee.bean.model.entity.Marcadorsubcategoriabm;
 import com.heee.bean.model.entity.Paciente;
 import com.heee.bean.model.entity.Parroquia;
 import com.heee.bean.model.entity.Tipoestudio;
@@ -16,11 +19,12 @@ import javax.faces.bean.ViewScoped;
 
 @ManagedBean(name = "biologiaMolecularCrear")
 @ViewScoped
-@RequestScoped
+
 public class BiologiaMolecularCrear implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private List<Hospital> hospitalesEnBase;
+    private List<Biologiamolecular> biologiaMolecularEnBase;
     private List<Doctor> doctoresEnBase;
     private List<Paciente> pacientesEnBase;
     private List<Tipoestudio> tiposEstudiosEnBase;
@@ -34,7 +38,12 @@ public class BiologiaMolecularCrear implements Serializable {
     private int partesID;
     private int numeroEstudio;
     private String nombreEstudio;
+    private String txtOtroInfecionesVirales;
+    private String txtOtroMoleculares;
     private contadorEstudioCrear contadorEstudio;
+    private Biologiamolecular estudioBiologiaMolecular;
+    private MarcadorBio marcadorBio;
+    private Marcadorsubcategoriabm marcadorSubategoriaBiologiaM;
 
     private String[] marcadoresPredisposicionGenetica;
     private String[] marcadoresBiomarcadoresOncologicos;
@@ -45,6 +54,7 @@ public class BiologiaMolecularCrear implements Serializable {
         doctoresEnBase = null;
         pacientesEnBase = null;
         hospitalesEnBase = null;
+        biologiaMolecularEnBase = null;
         tiposEstudiosEnBase = null;
         cabecerasEnBase = null;
         this.cabecera = new Cabecerarecepcionmuestra();
@@ -53,53 +63,97 @@ public class BiologiaMolecularCrear implements Serializable {
         this.hospital = new Hospital();
         this.parroquia = new Parroquia();
         this.contadorEstudio = new contadorEstudioCrear();
+        this.estudioBiologiaMolecular = new Biologiamolecular();
+        this.marcadorBio = new MarcadorBio();
+        this.marcadorSubategoriaBiologiaM = new Marcadorsubcategoriabm();
+
         parroquiaID = 0;
         partesID = 0;
         numeroEstudio = 0;
         nombreEstudio = "";
+        txtOtroInfecionesVirales = "";
+        txtOtroMoleculares = "";
+
     }
 
     public void registrarBiologiaMolecular() {
         System.out.println("guardar");
 
-//        this.parroquia.setIdparroquia(this.parroquiaID);
-//        this.hospital.setIdparroquia(parroquia);
-//        JPAFactoryDAO.getFactory().getHospitalDAO().create(hospital);
-//
-//        JPAFactoryDAO.getFactory().getDoctorDAO().create(doctor);
-//        JPAFactoryDAO.getFactory().getPacienteDAO().create(paciente);
-//
-//        hospitalesEnBase = JPAFactoryDAO.getFactory().getHospitalDAO().find();
-//        this.cabecera.setIdhospital(hospitalesEnBase.get(hospitalesEnBase.size() - 1));
-//        doctoresEnBase = JPAFactoryDAO.getFactory().getDoctorDAO().find();
-//        this.cabecera.setIddoctor(doctoresEnBase.get(doctoresEnBase.size() - 1));
-//        pacientesEnBase = JPAFactoryDAO.getFactory().getPacienteDAO().find();
-//        this.cabecera.setIdpaciente(pacientesEnBase.get(pacientesEnBase.size() - 1));
-//        String[] atributo={"nombrete"};
-//        String[] valor={nombreEstudio};
-//        tiposEstudiosEnBase=JPAFactoryDAO.getFactory().getTipoEstudioDAO().find(atributo,valor);
-//        this.cabecera.setIdte(tiposEstudiosEnBase.get(tiposEstudiosEnBase.size()-1));
-//        JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().create(cabecera);
-//        contadorEstudio.contarEstudio();
-        // System.out.println("codigo:" + cabecera.getCodigoestudio());
+        this.parroquia.setIdparroquia(this.parroquiaID);
+        this.hospital.setIdparroquia(parroquia);
+        JPAFactoryDAO.getFactory().getHospitalDAO().create(hospital);
+
+        JPAFactoryDAO.getFactory().getDoctorDAO().create(doctor);
+        JPAFactoryDAO.getFactory().getPacienteDAO().create(paciente);
+
+        hospitalesEnBase = JPAFactoryDAO.getFactory().getHospitalDAO().find();
+        this.cabecera.setIdhospital(hospitalesEnBase.get(hospitalesEnBase.size() - 1));
+        doctoresEnBase = JPAFactoryDAO.getFactory().getDoctorDAO().find();
+        this.cabecera.setIddoctor(doctoresEnBase.get(doctoresEnBase.size() - 1));
+        pacientesEnBase = JPAFactoryDAO.getFactory().getPacienteDAO().find();
+        this.cabecera.setIdpaciente(pacientesEnBase.get(pacientesEnBase.size() - 1));
+        String[] atributo = {"nombrete"};
+        String[] valor = {nombreEstudio};
+        tiposEstudiosEnBase = JPAFactoryDAO.getFactory().getTipoEstudioDAO().find(atributo, valor);
+        this.cabecera.setIdte(tiposEstudiosEnBase.get(tiposEstudiosEnBase.size() - 1));
+        JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().create(cabecera);
+
+        cabecerasEnBase = JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().find();
+        this.estudioBiologiaMolecular.setIdcabecerarecepcionmuestrabm(cabecerasEnBase.get(cabecerasEnBase.size() - 1).getIdcrm());
+        JPAFactoryDAO.getFactory().getEstudiosBiologiaMolecularDAO().create(this.estudioBiologiaMolecular);
+
+        contadorEstudio.contarEstudio();
+
+        biologiaMolecularEnBase = JPAFactoryDAO.getFactory().getEstudiosBiologiaMolecularDAO().find();
         if (marcadoresBiomarcadoresOncologicos != null) {
             for (String marcador : marcadoresBiomarcadoresOncologicos) {
-                System.out.println("Marcador BOncologicos:" + marcador);
+                marcadorBio.setIdbiologiamolecular(biologiaMolecularEnBase.get(biologiaMolecularEnBase.size() - 1));
+                marcadorSubategoriaBiologiaM.setIdmarcadorsubcategoriabm(Integer.parseInt(marcador));
+                marcadorBio.setIdmarcadorsubcategoriabm(this.marcadorSubategoriaBiologiaM);
+                JPAFactoryDAO.getFactory().getMarcadorBioDAO().create(marcadorBio);
             }
         }
         if (marcadoresInfeccionesVirales != null) {
             for (String marcador : marcadoresInfeccionesVirales) {
-                System.out.println("Marcador infeccionesVirales:" + marcador);
+                if (marcador.equals("31")) {
+                    marcadorBio.setIdbiologiamolecular(biologiaMolecularEnBase.get(biologiaMolecularEnBase.size() - 1));
+                    marcadorSubategoriaBiologiaM.setIdmarcadorsubcategoriabm(Integer.parseInt(marcador));
+                    marcadorBio.setIdmarcadorsubcategoriabm(this.marcadorSubategoriaBiologiaM);
+                    marcadorBio.setDescripcionmarcador(txtOtroInfecionesVirales);
+                    JPAFactoryDAO.getFactory().getMarcadorBioDAO().create(marcadorBio);
+                    marcadorBio.setDescripcionmarcador(null);
+                }else{
+                marcadorBio.setIdbiologiamolecular(biologiaMolecularEnBase.get(biologiaMolecularEnBase.size() - 1));
+                marcadorSubategoriaBiologiaM.setIdmarcadorsubcategoriabm(Integer.parseInt(marcador));
+                marcadorBio.setIdmarcadorsubcategoriabm(this.marcadorSubategoriaBiologiaM);
+                JPAFactoryDAO.getFactory().getMarcadorBioDAO().create(marcadorBio);
+                }
             }
         }
         if (marcadoresMoleculares != null) {
             for (String marcador : marcadoresMoleculares) {
-                System.out.println("Marcador Moleculares:" + marcador);
+
+                if (marcador.equals("33")) {
+                    marcadorBio.setIdbiologiamolecular(biologiaMolecularEnBase.get(biologiaMolecularEnBase.size() - 1));
+                    marcadorSubategoriaBiologiaM.setIdmarcadorsubcategoriabm(Integer.parseInt(marcador));
+                    marcadorBio.setIdmarcadorsubcategoriabm(this.marcadorSubategoriaBiologiaM);
+                    marcadorBio.setDescripcionmarcador(txtOtroMoleculares);
+                    JPAFactoryDAO.getFactory().getMarcadorBioDAO().create(marcadorBio);
+                    marcadorBio.setDescripcionmarcador(null);
+                }else{
+                marcadorBio.setIdbiologiamolecular(biologiaMolecularEnBase.get(biologiaMolecularEnBase.size() - 1));
+                marcadorSubategoriaBiologiaM.setIdmarcadorsubcategoriabm(Integer.parseInt(marcador));
+                marcadorBio.setIdmarcadorsubcategoriabm(this.marcadorSubategoriaBiologiaM);
+                JPAFactoryDAO.getFactory().getMarcadorBioDAO().create(marcadorBio);
+                }
             }
         }
         if (marcadoresBiomarcadoresOncologicos != null) {
             for (String marcador : marcadoresPredisposicionGenetica) {
-                System.out.println("Marcador Prediposicion genetica:" + marcador);
+                marcadorBio.setIdbiologiamolecular(biologiaMolecularEnBase.get(biologiaMolecularEnBase.size() - 1));
+                marcadorSubategoriaBiologiaM.setIdmarcadorsubcategoriabm(Integer.parseInt(marcador));
+                marcadorBio.setIdmarcadorsubcategoriabm(this.marcadorSubategoriaBiologiaM);
+                JPAFactoryDAO.getFactory().getMarcadorBioDAO().create(marcadorBio);
             }
         }
     }
@@ -207,6 +261,22 @@ public class BiologiaMolecularCrear implements Serializable {
 
     public void setMarcadoresMoleculares(String[] marcadoresMoleculares) {
         this.marcadoresMoleculares = marcadoresMoleculares;
+    }
+
+    public String getTxtOtroInfecionesVirales() {
+        return txtOtroInfecionesVirales;
+    }
+
+    public void setTxtOtroInfecionesVirales(String txtOtroInfecionesVirales) {
+        this.txtOtroInfecionesVirales = txtOtroInfecionesVirales;
+    }
+
+    public String getTxtOtroMoleculares() {
+        return txtOtroMoleculares;
+    }
+
+    public void setTxtOtroMoleculares(String txtOtroMoleculares) {
+        this.txtOtroMoleculares = txtOtroMoleculares;
     }
 
 }

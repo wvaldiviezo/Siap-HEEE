@@ -231,7 +231,7 @@
                                             <p:selectManyCheckbox columns="1" id="gridInfeccionesVirales" value="#{biologiaMolecularCrear.marcadoresInfeccionesVirales}" layout="grid" >
                                                 <f:selectItems value="#{biologiaMolecularListar.listarMarcadorSubcategoria('3')}" var="marcadorSubcategoriaCitologia" itemLabel="#{marcadorSubcategoriaCitologia.nombremaradorbm}" itemValue="#{marcadorSubcategoriaCitologia.idmarcadorsubcategoriabm}" />
                                             </p:selectManyCheckbox>
-                                            <p:inputTextarea id="txtOtroInfeccionesVirales" value="#{citologicoCrear.otroMaterial}" rows="1" cols="30"/>
+                                            <p:inputTextarea id="txtOtroInfeccionesVirales" value="#{biologiaMolecularCrear.txtOtroInfecionesVirales}" rows="1" cols="30"/>
                                         </h:panelGrid>
                                     </p:tab>
                                     <p:tab title="Otras Pruebas Moleculares por Electroforesis Capilar">
@@ -239,7 +239,7 @@
                                             <p:selectManyCheckbox columns="1" id="gridMoleculares" value="#{biologiaMolecularCrear.marcadoresMoleculares}" layout="grid" >
                                                 <f:selectItems value="#{biologiaMolecularListar.listarMarcadorSubcategoria('4')}" var="marcadorSubcategoriaCitologia" itemLabel="#{marcadorSubcategoriaCitologia.nombremaradorbm}" itemValue="#{marcadorSubcategoriaCitologia.idmarcadorsubcategoriabm}" />
                                             </p:selectManyCheckbox> 
-                                            <p:inputTextarea id="txtOtroMoleculares" value="#{citologicoCrear.otroMaterial}" rows="1" cols="30"/>
+                                            <p:inputTextarea id="txtOtroMoleculares" value="#{biologiaMolecularCrear.txtOtroMoleculares}" rows="1" cols="30"/>
                                         </h:panelGrid> 
                                     </p:tab>
 
