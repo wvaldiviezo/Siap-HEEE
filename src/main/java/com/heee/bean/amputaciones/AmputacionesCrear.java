@@ -55,6 +55,7 @@ public class AmputacionesCrear implements Serializable {
         tiposEstudiosEnBase = null;
         cabecerasEnBase = null;
         this.cabecera = new Cabecerarecepcionmuestra();
+        this.cabecera.setEstadoestudiocrm("Macroscopia");
         this.doctor = new Doctor();
         this.partes = new Partes();
         this.paciente = new Paciente();

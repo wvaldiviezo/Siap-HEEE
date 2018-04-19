@@ -58,6 +58,7 @@ public class BiologiaMolecularCrear implements Serializable {
         tiposEstudiosEnBase = null;
         cabecerasEnBase = null;
         this.cabecera = new Cabecerarecepcionmuestra();
+        this.cabecera.setEstadoestudiocrm("Tecnico Especial");
         this.doctor = new Doctor();
         this.paciente = new Paciente();
         this.hospital = new Hospital();

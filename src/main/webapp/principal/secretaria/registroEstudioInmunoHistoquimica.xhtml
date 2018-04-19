@@ -244,7 +244,7 @@
 
                                     <h:outputLabel for="rdbEstudio" value="Estudio: " />
                                     <p:selectOneRadio id="rdbConsulta" value="#{inmunohistoquimicaCrear.cabecera.estadoestudiocrm}" required="true" label="Estado de estudio">
-                                        <f:selectItem itemValue="Aceptado" itemLabel="Aceptado" />
+                                        <f:selectItem itemValue="Tecnico Especial" itemLabel="Aceptado" />
                                         <f:selectItem itemValue="Rechazado" itemLabel="Rechazado" />
                                         <p:ajax  update="txtRechazo" />
                                     </p:selectOneRadio>
@@ -252,7 +252,7 @@
 
 
                                     <h:outputLabel for="txtRechazo" value="Motivo rechazo: " />
-                                    <p:inputTextarea id="txtRechazo" value="#{inmunohistoquimicaCrear.cabecera.razonrechazocrm}" disabled="#{inmunohistoquimicaCrear.cabecera.estadoestudiocrm == 'Aceptado'}" rows="3" cols="51" queryDelay="750" minQueryLength="4" />
+                                    <p:inputTextarea id="txtRechazo" value="#{inmunohistoquimicaCrear.cabecera.razonrechazocrm}" disabled="#{inmunohistoquimicaCrear.cabecera.estadoestudiocrm == 'Tecnico Especial'}" rows="3" cols="51" queryDelay="750" minQueryLength="4" />
                                     <p:messages for="rdbRechazo"/>
 
                                 </h:panelGrid> 

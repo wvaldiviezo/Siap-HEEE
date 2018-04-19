@@ -56,6 +56,7 @@ public class InmunoHistoquimicaCrear implements Serializable {
         marcadoresSeleccionados = null;
 
         this.cabecera = new Cabecerarecepcionmuestra();
+        this.cabecera.setEstadoestudiocrm("Tecnico Especial");
         this.doctor = new Doctor();
         this.partes = new Partes();
         this.paciente = new Paciente();

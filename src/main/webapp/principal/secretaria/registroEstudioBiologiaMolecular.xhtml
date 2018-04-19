@@ -90,7 +90,7 @@
                             </p:panel>
                         </p:tab>
 
-                        <p:tab id="medico" title="Medico">
+                        <p:tab id="medico" title="Médico">
                             <p:panel header="Datos del médico solicitante">
                                 <h:panelGrid columns="3" id="pgDatosMedico" columnClasses="label, value">
                                     <p:outputLabel for="txtNombresMS" value="Nombres: " />
@@ -255,7 +255,7 @@
 
                                     <h:outputLabel for="rdbEstudio" value="Estudio: " />
                                     <p:selectOneRadio id="rdbConsulta" value="#{biologiaMolecularCrear.cabecera.estadoestudiocrm}" required="true" label="Estado de estudio">
-                                        <f:selectItem itemValue="Aceptado" itemLabel="Aceptado" />
+                                        <f:selectItem itemValue="Tecnico Especial" itemLabel="Aceptado" />
                                         <f:selectItem itemValue="Rechazado" itemLabel="Rechazado" />
                                         <p:ajax  update="txtRechazo" />
                                     </p:selectOneRadio>
@@ -263,7 +263,7 @@
 
 
                                     <h:outputLabel for="txtRechazo" value="Motivo rechazo: " />
-                                    <p:inputTextarea id="txtRechazo" value="#{biologiaMolecularCrear.cabecera.razonrechazocrm}" disabled="#{biologiaMolecularCrear.cabecera.estadoestudiocrm == 'Aceptado'}" rows="3" cols="51" queryDelay="750" minQueryLength="4" />
+                                    <p:inputTextarea id="txtRechazo" value="#{biologiaMolecularCrear.cabecera.razonrechazocrm}" disabled="#{biologiaMolecularCrear.cabecera.estadoestudiocrm == 'Tecnico Especial'}" rows="3" cols="51" queryDelay="750" minQueryLength="4" />
                                     <p:messages for="rdbRechazo"/>
 
                                 </h:panelGrid> 

@@ -247,7 +247,7 @@
                                     <p:messages for="cboSubtipo"/>
 
                                     <p:column/>
-                                    <p:inputText id="txtOtrosEnSubtipo" value="#{revisionesCrear.estudioRevision.descripcionsubtipoer}" disabled="#{revisionesCrear.subtipoID!=6}" style="text-transform:uppercase;"  onkeyup="javascript:this.value = this.value.toUpperCase();" size="54" />
+                                    <p:inputText id="txtOtrosEnSubtipo" value="#{revisionesCrear.estudioRevision.descripcionsubtipoer}" disabled="#{revisionesCrear.subtipoID!=9}" style="text-transform:uppercase;"  onkeyup="javascript:this.value = this.value.toUpperCase();" size="54" />
                                     <p:watermark for="txtOtrosEnSubtipo" value="Otro subtipo" />
 
                                     <h:outputLabel for="txtDescripcion" value="Descripción: " /> 
@@ -278,7 +278,7 @@
                                     <p:messages for="rdbEstudio"/>
 
                                     <h:outputLabel for="txtRechazo" value="Motivo rechazo: " />
-                                    <p:inputTextarea id="txtRechazo" value="#{revisionesCrear.cabecera.razonrechazocrm}" disabled="#{(revisionesCrear.cabecera.estadoestudiocrm == 'Aceptado') }" rows="3" cols="51" queryDelay="750" minQueryLength="4" />
+                                    <p:inputTextarea id="txtRechazo" value="#{revisionesCrear.cabecera.razonrechazocrm}" disabled="#{(revisionesCrear.cabecera.estadoestudiocrm == 'Tecnico Normal') }" rows="3" cols="51" queryDelay="750" minQueryLength="4" />
                                     <p:messages for="rdbRechazo"/>
                                 </h:panelGrid> 
 

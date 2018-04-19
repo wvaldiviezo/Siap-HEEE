@@ -65,6 +65,7 @@ public class HistoquimicaCrear implements Serializable {
         listaMarcadoresSeleccionados=null;
         
         this.cabecera = new Cabecerarecepcionmuestra();
+        this.cabecera.setEstadoestudiocrm("Tecnico Especial");
         this.doctor = new Doctor();
         this.partes = new Partes();
         this.paciente = new Paciente();

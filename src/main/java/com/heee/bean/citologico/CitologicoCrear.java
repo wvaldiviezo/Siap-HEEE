@@ -110,6 +110,7 @@ public class CitologicoCrear implements Serializable {
         cabecerasEnBase = null;
 
         this.cabecera = new Cabecerarecepcionmuestra();
+        this.cabecera.setEstadoestudiocrm("Macroscopia");
         this.paciente = new Paciente();
         this.doctor = new Doctor();
         this.hospital = new Hospital();

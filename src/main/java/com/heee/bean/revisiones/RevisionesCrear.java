@@ -72,6 +72,7 @@ public class RevisionesCrear implements Serializable {
         cabecerasEnBase = null;
 
         this.cabecera = new Cabecerarecepcionmuestra();
+        this.cabecera.setEstadoestudiocrm("Tecnico Normal");
         this.paciente = new Paciente();
         this.doctor = new Doctor();
         this.hospital = new Hospital();
