@@ -63,6 +63,7 @@ public class QuirurgicoCrear implements Serializable {
         tiposEstudioEnBase = null;
         cabecerasEnBase = null;
         this.cabecera = new Cabecerarecepcionmuestra();
+        this.cabecera.setEstadoestudiocrm("Macroscopia");
         this.paciente = new Paciente();
         this.doctor = new Doctor();
         this.hospital = new Hospital();
@@ -144,6 +145,7 @@ public class QuirurgicoCrear implements Serializable {
     }
 
     public Cabecerarecepcionmuestra getCabecera() {
+//        cabecera.setEstadoestudiocrm("Macroscopia");
         return cabecera;
     }
 
