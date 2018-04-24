@@ -20,6 +20,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+											
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -33,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Detallerecepcionmuestra.findAll", query = "SELECT d FROM Detallerecepcionmuestra d")
     , @NamedQuery(name = "Detallerecepcionmuestra.findByIddrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.iddrm = :iddrm")
+																																		
     , @NamedQuery(name = "Detallerecepcionmuestra.findByCodigobarras", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.codigobarras = :codigobarras")
     , @NamedQuery(name = "Detallerecepcionmuestra.findByDiagnosticomacrosdrm", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.diagnosticomacrosdrm = :diagnosticomacrosdrm")
     , @NamedQuery(name = "Detallerecepcionmuestra.findByNumerocasetas", query = "SELECT d FROM Detallerecepcionmuestra d WHERE d.numerocasetas = :numerocasetas")
@@ -78,6 +80,10 @@ public class Detallerecepcionmuestra implements Serializable {
     @Basic(optional = false)
     @Column(name = "iddrm")
     private Integer iddrm;
+							
+			
+						   
+					  
     @Size(max = 13)
     @Column(name = "codigobarras")
     private String codigobarras;
@@ -184,6 +190,11 @@ public class Detallerecepcionmuestra implements Serializable {
         this.iddrm = iddrm;
     }
 
+															  
+						   
+						   
+	 
+
     public Integer getIddrm() {
         return iddrm;
     }
@@ -191,6 +202,14 @@ public class Detallerecepcionmuestra implements Serializable {
     public void setIddrm(Integer iddrm) {
         this.iddrm = iddrm;
     }
+
+						   
+					 
+	 
+
+									 
+						   
+	 
 
     public String getCodigobarras() {
         return codigobarras;
@@ -520,5 +539,9 @@ public class Detallerecepcionmuestra implements Serializable {
     public String toString() {
         return "com.heee.bean.model.entity.Detallerecepcionmuestra[ iddrm=" + iddrm + " ]";
     }
+
+															   
+																																	   
+	 
     
 }

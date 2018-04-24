@@ -8,49 +8,39 @@ import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-@ManagedBean(name = "registrarEstudioTN")
+@ManagedBean(name = "registrarEstudioTE")
 @SessionScoped
-public class RegistrarEstudioTN implements Serializable {
+public class RegistrarEstudioTE implements Serializable {
     
     private static final long serialVersionUID = 1L;
     
     private Cabecerarecepcionmuestra cabeceraRM;
     private Detallerecepcionmuestra detalleRM;
     
-    private int numeroHE;
-    private int numeroGiemsas;
     private int numeroPlacas;
-    private int numeroCasetas;
-    private int numeroFragmentos;
-    private int numeroPAP;
-    private String observacionTN;
-    private Date fechaCreaAreaTecnica = new Date();
+    private String tincionEspecial;
+    private String observacionTE;
+    private Date fechaCreaAreaTecnicaE = new Date();
     
     
-    public RegistrarEstudioTN (){
+    public RegistrarEstudioTE (){
         this.cabeceraRM = new Cabecerarecepcionmuestra();
         this.detalleRM = new Detallerecepcionmuestra ();
-        this.numeroHE = 0;
-        this.numeroGiemsas = 0;
         this.numeroPlacas = 0;
-        this.numeroCasetas = 0;
-        this.numeroFragmentos = 0;
-        this.numeroPAP = 0;
-        this.observacionTN = "";
+        this.tincionEspecial = "";
+        this.observacionTE = "";
     }
     
     /*Metodo para registrar la descripción del técnico normal del estudio seleccionado*/
-    public void registrarDesripcionTN() {
+    public void registrarDesripcionTE() {
         //Obtener el id del estudio para poder actualizarlo
         //detalleRM.setIddrm(this.detalleRM.getIddrm());
-        detalleRM.setNumerohedrm(this.numeroHE);
-        detalleRM.setNumerogiemsasdrm(this.numeroGiemsas);
+        
+        ////detalleRM.setNumerohedrm(this.numeroCortes);
         detalleRM.setNumeroplacasdrm(this.numeroPlacas);
-        detalleRM.setNumerocasetasdrm(this.numeroCasetas);
-        detalleRM.setNumerofragmentosdrm(this.numeroFragmentos);
-        detalleRM.setNumeroplacasdrm(this.numeroPlacas);
-        detalleRM.setDiagnosticotecnormaldrm(observacionTN);
-        detalleRM.setFechacreaareatecnica(this.fechaCreaAreaTecnica);
+        detalleRM.setTincionespecial(this.tincionEspecial);
+        detalleRM.setObservaciontespecial(this.observacionTE);
+
         //Falta setear el ESTADO para que vaya hacia el tecnico que se requiere
         
         JPAFactoryDAO.getFactory().getDetallerecepcionmuestraDAO().update(this.detalleRM);
