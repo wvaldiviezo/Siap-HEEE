@@ -5,10 +5,13 @@ import com.heee.bean.model.entity.Detallerecepcionmuestra;
 import com.heee.bean.model.jpa.JPAFactoryDAO;
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
 @ManagedBean(name = "registrarEstudioTN")
+//@RequestScoped
 @SessionScoped
 public class RegistrarEstudioTN implements Serializable {
     
@@ -43,6 +46,9 @@ public class RegistrarEstudioTN implements Serializable {
     public void registrarDesripcionTN() {
         //Obtener el id del estudio para poder actualizarlo
         //detalleRM.setIddrm(this.detalleRM.getIddrm());
+        System.out.println("****cabeecera:"+cabeceraRM.getCodigoestudiocrm());
+        System.out.println("****cabeecera:"+cabeceraRM.getIdcrm());
+        detalleRM.setIdcrm(cabeceraRM);
         detalleRM.setNumerohedrm(this.numeroHE);
         detalleRM.setNumerogiemsasdrm(this.numeroGiemsas);
         detalleRM.setNumeroplacasdrm(this.numeroPlacas);
