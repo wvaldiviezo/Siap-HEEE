@@ -254,20 +254,21 @@
                                                     <h3>Edades de:</h3>
                                                     <p:selectManyCheckbox id="gridEdades" value="#{citologicoCrear.marcadorSubcategoriaEdades}" layout="grid" columns="1">
                                                         <f:selectItems value="#{citologicoListar.listarSubcategoria('2')}" var="subcategoriaEdades" itemLabel="#{subcategoriaEdades.nombresubcategoria}" itemValue="#{subcategoriaEdades.idsubcategoria}" />
-                                                    </p:selectManyCheckbox>  
+                                                    </p:selectManyCheckbox>
+                                                    <ayax update="txtOtroEdadMenarquia"/>
                                                 </h:panelGrid>
 
                                                 <h:panelGrid columns="1">
                                                     <br></br>
                                                     <br></br>
                                                     <br></br>
-                                                    <p:spinner id="txtOtroEdadMenarquia" value="#{citologicoCrear.edadMenarquia}" min="5" stepFactor="5" />
+                                                    <p:spinner id="txtOtroEdadMenarquia" value="#{citologicoCrear.edadMenarquia}"  min="5" stepFactor="5" />
                                                     <p:watermark for="txtOtroEdadMenarquia" value="Edad menarquia" />
-                                                    <p:spinner id="txtOtroEdadMenopausia" value="#{citologicoCrear.edadMenopausia}" min="5" stepFactor="5" />
+                                                    <p:spinner id="txtOtroEdadMenopausia" value="#{citologicoCrear.edadMenopausia}"  min="5" stepFactor="5" />
                                                     <p:watermark for="txtOtroEdadMenopausia" value="Edad menopausia" />
                                                     <p:spinner id="txtOtroEdadInicioRelacionesSexuales" value="#{citologicoCrear.edadInicioRelaciones}" min="5"  stepFactor="5" />
                                                     <p:watermark for="txtOtroEdadInicioRelacionesSexuales" value="Edad relaciones sexuales" />
-                                                </h:panelGrid>
+                                                </h:panelGrid> 
 
                                                 <h:panelGrid columns="1">
                                                     <h3>Fechas:</h3>
