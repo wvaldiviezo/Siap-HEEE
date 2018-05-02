@@ -26,78 +26,78 @@
                     <br/>
 
                     <p:wizard>
-                        <!--                                                <p:tab id="hospital" title="Hospital">
-                                                                            <p:panel header="Datos del hospital">
-                                                                                <h:panelGrid id="datosHospital" columns="2" >
-                                                
-                                                                                    <p:outputLabel for="txtInstSistema" value="Institución del Sistema: " />
-                                                                                    <p:inputText id="txtInstSistema" value="#{quirurgicoCrear.hospital.instituciondelsistema}" required="true" requiredMessage="Institución del Sistema necesita un valor" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56" />
-                                                                                    <p:watermark for="txtInstSistema" value="MSP" />
-                                                                                    <p:messages for="txtInstSistema"/>
-                                                
-                                                                                    <p:outputLabel for="txtUniOperat" value="Unidad Operativa: " />
-                                                                                    <p:inputText id="txtUniOperat" value="#{quirurgicoCrear.hospital.unidadoperativa}" required="true" requiredMessage="Unidad operativa necesita un valor" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56"  />
-                                                                                    <p:watermark for="txtUniOperat" value="HEEE" />
-                                                                                    <p:messages for="txtUniOperat"/>
-                                                
-                                                                                    <p:outputLabel for="txtCodUO" value="Cod. UO: " />
-                                                                                    <p:inputText id="txtCodUO" title="Solo puede ingresar números" value="#{quirurgicoCrear.hospital.codigouo}" required="true"  requiredMessage="Cod. Unidad operativa necesita un valor" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();"  size="56"  >
-                                                                                    <p:keyFilter regEx="/[\d\-\.]/"/>
-                                                                                    <p:tooltip id="toolTipFocusCodUO" for="txtCodUO" showEvent="focus" hideEvent="blur" />
-                                                                                    </p:inputText>
-                                                                                    <p:watermark for="txtCodUO" value="0001" />
-                                                                                    <p:messages for="txtCodUO"/>
-                                                
-                                                                                    <h:outputLabel value="Provincia: " />
-                                                                                    <p:selectOneMenu id="cboProvincia" value="#{ubicacionListar.provinciaID}" required="true" requiredMessage="Provincia necesita un valor" filter="true" filterMatchMode="startsWith" style="width: 500px">
-                                                                                        <f:selectItem itemLabel="- Seleccione -" itemValue="" />
-                                                                                        <f:selectItems value="#{ubicacionListar.provincias}" var="provincias" itemLabel="#{provincias.nombreprovincia}" itemValue="#{provincias.idprovincia}"/>
-                                                                                        <p:ajax update="cboCanton ,cboParroquia"  />
-                                                                                    </p:selectOneMenu>
-                                                                                    <p:watermark for="cboProvincia" value="" />
-                                                                                    <p:messages for="cboProvincia"/>                            
-                                                
-                                                                                    <h:outputLabel value="Cantón: " />
-                                                                                    <p:selectOneMenu id="cboCanton" value="#{ubicacionListar.cantonID}"  filter="true" filterMatchMode="startsWith" required="false" requiredMessage="Seleccione el Cantón" style="width: 500px">
-                                                                                        <f:selectItem itemLabel="- Seleccione -" itemValue="" />
-                                                                                        <f:selectItems value="#{ubicacionListar.cantones}" var="cantones" itemLabel="#{cantones.nombrecanton}" itemValue="#{cantones.idcanton}"/>
-                                                                                        <p:ajax update="cboParroquia"/>
-                                                                                    </p:selectOneMenu>
-                                                                                    <p:watermark for="cboCanton" value="" />
-                                                                                    <p:messages for="cboCanton"/>
-                                                
-                                                                                    <h:outputLabel value="Parroquia: " />
-                                                                                    <p:selectOneMenu id="cboParroquia" value="#{quirurgicoCrear.parroquiaID}"  filter="true" filterMatchMode="startsWith" style="width: 500px" >
-                                                                                        <f:selectItem itemLabel="- Seleccione -" itemValue="" />
-                                                                                        <f:selectItems value="#{ubicacionListar.parroquias}" var="parroquias" itemLabel="#{parroquias.nombreparroquia}" itemValue="#{parroquias.idparroquia}"/>
-                                                                                    </p:selectOneMenu>
-                                                                                    <p:watermark for="cboParroquia" value="" />
-                                                                                    <p:messages for="cboParroquia"/>
-                                                                                </h:panelGrid>
-                                                
-                                                                            </p:panel>
-                                                                        </p:tab>-->
-                        <!--                        
-                                                                        <p:tab id="muestra" title="Muestra">
-                                                                            <p:panel header="Datos de la muestra">
-                                                
-                                                                                <h:panelGrid columns="2" id="pgDatosMuestra" columnClasses="label, value">
-                                                
-                                                                                    <h:outputLabel for="txtFechaTomaMuestra" value="Fecha de toma: " />
-                                                                                    <p:calendar id="txtFechaTomaMuestra" required="true" requiredMessage="Fecha de toma necesita un valor" locale="es"  pattern="dd-MM-yyyy" navigator="true" mask="true" value="#{quirurgicoCrear.cabecera.fechatomamuestracrm}" size="56" />
-                                                                                    <p:watermark for="txtFechaTomaMuestra" value="dd-mm-aaaa" />
-                                                                                    <p:messages for="txtFechaTomaMuestra"/>
-                                                
-                                                                                    <h:outputLabel for="txtHoraTomaMuestra" value="Hora de toma: " />
-                                                                                    <p:calendar id="txtHoraTomaMuestra" required="true" requiredMessage="Hora de toma necesita un valor"  locale="es" pattern="HH:mm" timeOnly="true" value="#{quirurgicoCrear.cabecera.horatomamuestracrm}" size="56" />
-                                                                                    <p:watermark for="txtHoraTomaMuestra" value="hh:mm" />
-                                                                                    <p:messages for="txtHoraTomaMuestra"/>
-                                                
-                                                                                </h:panelGrid>
-                                                                            </p:panel>
-                                                                        </p:tab>-->
+                        <p:tab id="hospital" title="Hospital">
+                            <p:panel header="Datos del hospital">
+                                <h:panelGrid id="datosHospital" columns="2" >
 
-<!--                        <p:tab id="medico" title="Médico">
+                                    <p:outputLabel for="txtInstSistema" value="Institución del Sistema: " />
+                                    <p:inputText id="txtInstSistema" value="#{quirurgicoCrear.hospital.instituciondelsistema}" required="true" requiredMessage="Institución del Sistema necesita un valor" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56" />
+                                    <p:watermark for="txtInstSistema" value="MSP" />
+                                    <p:messages for="txtInstSistema"/>
+
+                                    <p:outputLabel for="txtUniOperat" value="Unidad Operativa: " />
+                                    <p:inputText id="txtUniOperat" value="#{quirurgicoCrear.hospital.unidadoperativa}" required="true" requiredMessage="Unidad operativa necesita un valor" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56"  />
+                                    <p:watermark for="txtUniOperat" value="HEEE" />
+                                    <p:messages for="txtUniOperat"/>
+
+                                    <p:outputLabel for="txtCodUO" value="Cod. UO: " />
+                                    <p:inputText id="txtCodUO" title="Solo puede ingresar números" value="#{quirurgicoCrear.hospital.codigouo}" required="true"  requiredMessage="Cod. Unidad operativa necesita un valor" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();"  size="56"  >
+                                        <p:keyFilter regEx="/[\d\-\.]/"/>
+                                        <p:tooltip id="toolTipFocusCodUO" for="txtCodUO" showEvent="focus" hideEvent="blur" />
+                                    </p:inputText>
+                                    <p:watermark for="txtCodUO" value="0001" />
+                                    <p:messages for="txtCodUO"/>
+
+                                    <h:outputLabel value="Provincia: " />
+                                    <p:selectOneMenu id="cboProvincia" value="#{ubicacionListar.provinciaID}" required="true" requiredMessage="Provincia necesita un valor" filter="true" filterMatchMode="startsWith" style="width: 500px">
+                                        <f:selectItem itemLabel="- Seleccione -" itemValue="" />
+                                        <f:selectItems value="#{ubicacionListar.provincias}" var="provincias" itemLabel="#{provincias.nombreprovincia}" itemValue="#{provincias.idprovincia}"/>
+                                        <p:ajax update="cboCanton ,cboParroquia"  />
+                                    </p:selectOneMenu>
+                                    <p:watermark for="cboProvincia" value="" />
+                                    <p:messages for="cboProvincia"/>                            
+
+                                    <h:outputLabel value="Cantón: " />
+                                    <p:selectOneMenu id="cboCanton" value="#{ubicacionListar.cantonID}"  filter="true" filterMatchMode="startsWith" required="false" requiredMessage="Seleccione el Cantón" style="width: 500px">
+                                        <f:selectItem itemLabel="- Seleccione -" itemValue="" />
+                                        <f:selectItems value="#{ubicacionListar.cantones}" var="cantones" itemLabel="#{cantones.nombrecanton}" itemValue="#{cantones.idcanton}"/>
+                                        <p:ajax update="cboParroquia"/>
+                                    </p:selectOneMenu>
+                                    <p:watermark for="cboCanton" value="" />
+                                    <p:messages for="cboCanton"/>
+
+                                    <h:outputLabel value="Parroquia: " />
+                                    <p:selectOneMenu id="cboParroquia" value="#{quirurgicoCrear.parroquiaID}"  filter="true" filterMatchMode="startsWith" style="width: 500px" >
+                                        <f:selectItem itemLabel="- Seleccione -" itemValue="" />
+                                        <f:selectItems value="#{ubicacionListar.parroquias}" var="parroquias" itemLabel="#{parroquias.nombreparroquia}" itemValue="#{parroquias.idparroquia}"/>
+                                    </p:selectOneMenu>
+                                    <p:watermark for="cboParroquia" value="" />
+                                    <p:messages for="cboParroquia"/>
+                                </h:panelGrid>
+
+                            </p:panel>
+                        </p:tab>
+
+                        <p:tab id="muestra" title="Muestra">
+                            <p:panel header="Datos de la muestra">
+
+                                <h:panelGrid columns="2" id="pgDatosMuestra" columnClasses="label, value">
+
+                                    <h:outputLabel for="txtFechaTomaMuestra" value="Fecha de toma: " />
+                                    <p:calendar id="txtFechaTomaMuestra" required="true" requiredMessage="Fecha de toma necesita un valor" locale="es"  pattern="dd-MM-yyyy" navigator="true" mask="true" value="#{quirurgicoCrear.cabecera.fechatomamuestracrm}" size="56" />
+                                    <p:watermark for="txtFechaTomaMuestra" value="dd-mm-aaaa" />
+                                    <p:messages for="txtFechaTomaMuestra"/>
+
+                                    <h:outputLabel for="txtHoraTomaMuestra" value="Hora de toma: " />
+                                    <p:calendar id="txtHoraTomaMuestra" required="true" requiredMessage="Hora de toma necesita un valor"  locale="es" pattern="HH:mm" timeOnly="true" value="#{quirurgicoCrear.cabecera.horatomamuestracrm}" size="56" />
+                                    <p:watermark for="txtHoraTomaMuestra" value="hh:mm" />
+                                    <p:messages for="txtHoraTomaMuestra"/>
+
+                                </h:panelGrid>
+                            </p:panel>
+                        </p:tab>
+
+                        <p:tab id="medico" title="Médico">
                             <p:panel header="Datos del médico solicitante">
 
                                 <h:panelGrid columns="2" id="pgDatosMedico" columnClasses="label, value">
@@ -118,10 +118,10 @@
                                         <p:tooltip id="toolTipFocusEmail" for="txtEmail" showEvent="focus" hideEvent="blur" />
                                     </p:inputText>
                                     <p:watermark for="txtEmail" value="" />
-                                    <p:messages for="txtEmail" style="color: blue"/>
+                                    <p:messages for="txtEmail" />
 
                                     <p:outputLabel for="txtTel" value="Teléfono: " />
-                                    <p:inputText id="txtTel" title="Se debe ingresar un número entre 7 y 10 dígitos" validatorMessage="la longitud debe estar entre 7 y 10 caracteres ejemplo:2421234 - 0995123456" value="#{quirurgicoCrear.doctor.telefonodoctor}" required="true" requiredMessage="Teléfono necesita un valor" size="56">
+                                    <p:inputText id="txtTel" title="Ingrese entre 7 y 10 números" validatorMessage="la longitud debe estar entre 7 y 10 caracteres ejemplo:2421234 - 0995123456" value="#{quirurgicoCrear.doctor.telefonodoctor}" required="true" requiredMessage="Teléfono necesita un valor" size="56">
                                         <p:keyFilter regEx="/[\d\-\.]/"/>
                                         <f:validateDoubleRange minimum="1111111" maximum="9999999999" />
                                         <p:tooltip id="toolTipFocusTel" for="txtTel" showEvent="focus" hideEvent="blur" />
@@ -130,9 +130,9 @@
                                     <p:messages for="txtTel"/>
                                 </h:panelGrid>
                             </p:panel>
-                        </p:tab>-->
+                        </p:tab>
 
-<!--                        <p:tab id="paciente" title="Paciente">
+                        <p:tab id="paciente" title="Paciente">
                             <p:panel header="Datos del paciente">
 
                                 <h:panelGrid columns="3" id="pgTipoEstudio" columnClasses="label, value">
@@ -174,13 +174,11 @@
                                     <h:outputLabel for="txtNombres" value="Nombres: " />
                                     <p:inputText id="txtNombres" value="#{quirurgicoCrear.paciente.nombrepaciente}" required="true" requiredMessage="Nombres necesita un valor" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56"/>
                                     <p:messages for="txtNombres"/>
-
+                                    
                                     <h:outputLabel for="txtCI" value="Cédula: " />
-                                    <p:inputText id="txtCI" title="Ejemplo: 1722123456" validatorMessage="Debe ingresar un número de 10 dígitos" value="#{quirurgicoCrear.paciente.ceduidenpaciente}" required="true" requiredMessage="Cédula necesita un valor" size="56" >
-                                        <p:keyFilter regEx="/[\d\-\.]/"/>
-                                        <f:validateDoubleRange minimum="1111111111" maximum="9999999999" />
+                                    <p:inputMask id="txtCI" mask="9999999999" title="Ejemplo: 1722123456" validatorMessage="Ingrese un número de 10 dígitos" value="#{quirurgicoCrear.paciente.ceduidenpaciente}" required="true" requiredMessage="Cédula necesita un valor" size="56" >
                                         <p:tooltip id="toolTipFocusCI" for="txtCI" showEvent="focus" hideEvent="blur" />
-                                    </p:inputText>
+                                    </p:inputMask>
                                     <p:messages for="txtCI"/>
 
                                     <h:outputLabel for="txtEdad" value="Edad: " />
@@ -203,7 +201,7 @@
 
                                 </h:panelGrid>
                             </p:panel>
-                        </p:tab>-->
+                        </p:tab>
 
                         <p:tab id="registros" title="Registros">
                             <p:panel header="Registro de diagnóstico presuntivo, resumen clínico, información de la muestra" >
