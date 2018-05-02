@@ -97,7 +97,7 @@
                                                                             </p:panel>
                                                                         </p:tab>-->
 
-                        <p:tab id="medico" title="Médico">
+<!--                        <p:tab id="medico" title="Médico">
                             <p:panel header="Datos del médico solicitante">
 
                                 <h:panelGrid columns="2" id="pgDatosMedico" columnClasses="label, value">
@@ -115,24 +115,24 @@
                                     <p:outputLabel for="txtEmail" value="Correo electrónico: " />
                                     <p:inputText id="txtEmail" title="Ejemplo:ricardo.ortiz@gmail.com" validatorMessage="Ingrese un email correcto " value="#{quirurgicoCrear.doctor.emaildoctor}" required="true" requiredMessage="Correo electrónico necesita un valor" size="56" >
                                         <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
-                                        <p:tooltip id="toolTipFocusCodUO" for="txtCodUO" showEvent="focus" hideEvent="blur" />
+                                        <p:tooltip id="toolTipFocusEmail" for="txtEmail" showEvent="focus" hideEvent="blur" />
                                     </p:inputText>
                                     <p:watermark for="txtEmail" value="" />
                                     <p:messages for="txtEmail" style="color: blue"/>
 
                                     <p:outputLabel for="txtTel" value="Teléfono: " />
-                                    <p:inputText id="txtTel" title="Solo se puede ingresar número entre 7 y 10 dígitos" validatorMessage="la longitud debe estar entre 7 y 10 caracteres ejemplo:2421234 - 0995123456" value="#{quirurgicoCrear.doctor.telefonodoctor}" required="true" requiredMessage="Teléfono necesita un valor" size="56">
+                                    <p:inputText id="txtTel" title="Se debe ingresar un número entre 7 y 10 dígitos" validatorMessage="la longitud debe estar entre 7 y 10 caracteres ejemplo:2421234 - 0995123456" value="#{quirurgicoCrear.doctor.telefonodoctor}" required="true" requiredMessage="Teléfono necesita un valor" size="56">
                                         <p:keyFilter regEx="/[\d\-\.]/"/>
                                         <f:validateDoubleRange minimum="1111111" maximum="9999999999" />
-                                        <p:tooltip id="toolTipFocusCodUO" for="txtCodUO" showEvent="focus" hideEvent="blur" />
+                                        <p:tooltip id="toolTipFocusTel" for="txtTel" showEvent="focus" hideEvent="blur" />
                                     </p:inputText>
                                     <p:watermark for="txtTel" value="" />
                                     <p:messages for="txtTel"/>
                                 </h:panelGrid>
                             </p:panel>
-                        </p:tab>
+                        </p:tab>-->
 
-                        <p:tab id="paciente" title="Paciente">
+<!--                        <p:tab id="paciente" title="Paciente">
                             <p:panel header="Datos del paciente">
 
                                 <h:panelGrid columns="3" id="pgTipoEstudio" columnClasses="label, value">
@@ -149,9 +149,9 @@
                                 <h:panelGrid columns="3" id="pgDatosPaciente" columnClasses="label, value">
 
                                     <h:outputLabel for="txtNumHCl" value="No. Historia: " />
-                                    <p:inputText id="txtNumHCl"title="Solo puede ingresar números" validatorMessage="Se debe ingresar un numero" value="#{quirurgicoCrear.paciente.numhistclinpaciente}" required="true" requiredMessage="No. historia necesita un valor" size="56" >
+                                    <p:inputText id="txtNumHCl" title="Debe ingresar solo números" validatorMessage="Se debe ingresar un número" value="#{quirurgicoCrear.paciente.numhistclinpaciente}" required="true" requiredMessage="No. historia necesita un valor" size="56" >
                                         <p:keyFilter regEx="/[\d\-\.]/"/>
-                                        <p:tooltip id="toolTipFocusCodUO" for="txtCodUO" showEvent="focus" hideEvent="blur" />
+                                        <p:tooltip id="toolTipFocusNumHci" for="txtNumHCl" showEvent="focus" hideEvent="blur" />
                                     </p:inputText>
                                     <p:messages for="txtNumHCl"/>
 
@@ -176,10 +176,10 @@
                                     <p:messages for="txtNombres"/>
 
                                     <h:outputLabel for="txtCI" value="Cédula: " />
-                                    <p:inputText id="txtCI" title="Ejemplo: 1722123456"validatorMessage="Debe ingresar un número de 10 dígitos" value="#{quirurgicoCrear.paciente.ceduidenpaciente}" required="true" requiredMessage="Cédula necesita un valor" size="56" >
+                                    <p:inputText id="txtCI" title="Ejemplo: 1722123456" validatorMessage="Debe ingresar un número de 10 dígitos" value="#{quirurgicoCrear.paciente.ceduidenpaciente}" required="true" requiredMessage="Cédula necesita un valor" size="56" >
                                         <p:keyFilter regEx="/[\d\-\.]/"/>
                                         <f:validateDoubleRange minimum="1111111111" maximum="9999999999" />
-                                        <p:tooltip id="toolTipFocusCodUO" for="txtCodUO" showEvent="focus" hideEvent="blur" />
+                                        <p:tooltip id="toolTipFocusCI" for="txtCI" showEvent="focus" hideEvent="blur" />
                                     </p:inputText>
                                     <p:messages for="txtCI"/>
 
@@ -203,7 +203,7 @@
 
                                 </h:panelGrid>
                             </p:panel>
-                        </p:tab>
+                        </p:tab>-->
 
                         <p:tab id="registros" title="Registros">
                             <p:panel header="Registro de diagnóstico presuntivo, resumen clínico, información de la muestra" >
