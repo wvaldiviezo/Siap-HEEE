@@ -22,9 +22,18 @@
                     <p:outputLabel style="color: #045491" value="#{amputacionesCrear.cabecera.codigoestudiocrm=codigoEstudioListar.codigo}"/>
                     <br/>
                     <br/>
+
                     <p:wizard>
+                        <!--                        <p:tab id="hospital" title="Correo">
+                                                     <p:panel header="Personal Details">
+                                                        <p:commandButton icon="fa fa-save" value="Enviar mail"  actionListener="#{emailEnviar.enviarCorreo()}" />
+                                                    </p:panel>
+                                                </p:tab>-->
+
                         <p:tab id="hospital" title="Hospital">
                             <p:panel header="Personal Details">
+
+
                                 <h:panelGrid id="pgDatosHospital" columns="2" >
                                     <p:outputLabel for="txtInstSistema" value="Institución del Sistema: " />
                                     <p:inputText id="txtInstSistema" value="#{amputacionesCrear.hospital.instituciondelsistema}" required="true" requiredMessage="Institución del Sistema necesita un valor" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56"  />
