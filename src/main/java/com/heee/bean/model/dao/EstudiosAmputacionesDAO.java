@@ -4,4 +4,5 @@ import com.heee.bean.model.entity.Estudiosamputaciones;
 /*                                              Nombre de la TABLA, atributo incrementable*/
 public interface EstudiosAmputacionesDAO extends GenericDAO<Estudiosamputaciones, Integer>{
     
+    Estudiosamputaciones filtrarAmputacion(int idCabecera);
 }

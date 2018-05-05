@@ -7,6 +7,7 @@ package com.heee.bean.estudiosSecretaria;
 
 import com.heee.bean.model.entity.Cabecerarecepcionmuestra;
 import com.heee.bean.model.entity.Doctor;
+import com.heee.bean.model.entity.Estudiosamputaciones;
 import com.heee.bean.model.entity.Hospital;
 import com.heee.bean.model.entity.Paciente;
 import com.heee.bean.model.entity.Tipoestudio;
@@ -40,7 +41,10 @@ public class ListarEstudios implements Serializable {
     private Hospital hospital;
     private Tipoestudio tipoEstudio;
     private Cabecerarecepcionmuestra estudioCRM;
-    
+    private Estudiosamputaciones estudioAmputaciones;
+    private String[] atributo;
+    private String[] valor;
+
     //Actualizar información del Empleado
     @ManagedProperty("#{verEstudio}")
     private VerEstudios ctrVerEstudio;
@@ -52,12 +56,18 @@ public class ListarEstudios implements Serializable {
         tiposEstudios = null;
         estudioLista = null;
         estudioFiltrado = null;
+        atributo = null;
+        valor = null;
     }
-    
+
     //Método invocado por la acción del botón editar en la vista buscarEstudios.
-     public String actualizarAtributosEstudios(int idCrm){
-        Cabecerarecepcionmuestra ecrm = (Cabecerarecepcionmuestra)JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().read(Integer.valueOf(idCrm));
+    public String actualizarAtributosEstudios(int idCrm) {
+
+        Cabecerarecepcionmuestra ecrm = (Cabecerarecepcionmuestra) JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().read(Integer.valueOf(idCrm));
+        Estudiosamputaciones estudioAmputaciones= JPAFactoryDAO.getFactory().getEstudiosAmputacionesDAO().filtrarAmputacion(idCrm);
+        
         getCtrVerEstudio().setEstudioCRM(ecrm);
+        getCtrVerEstudio().setEstudioAmputaciones(estudioAmputaciones);
         return "/principal/secretaria/verEstudio.HeeSiap";
     }
 
