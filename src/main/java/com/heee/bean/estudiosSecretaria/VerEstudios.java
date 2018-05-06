@@ -2,11 +2,13 @@ package com.heee.bean.estudiosSecretaria;
 
 import com.heee.bean.model.entity.Cabecerarecepcionmuestra;
 import com.heee.bean.model.entity.Doctor;
+import com.heee.bean.model.entity.Estudiosamputaciones;
 import com.heee.bean.model.entity.Hospital;
 import com.heee.bean.model.entity.Paciente;
 import com.heee.bean.model.entity.Tipoestudio;
 import com.heee.bean.model.jpa.JPAFactoryDAO;
 import java.io.Serializable;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -23,6 +25,7 @@ public class VerEstudios implements Serializable {
     private Hospital hospital;
     private Tipoestudio tipoEstudio;
     private Cabecerarecepcionmuestra estudioCRM;
+    private Estudiosamputaciones estudioAmputaciones;
 
     public VerEstudios() {
         this.paciente = new Paciente();
@@ -30,6 +33,7 @@ public class VerEstudios implements Serializable {
         this.hospital = new Hospital();
         this.tipoEstudio = new Tipoestudio();
         this.estudioCRM = new Cabecerarecepcionmuestra();
+        this.estudioAmputaciones = new Estudiosamputaciones();
     }
 
     //Método para guardar los cambios realizados en la información del estudio seleccionado en la vista actualizarEstudio
@@ -90,4 +94,13 @@ public class VerEstudios implements Serializable {
         this.estudioCRM = estudioCRM;
     }
 
+    public Estudiosamputaciones getEstudioAmputaciones() {
+        return estudioAmputaciones;
+    }
+
+    public void setEstudioAmputaciones(Estudiosamputaciones estudioAmputaciones) {
+        this.estudioAmputaciones = estudioAmputaciones;
+    }
+    
+    
 }

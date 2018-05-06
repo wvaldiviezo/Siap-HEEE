@@ -34,12 +34,16 @@
                                     <p:messages for="txtInstSistema"/>
 
                                     <p:outputLabel for="txtUniOperat" value="Unidad Operativa: " />
-                                    <p:inputText id="txtUniOperat" value="#{revisionesCrear.hospital.unidadoperativa}" required="true" requiredMessage="Unidad operativa necesita un valor" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56" />
+                                    <p:inputText id="txtUniOperat" value="#{revisionesCrear.hospital.unidadoperativa}" required="true" requiredMessage="Unidad operativa necesita un valor" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56" >
+                                    </p:inputText>
                                     <p:watermark for="txtUniOperat" value="HEEE" />
                                     <p:messages for="txtUniOperat"/>
 
                                     <p:outputLabel for="txtCodUO" value="Cod. UO: " />
-                                    <p:inputText id="txtCodUO" value="#{revisionesCrear.hospital.codigouo}" required="true"  requiredMessage="Cod. Unidad operativa necesita un valor" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();"  size="56" />
+                                    <p:inputText id="txtCodUO" title="Solo puede ingresar números" value="#{revisionesCrear.hospital.codigouo}" required="true"  requiredMessage="Cod. Unidad operativa necesita un valor" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();"  size="56" >
+                                        <p:keyFilter regEx="/[\d\-\.]/"/>
+                                        <p:tooltip id="toolTipFocusCodUO" for="txtCodUO" showEvent="focus" hideEvent="blur" />
+                                    </p:inputText>
                                     <p:watermark for="txtCodUO" value="0001" />
                                     <p:messages for="txtCodUO"/>
 
@@ -93,24 +97,36 @@
 
                         <p:tab id="medico" title="Médico">
                             <p:panel header="Datos del médico solicitante">
-                         
-                                <h:panelGrid columns="3" id="pgDatosMedico" columnClasses="label, value">
+
+                                <h:panelGrid columns="2" id="pgDatosMedico" columnClasses="label, value">
 
                                     <p:outputLabel for="txtNombresMS" value="Nombres: " />
                                     <p:inputText id="txtNombresMS" value="#{revisionesCrear.doctor.nombresdoctor}" required="true" requiredMessage="Nombres necesita un valor" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56" />
+                                    <p:watermark for="txtNombresMS" value="" />
                                     <p:messages for="txtNombresMS"/>
 
                                     <p:outputLabel for="txtApellidosMS" value="Apellidos: " />
                                     <p:inputText id="txtApellidosMS" value="#{revisionesCrear.doctor.apellidosdoctor}" required="true" requiredMessage="Apellidos necesita un valor" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56" />
+                                    <p:watermark for="txtApellidosMS" value="" />
                                     <p:messages for="txtApellidosMS"/>
 
                                     <p:outputLabel for="txtEmail" value="Correo electrónico: " />
-                                    <p:inputText id="txtEmail" value="#{revisionesCrear.doctor.emaildoctor}" required="true" requiredMessage="Correo electrónico necesita un valor" size="56" />
-                                    <p:messages for="txtEmail"/>
+                                    <p:inputText id="txtEmail" title="Ejemplo:ricardo.ortiz@gmail.com" validatorMessage="Ingrese un email correcto " value="#{revisionesCrear.doctor.emaildoctor}" required="true" requiredMessage="Correo electrónico necesita un valor" size="56" >
+                                        <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                                        <p:tooltip id="toolTipFocusEmail" for="txtEmail" showEvent="focus" hideEvent="blur" />
+                                    </p:inputText>
+                                    <p:watermark for="txtEmail" value="" />
+                                    <p:messages for="txtEmail" />
 
                                     <p:outputLabel for="txtTel" value="Teléfono: " />
-                                    <p:inputText id="txtTel" value="#{revisionesCrear.doctor.telefonodoctor}" required="true" requiredMessage="Teléfono necesita un valor" size="56"/>
+                                    <p:inputText id="txtTel" title="Ingrese entre 7 y 10 números" validatorMessage="la longitud debe estar entre 7 y 10 caracteres ejemplo:2421234 - 0995123456" value="#{revisionesCrear.doctor.telefonodoctor}" required="true" requiredMessage="Teléfono necesita un valor" size="56">
+                                        <p:keyFilter regEx="/[\d\-\.]/"/>
+                                        <f:validateDoubleRange minimum="1111111" maximum="9999999999" />
+                                        <p:tooltip id="toolTipFocusTel" for="txtTel" showEvent="focus" hideEvent="blur" />
+                                    </p:inputText>
+                                    <p:watermark for="txtTel" value="" />
                                     <p:messages for="txtTel"/>
+
                                 </h:panelGrid>
                             </p:panel>
                         </p:tab>
@@ -127,11 +143,14 @@
                                     <p:inputText id="txtOtros" value="#{revisionesCrear.cabecera.descriptiposerviciocrm}" disabled="#{(revisionesCrear.cabecera.tiposervicio == 'Consulta Externa') || (revisionesCrear.cabecera.tiposervicio == 'Hospitalización')}" size="31" />
                                 </h:panelGrid>
                                 <p:messages for="rdbTipoEstudio"/>
-                                
+
                                 <h:panelGrid columns="3" id="pgDatosPaciente" columnClasses="label, value">
 
                                     <h:outputLabel for="txtNumHCl" value="No. Historia: " />
-                                    <p:inputText id="txtNumHCl" value="#{revisionesCrear.paciente.numhistclinpaciente}" required="true" requiredMessage="No. historia necesita un valor" size="56" />
+                                    <p:inputText id="txtNumHCl" title="Debe ingresar solo números" validatorMessage="Se debe ingresar un número" value="#{revisionesCrear.paciente.numhistclinpaciente}" required="true" requiredMessage="No. historia necesita un valor" size="56" >
+                                        <p:keyFilter regEx="/[\d\-\.]/"/>
+                                        <p:tooltip id="toolTipFocusNumHci" for="txtNumHCl" showEvent="focus" hideEvent="blur" />
+                                    </p:inputText>
                                     <p:messages for="txtNumHCl"/>
 
                                     <h:outputLabel for="txtServicio" value="Servicio: " />
@@ -139,11 +158,11 @@
                                     <p:messages for="txtServicio"/>                            
 
                                     <h:outputLabel for="txtSala" value="Sala: " />
-                                    <p:inputText id="txtSala" value="#{revisionesCrear.cabecera.salacrm}" size="56" />
+                                    <p:inputText id="txtSala" validatorMessage="El campo tiene que estar entre 0-30 caracteres"  value="#{revisionesCrear.cabecera.salacrm}" size="56" />
                                     <p:messages for="txtSala"/>                           
 
                                     <h:outputLabel for="txtCama" value="Cama: " />
-                                    <p:inputText id="txtCama" value="#{revisionesCrear.cabecera.camacrm}" size="56" />
+                                    <p:inputText id="txtCama" validatorMessage="El campo tiene que estar entre 0-5 caracteres" value="#{revisionesCrear.cabecera.camacrm}" size="56" />
                                     <p:messages for="txtCama"/>
 
                                     <h:outputLabel for="txtApellidos" value="Apellidos: " />
@@ -155,11 +174,16 @@
                                     <p:messages for="txtNombres"/>
 
                                     <h:outputLabel for="txtCI" value="Cédula: " />
-                                    <p:inputText id="txtCI" value="#{revisionesCrear.paciente.ceduidenpaciente}" required="true" requiredMessage="Cédula necesita un valor" size="56" />
+                                    <p:inputMask id="txtCI" mask="9999999999" title="Ejemplo: 1722123456" validatorMessage="Ingrese un número de 10 dígitos" value="#{revisionesCrear.paciente.ceduidenpaciente}" required="true" requiredMessage="Cédula necesita un valor" size="56" >
+                                        <p:tooltip id="toolTipFocusCI" for="txtCI" showEvent="focus" hideEvent="blur" />
+                                    </p:inputMask>
                                     <p:messages for="txtCI"/>
 
                                     <h:outputLabel for="txtEdad" value="Edad: " />
-                                    <p:inputText id="txtEdad" value="#{revisionesCrear.paciente.edadpaciente}" size="56" />
+                                    <p:inputText id="txtEdad" validatorMessage="Debe ingresar un número de 2 dígitos" value="#{revisionesCrear.paciente.edadpaciente}" size="56" >
+                                        <p:keyFilter regEx="/[\d\-\.]/"/>
+                                        <f:validateDoubleRange minimum="0" maximum="99" />
+                                    </p:inputText>
                                     <p:messages for="txtEdad"/>
 
                                     <h:outputLabel for="rdbGenero" value="Género: " />
@@ -179,7 +203,7 @@
 
                         <p:tab id="registros" title="Registros">
                             <p:panel header="Registro de diagnóstico presuntivo, resumen clínico, información de la muestra" >
-                             
+
                                 <h:panelGrid id="pgDiagPresuntivo" columnClasses="label, value">
                                     <h:outputLabel for="txtDiagPresuntivo" value="Diagnóstico Presuntivo: " />
                                     <p:inputTextarea id="txtDiagPresuntivo" value="#{revisionesCrear.cabecera.diagnosticopresunticocrm}" required="true" requiredMessage="Diagnóstico Presuntivo necesita un valor"  rows="2" cols="73"    queryDelay="750" minQueryLength="4" />
@@ -224,7 +248,7 @@
                                         <f:selectItem itemValue="Rutina" itemLabel="Rutina" />
                                         <f:selectItem itemValue="Control" itemLabel="Control" />
                                     </p:selectOneRadio>
-                                    
+
                                 </h:panelGrid>
                                 <p:messages for="rdbPrioridad"/>
                                 <br/>

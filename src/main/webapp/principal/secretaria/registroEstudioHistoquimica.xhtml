@@ -27,92 +27,106 @@
                     <br/>
                     <br/>
                     <p:wizard>
-                                                <p:tab id="hospital" title="Hospital">
-                                                    <p:panel header="Personal Details">
-                                                        <h:panelGrid columns="2" id="pgDatosHospital">
-                                                            <p:outputLabel for="txtInstSistema" value="Institución del Sistema: " />
-                                                            <p:inputText id="txtInstSistema" value="#{histoquimicaCrear.hospital.instituciondelsistema}" required="true" requiredMessage="Institución del Sistema necesita un valor"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56" />
-                                                            <p:watermark for="txtInstSistema" value="MSP" />
-                                                            <p:messages for="txtInstSistema"/>
-                        
-                                                            <p:outputLabel for="txtUniOperat" value="Unidad Operativa: "  />
-                                                            <p:inputText id="txtUniOperat" value="#{histoquimicaCrear.hospital.unidadoperativa}" required="true" requiredMessage="Unidad operativa necesita un valor"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56" />
-                                                            <p:watermark for="txtUniOperat" value="HEEE" />
-                                                            <p:messages for="txtUniOperat"/>
-                        
-                                                            <p:outputLabel for="txtCodUO" value="Cod. UO: " />
-                                                            <p:inputText id="txtCodUO" value="#{histoquimicaCrear.hospital.codigouo}" required="true"  requiredMessage="Cod. Unidad operativa necesita un valor" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56" />
-                                                            <p:watermark for="txtCodUO" value="0001" />
-                                                            <p:messages for="txtCodUO"/>
-                        
-                                                            <h:outputLabel value="Provincia: " />
-                                                            <p:selectOneMenu id="cboProvincia" value="#{ubicacionListar.provinciaID}" required="true" requiredMessage="Provincia necesita un valor" filter="true" filterMatchMode="startsWith" style="width: 500px">
-                                                                <f:selectItem itemLabel="- Seleccione -" itemValue="" />
-                                                                <f:selectItems value="#{ubicacionListar.provincias}" var="provincias" itemLabel="#{provincias.nombreprovincia}" itemValue="#{provincias.idprovincia}"/>
-                                                                <p:ajax update="cboCanton ,cboParroquia"  />
-                                                            </p:selectOneMenu>
-                                                            <p:watermark for="cboProvincia" value="" />
-                                                            <p:messages for="cboProvincia"/>                            
-                        
-                                                            <h:outputLabel value="Cantón: " />
-                                                            <p:selectOneMenu id="cboCanton" value="#{ubicacionListar.cantonID}"  filter="true" filterMatchMode="startsWith" required="false" requiredMessage="Seleccione el Cantón" style="width: 500px">
-                                                                <f:selectItem itemLabel="- Seleccione -" itemValue="" />
-                                                                <f:selectItems value="#{ubicacionListar.cantones}" var="cantones" itemLabel="#{cantones.nombrecanton}" itemValue="#{cantones.idcanton}"/>
-                                                                <p:ajax update="cboParroquia"/>
-                                                            </p:selectOneMenu>
-                                                            <p:watermark for="cboCanton" value="" />
-                                                            <p:messages for="cboCanton"/>
-                        
-                                                            <h:outputLabel value="Parroquia: " />
-                                                            <p:selectOneMenu id="cboParroquia" value="#{histoquimicaCrear.parroquiaID}" filter="true" filterMatchMode="startsWith" style="width: 500px" >
-                                                                <f:selectItem itemLabel="- Seleccione -" itemValue="" />
-                                                                <f:selectItems value="#{ubicacionListar.parroquias}" var="parroquias" itemLabel="#{parroquias.nombreparroquia}" itemValue="#{parroquias.idparroquia}"/>
-                                                            </p:selectOneMenu>
-                                                            <p:watermark for="cboParroquia" value="" />
-                                                            <p:messages for="cboParroquia"/>
-                                                        </h:panelGrid>
-                                                    </p:panel>
-                                                </p:tab>
+                        <p:tab id="hospital" title="Hospital">
+                            <p:panel header="Personal Details">
+                                <h:panelGrid columns="2" id="pgDatosHospital">
+                                    <p:outputLabel for="txtInstSistema" value="Institución del Sistema: " />
+                                    <p:inputText id="txtInstSistema" value="#{histoquimicaCrear.hospital.instituciondelsistema}" required="true" requiredMessage="Institución del Sistema necesita un valor"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56" />
+                                    <p:watermark for="txtInstSistema" value="MSP" />
+                                    <p:messages for="txtInstSistema"/>
 
-                                                <p:tab id="muestra" title="Muestra">
-                                                    <p:panel header="Datos de la muestra">
-                                                        <h:panelGrid columns="2" id="pgDatosMuestra">
-                        
-                                                            <h:outputLabel for="txtFechaTomaMuestra" value="Fecha de toma de la muestra: " />
-                                                            <p:calendar id="txtFechaTomaMuestra" required="true" requiredMessage="Fecha de toma necesita un valor" locale="es" pattern="dd-MM-yyyy" navigator="true" mask="false" value="#{histoquimicaCrear.cabecera.fechatomamuestracrm}" size="56"  />
-                                                            <p:watermark for="txtFechaTomaMuestra" value="dd-mm-aaaa" />
-                                                            <p:messages for="txtFechaTomaMuestra"/>
-                        
-                                                            <h:outputLabel for="txtHoraTomaMuestra" value="Hora de toma de la muestra: " />
-                                                            <p:calendar id="txtHoraTomaMuestra" required="true" requiredMessage="Hora de toma necesita un valor"  locale="es" pattern="HH:mm" timeOnly="true" value="#{histoquimicaCrear.cabecera.horatomamuestracrm}" size="56" />
-                                                            <p:watermark for="txtHoraTomaMuestra" value="hh:mm" />
-                                                            <p:messages for="txtHoraTomaMuestra"/>
-                        
-                                                        </h:panelGrid>
-                                                    </p:panel>
-                                                </p:tab>
+                                    <p:outputLabel for="txtUniOperat" value="Unidad Operativa: "  />
+                                    <p:inputText id="txtUniOperat" value="#{histoquimicaCrear.hospital.unidadoperativa}" required="true" requiredMessage="Unidad operativa necesita un valor"  style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56" />
+                                    <p:watermark for="txtUniOperat" value="HEEE" />
+                                    <p:messages for="txtUniOperat"/>
 
-                                                <p:tab id="medico" title="Médico">
-                                                    <p:panel header="Datos del médico solicitante">
-                                                        <h:panelGrid columns="3" id="pgDatosMedico" columnClasses="label, value">
-                                                            <p:outputLabel for="txtNombresMS" value="Nombres: " />
-                                                            <p:inputText id="txtNombresMS" value="#{histoquimicaCrear.doctor.nombresdoctor}" required="true" requiredMessage="Nombres necesita un valor" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56" />
-                                                            <p:messages for="txtNombresMS"/>
-                        
-                                                            <p:outputLabel for="txtApellidosMS" value="Apellidos: " />
-                                                            <p:inputText id="txtApellidosMS" value="#{histoquimicaCrear.doctor.apellidosdoctor}" required="true" requiredMessage="Apellidos necesita un valor" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56"  />
-                                                            <p:messages for="txtApellidosMS"/>
-                        
-                                                            <p:outputLabel for="txtEmail" value="Email:   " />
-                                                            <p:inputText id="txtEmail" value="#{histoquimicaCrear.doctor.emaildoctor}"  required="true" requiredMessage="Correo electrónico necesita un valor" size="56" />
-                                                            <p:messages for="txtEmail"/>
-                        
-                                                            <p:outputLabel for="txtTel" value="Teléfono: " />
-                                                            <p:inputText id="txtTel"  value="#{histoquimicaCrear.doctor.telefonodoctor}" required="true" requiredMessage="Teléfono necesita un valor" size="56" />
-                                                            <p:messages for="txtTel"/>
-                                                        </h:panelGrid>
-                                                    </p:panel>
-                                                </p:tab>
+                                    <p:outputLabel for="txtCodUO" value="Cod. UO: " />
+                                    <p:inputText id="txtCodUO" title="Solo puede ingresar números" value="#{histoquimicaCrear.hospital.codigouo}" required="true"  requiredMessage="Cod. Unidad operativa necesita un valor" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56" >
+                                        <p:keyFilter regEx="/[\d\-\.]/"/>
+                                        <p:tooltip id="toolTipFocusCodUO" for="txtCodUO" showEvent="focus" hideEvent="blur" />
+                                    </p:inputText>
+                                    <p:watermark for="txtCodUO" value="0001" />
+                                    <p:messages for="txtCodUO"/>
+
+                                    <h:outputLabel value="Provincia: " />
+                                    <p:selectOneMenu id="cboProvincia" value="#{ubicacionListar.provinciaID}" required="true" requiredMessage="Provincia necesita un valor" filter="true" filterMatchMode="startsWith" style="width: 500px">
+                                        <f:selectItem itemLabel="- Seleccione -" itemValue="" />
+                                        <f:selectItems value="#{ubicacionListar.provincias}" var="provincias" itemLabel="#{provincias.nombreprovincia}" itemValue="#{provincias.idprovincia}"/>
+                                        <p:ajax update="cboCanton ,cboParroquia"  />
+                                    </p:selectOneMenu>
+                                    <p:watermark for="cboProvincia" value="" />
+                                    <p:messages for="cboProvincia"/>                            
+
+                                    <h:outputLabel value="Cantón: " />
+                                    <p:selectOneMenu id="cboCanton" value="#{ubicacionListar.cantonID}"  filter="true" filterMatchMode="startsWith" required="false" requiredMessage="Seleccione el Cantón" style="width: 500px">
+                                        <f:selectItem itemLabel="- Seleccione -" itemValue="" />
+                                        <f:selectItems value="#{ubicacionListar.cantones}" var="cantones" itemLabel="#{cantones.nombrecanton}" itemValue="#{cantones.idcanton}"/>
+                                        <p:ajax update="cboParroquia"/>
+                                    </p:selectOneMenu>
+                                    <p:watermark for="cboCanton" value="" />
+                                    <p:messages for="cboCanton"/>
+
+                                    <h:outputLabel value="Parroquia: " />
+                                    <p:selectOneMenu id="cboParroquia" value="#{histoquimicaCrear.parroquiaID}" filter="true" filterMatchMode="startsWith" style="width: 500px" >
+                                        <f:selectItem itemLabel="- Seleccione -" itemValue="" />
+                                        <f:selectItems value="#{ubicacionListar.parroquias}" var="parroquias" itemLabel="#{parroquias.nombreparroquia}" itemValue="#{parroquias.idparroquia}"/>
+                                    </p:selectOneMenu>
+                                    <p:watermark for="cboParroquia" value="" />
+                                    <p:messages for="cboParroquia"/>
+                                </h:panelGrid>
+                            </p:panel>
+                        </p:tab>
+
+                        <p:tab id="muestra" title="Muestra">
+                            <p:panel header="Datos de la muestra">
+                                <h:panelGrid columns="2" id="pgDatosMuestra">
+
+                                    <h:outputLabel for="txtFechaTomaMuestra" value="Fecha de toma de la muestra: " />
+                                    <p:calendar id="txtFechaTomaMuestra" required="true" requiredMessage="Fecha de toma necesita un valor" locale="es" pattern="dd-MM-yyyy" navigator="true" mask="false" value="#{histoquimicaCrear.cabecera.fechatomamuestracrm}" size="56"  />
+                                    <p:watermark for="txtFechaTomaMuestra" value="dd-mm-aaaa" />
+                                    <p:messages for="txtFechaTomaMuestra"/>
+
+                                    <h:outputLabel for="txtHoraTomaMuestra" value="Hora de toma de la muestra: " />
+                                    <p:calendar id="txtHoraTomaMuestra" required="true" requiredMessage="Hora de toma necesita un valor"  locale="es" pattern="HH:mm" timeOnly="true" value="#{histoquimicaCrear.cabecera.horatomamuestracrm}" size="56" />
+                                    <p:watermark for="txtHoraTomaMuestra" value="hh:mm" />
+                                    <p:messages for="txtHoraTomaMuestra"/>
+
+                                </h:panelGrid>
+                            </p:panel>
+                        </p:tab>
+
+                        <p:tab id="medico" title="Médico">
+                            <p:panel header="Datos del médico solicitante">
+                                <h:panelGrid columns="2" id="pgDatosMedico" columnClasses="label, value">
+                                    <p:outputLabel for="txtNombresMS" value="Nombres: " />
+                                    <p:inputText id="txtNombresMS" value="#{histoquimicaCrear.doctor.nombresdoctor}" required="true" requiredMessage="Nombres necesita un valor" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56" />
+                                    <p:watermark for="txtNombresMS" value="" />
+                                    <p:messages for="txtNombresMS"/>
+
+                                    <p:outputLabel for="txtApellidosMS" value="Apellidos: " />
+                                    <p:inputText id="txtApellidosMS" value="#{histoquimicaCrear.doctor.apellidosdoctor}" required="true" requiredMessage="Apellidos necesita un valor" style="text-transform:uppercase;" onkeyup="javascript:this.value = this.value.toUpperCase();" size="56"  />
+                                    <p:watermark for="txtApellidosMS" value="" />
+                                    <p:messages for="txtApellidosMS"/>
+
+                                    <p:outputLabel for="txtEmail" value="Correo electrónico: " />
+                                    <p:inputText id="txtEmail" title="Ejemplo:ricardo.ortiz@gmail.com" validatorMessage="Ingrese un email correcto " value="#{histoquimicaCrear.doctor.emaildoctor}"  required="true" requiredMessage="Correo electrónico necesita un valor" size="56" >
+                                        <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                                        <p:tooltip id="toolTipFocusEmail" for="txtEmail" showEvent="focus" hideEvent="blur" />
+                                    </p:inputText>
+                                    <p:watermark for="txtEmail" value="" />
+                                    <p:messages for="txtEmail" />
+
+                                    <p:outputLabel for="txtTel" value="Teléfono: " />
+                                    <p:inputText id="txtTel" title="Ingrese entre 7 y 10 números" validatorMessage="la longitud debe estar entre 7 y 10 caracteres ejemplo:2421234 - 0995123456"  value="#{histoquimicaCrear.doctor.telefonodoctor}" required="true" requiredMessage="Teléfono necesita un valor" size="56" >
+                                        <p:keyFilter regEx="/[\d\-\.]/"/>
+                                        <f:validateDoubleRange minimum="1111111" maximum="9999999999" />
+                                        <p:tooltip id="toolTipFocusTel" for="txtTel" showEvent="focus" hideEvent="blur" />
+                                    </p:inputText>
+                                    <p:watermark for="txtTel" value="" />
+                                    <p:messages for="txtTel"/>
+                                </h:panelGrid>
+                            </p:panel>
+                        </p:tab>
                         <p:tab id="paciente" title="Paciente">
                             <p:panel header="Datos del paciente">
                                 <h:panelGrid columns="3" id="pgTipoEstudio" columnClasses="label, value">
@@ -129,7 +143,10 @@
                                 <h:panelGrid columns="3" id="pgDatosPaciente" columnClasses="label, value">
 
                                     <h:outputLabel for="txtNumHCl" value="No. Historia: " />
-                                    <p:inputText id="txtNumHCl" value="#{histoquimicaCrear.paciente.numhistclinpaciente}" required="true" requiredMessage="No. historia necesita un valor" size="56" />
+                                    <p:inputText id="txtNumHCl" title="Debe ingresar solo números" value="#{histoquimicaCrear.paciente.numhistclinpaciente}" required="true" requiredMessage="No. historia necesita un valor" size="56" >
+                                        <p:keyFilter regEx="/[\d\-\.]/"/>
+                                        <p:tooltip id="toolTipFocusNumHci" for="txtNumHCl" showEvent="focus" hideEvent="blur" />
+                                    </p:inputText>
                                     <p:messages for="txtNumHCl"/>
 
                                     <h:outputLabel for="txtServicio" value="Servicio: " />
@@ -137,11 +154,11 @@
                                     <p:messages for="txtServicio"/>                            
 
                                     <h:outputLabel for="txtSala" value="Sala: " />
-                                    <p:inputText id="txtSala" value="#{histoquimicaCrear.cabecera.salacrm}" size="56" />
+                                    <p:inputText id="txtSala" validatorMessage="El campo tiene que estar entre 0-30 caracteres" value="#{histoquimicaCrear.cabecera.salacrm}" size="56" />
                                     <p:messages for="txtSala"/>                           
 
                                     <h:outputLabel for="txtCama" value="Cama: " />
-                                    <p:inputText id="txtCama" value="#{histoquimicaCrear.cabecera.camacrm}" size="56" />
+                                    <p:inputText id="txtCama" validatorMessage="El campo tiene que estar entre 0-5 caracteres" value="#{histoquimicaCrear.cabecera.camacrm}" size="56" />
                                     <p:messages for="txtCama"/>
 
                                     <h:outputLabel for="txtApellidos" value="Apellidos: " />
@@ -153,11 +170,16 @@
                                     <p:messages for="txtNombres"/>
 
                                     <h:outputLabel for="txtCI" value="Cédula: " />
-                                    <p:inputText id="txtCI" value="#{histoquimicaCrear.paciente.ceduidenpaciente}" required="true" requiredMessage="Cédula necesita un valor" size="56" />
+                                    <p:inputMask id="txtCI" mask="9999999999" title="Ejemplo: 1722123456" value="#{histoquimicaCrear.paciente.ceduidenpaciente}" required="true" requiredMessage="Cédula necesita un valor" size="56" >
+                                        <p:tooltip id="toolTipFocusCI" for="txtCI" showEvent="focus" hideEvent="blur" />
+                                    </p:inputMask>
                                     <p:messages for="txtCI"/>
 
                                     <h:outputLabel for="txtEdad" value="Edad: " />
-                                    <p:inputText id="txtEdad" value="#{histoquimicaCrear.paciente.edadpaciente}" size="56" />
+                                    <p:inputText id="txtEdad" validatorMessage="Debe ingresar un número de 2 dígitos" value="#{histoquimicaCrear.paciente.edadpaciente}" size="56" >
+                                        <p:keyFilter regEx="/[\d\-\.]/"/>
+                                        <f:validateDoubleRange minimum="0" maximum="99" />
+                                    </p:inputText>
                                     <p:messages for="txtEdad"/>
 
                                     <h:outputLabel for="rdbGenero" value="Género: " />
