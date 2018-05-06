@@ -1,53 +1,54 @@
-package com.heee.bean.estudiosTecnico;
+package com.heee.bean.estudiosMicroscopia;
 
 import com.heee.bean.model.entity.Cabecerarecepcionmuestra;
 import com.heee.bean.model.entity.Detallerecepcionmuestra;
 import com.heee.bean.model.entity.Paciente;
 import com.heee.bean.model.jpa.JPAFactoryDAO;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.view.ViewScoped;
 
-@ManagedBean(name = "estudiosParaTecnicoN")
+@ManagedBean(name = "estudiosParaMicro")
 @ViewScoped
-public class ListarEstudiosTN implements Serializable {
+public class ListarEstudios implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
-    private List<Paciente> ltsPacientes;
-    
+
     private List<Cabecerarecepcionmuestra> ltsEstudiosLista;
     private List<Cabecerarecepcionmuestra> ltsEstudiosFiltrados;
-    
-    private Paciente paciente;
-    //private List<Detallerecepcionmuestra> ltsDetalleLista;
+   
+    private List<Detallerecepcionmuestra> ltsEstudiosDetalle;
 
+    private List<Paciente> ltsPacientes;
+    private Paciente paciente;
+    
     private Cabecerarecepcionmuestra crMuestra;
-    private Detallerecepcionmuestra detalleCRM;
     
     private String estadoestudiocrm;
-    
-    @ManagedProperty("#{registrarEstudioTN}")
-    private RegistrarEstudioTN ctrRegistarTN;
 
-    public ListarEstudiosTN() {
+    @ManagedProperty("#{registrarMicroscopia}")
+    private RegistrarMicroscopia ctrRegistarMicroscopia;
+
+    //Método Constructor
+    public ListarEstudios() {
 
     }
-    
-    /*Método que llama al controlador RegistrarMacroscopia para hacer el regsitro de la macroscopía
+
+    /*Método que llama al controlador RegistrarMicroscopia para hacer el regsitro de la microscopía
     del estudio seleccionado*/
-    public String registrarEstudioTN(int idCRM) {
+    public String registrarMicroscopia(int idCRM) {
         Cabecerarecepcionmuestra crm = (Cabecerarecepcionmuestra) JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().read(Integer.valueOf(idCRM));
-        getCtrRegistarTN().setCabeceraRM(crm);
-        return "/principal/tecnico/registrarEstudioTecnicoN.HeeSiap";
+        getCtrRegistarMicroscopia().setCabeceraRM(crm);
+        return "/principal/microscopia/registrarMicroscopia.HeeSiap";
     }
 
-    //Getter & Setters
+    //Getters & Setters
 
     public List<Cabecerarecepcionmuestra> getLtsEstudiosLista() {
-        ltsEstudiosLista = JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().buscarEstudiosAsignadosTecnicos();
+        ltsEstudiosLista = JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().buscarEstudiosParaMicroscopia();
         return ltsEstudiosLista;
     }
 
@@ -63,6 +64,14 @@ public class ListarEstudiosTN implements Serializable {
         this.ltsEstudiosFiltrados = ltsEstudiosFiltrados;
     }
 
+    public List<Detallerecepcionmuestra> getLtsEstudiosDetalle() {
+        return ltsEstudiosDetalle;
+    }
+
+    public void setLtsEstudiosDetalle(List<Detallerecepcionmuestra> ltsEstudiosDetalle) {
+        this.ltsEstudiosDetalle = ltsEstudiosDetalle;
+    }
+
     public Paciente getPaciente() {
         return paciente;
     }
@@ -71,15 +80,15 @@ public class ListarEstudiosTN implements Serializable {
         this.paciente = paciente;
     }
 
-    public RegistrarEstudioTN getCtrRegistarTN() {
-        return ctrRegistarTN;
+    public RegistrarMicroscopia getCtrRegistarMicroscopia() {
+        return ctrRegistarMicroscopia;
     }
 
-    public void setCtrRegistarTN(RegistrarEstudioTN ctrRegistarTN) {
-        this.ctrRegistarTN = ctrRegistarTN;
-    }
+    public void setCtrRegistarMicroscopia(RegistrarMicroscopia ctrRegistarMicroscopia) {
+        this.ctrRegistarMicroscopia = ctrRegistarMicroscopia;
+    }   
 
-    public List<Paciente> getLtsPacientes() {        
+    public List<Paciente> getLtsPacientes() {
         return ltsPacientes;
     }
 
@@ -95,14 +104,6 @@ public class ListarEstudiosTN implements Serializable {
         this.crMuestra = crMuestra;
     }
 
-    public Detallerecepcionmuestra getDetalleCRM() {
-        return detalleCRM;
-    }
-
-    public void setDetalleCRM(Detallerecepcionmuestra detalleCRM) {
-        this.detalleCRM = detalleCRM;
-    }
-
     public String getEstadoestudiocrm() {
         return estadoestudiocrm;
     }
@@ -112,5 +113,5 @@ public class ListarEstudiosTN implements Serializable {
     }
     
     
-    
+
 }

@@ -56,12 +56,12 @@ public class JPACabecerarecepcionmuestraDAO extends JPAGenericDAO<Cabecerarecepc
         }
     }
 
-    /*Método que consulta los estudios con estado Microscopía para mostrar en el menu de distribución e trabajo a los Patólogos*/
+    /*Método que consulta los estudios con estado Microscopía para mostrar en la tabla del menú de los Patólogos*/
     @Override
-    public List<Cabecerarecepcionmuestra> buscarEstudiosParaAsignarMIcroscopia() {
+    public List<Cabecerarecepcionmuestra> buscarEstudiosParaMicroscopia() {
         List estudiosAceptados = null;
         try {
-            String consulta = "SELECT * FROM cabecerarecepcionmuestra where estadoestudiocrm = 'Microscopía'";
+            String consulta = "SELECT * FROM cabecerarecepcionmuestra where estadoestudiocrm = 'Microscopia'";
             Query query = em.createNativeQuery(consulta, Cabecerarecepcionmuestra.class);
             estudiosAceptados = query.getResultList();
             return estudiosAceptados;
@@ -69,5 +69,6 @@ public class JPACabecerarecepcionmuestraDAO extends JPAGenericDAO<Cabecerarecepc
             System.out.println("No hay estudios para el área microscópica");
             return null;
         }
-    }
+    }    
+    
 }

@@ -47,6 +47,7 @@ public class RegistrarMacroscopia implements Serializable {
         
         JPAFactoryDAO.getFactory().getDetallerecepcionmuestraDAO().create(this.detalleRM);
         cabeceraRM.setEstadoestudiocrm("Tecnico Normal");
+        cabeceraRM.setFechaactualizacrm(this.fechaCreacionMacro);
         JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().update(this.cabeceraRM);
         //cabeceraRMfecha.setFechacreacrm(this.fechaCreacionMacro);
         System.out.println("*********Fecha de Actualiza en la CabeceraRM "+this.fechaCreacionMacro);

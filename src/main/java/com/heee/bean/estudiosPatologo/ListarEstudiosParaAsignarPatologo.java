@@ -28,7 +28,7 @@ public class ListarEstudiosParaAsignarPatologo implements Serializable{
     //Getters & Setters
 
     public List<Cabecerarecepcionmuestra> getLtsEstudioCabecera() {
-        ltsEstudioCabecera = JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().buscarEstudiosParaAsignarMIcroscopia();
+        ltsEstudioCabecera = JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().buscarEstudiosParaMicroscopia();
         return ltsEstudioCabecera;
     }
 

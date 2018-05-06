@@ -15,10 +15,10 @@
                 <h:form id="contenidoBuscar">
                     <p:growl id="message" showDetail="true" />
 
-                    <h1 style="color: #045491;text-align: center">Estudios Asignados al Área Técnica</h1>
+                    <h1 style="color: #045491;text-align: center">Estudios Asignados al Área Técnica Normal </h1>
 
-                    <p:dataTable id="busquedaEstudios" value="#{estudiosParaTecnicoN.ltsEstudioCabecera}" var="itemEstudio"  widgetVar="estudiosTabla" 
-                                 filteredValue="#{estudiosParaTecnicoN.ltsEstudioFiltradosCRM}" rows="10" paginator="true" 
+                    <p:dataTable id="busquedaEstudios" value="#{estudiosParaTecnicoN.ltsEstudiosLista}" var="itemEstudio"  widgetVar="estudiosTabla" 
+                                 filteredValue="#{estudiosParaTecnicoN.ltsEstudiosFiltrados}" rows="10" paginator="true" 
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
                                  rowsPerPageTemplate="10,15,20"  sortOrder="descending"
                                  paginatorPosition="top" emptyMessage="No hay ningún registro con esa opción">
@@ -39,8 +39,8 @@
                             <h:outputText value="#{itemEstudio.codigoestudiocrm}" />
                         </p:column>
                         
-                        <p:column filterBy="#{itemEstudio.fechacreacrm}" headerText="Fecha de Asignación" filterMatchMode="contains">
-                            <h:outputText value="#{itemEstudio.fechacreacrm}">
+                        <p:column filterBy="#{itemEstudio.fechaactualizacrm}" headerText="Fecha de Asignación" filterMatchMode="contains">
+                            <h:outputText value="#{itemEstudio.fechaactualizacrm}">
                             <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm" timeZone="America/Guayaquil" />
                             </h:outputText>
                         </p:column>

@@ -12,4 +12,5 @@ public class JPADetallerecepcionmuestraDAO extends JPAGenericDAO<Detallerecepcio
     }
     
    
+   
 }

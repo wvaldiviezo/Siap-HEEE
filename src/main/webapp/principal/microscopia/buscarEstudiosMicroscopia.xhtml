@@ -15,10 +15,10 @@
                 <h:form id="contenidoBuscar">
                     <p:growl id="message" showDetail="true" />
 
-                    <h1 style="color: #045491;text-align: center">Distribución de Estudios para Patología</h1>
+                    <h1 style="color: #045491;text-align: center">Estudios Asignados a Microscopía</h1>
 
-                    <p:dataTable id="busquedaEstudios" value="#{distribucionEstudiosPatologo.ltsEstudioCabecera}" var="itemEstudio"  widgetVar="estudiosTabla" 
-                                 filteredValue="#{distribucionEstudiosPatologo.ltsEstudioFiltradosCRM}" rows="10" paginator="true" 
+                    <p:dataTable id="busquedaEstudios" value="#{estudiosParaMicro.ltsEstudiosLista}" var="itemEstudio"  widgetVar="estudiosTabla" 
+                                 filteredValue="#{estudiosParaMicro.ltsEstudiosFiltrados}" rows="10" paginator="true" 
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
                                  rowsPerPageTemplate="10,15,20"  sortOrder="descending"
                                  paginatorPosition="top" emptyMessage="No hay ningún registro con esa opción">
@@ -38,15 +38,21 @@
                         <p:column filterBy="#{itemEstudio.codigoestudiocrm}" headerText="Código" filterMatchMode="contains">
                             <h:outputText value="#{itemEstudio.codigoestudiocrm}" />
                         </p:column>
-                        
+                        <!--
                         <p:column filterBy="#{itemEstudio.fechacreacrm}" headerText="Fecha de Asignación" filterMatchMode="contains">
                             <h:outputText value="#{itemEstudio.fechacreacrm}">
                             <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm" timeZone="America/Guayaquil" />
                             </h:outputText>
                         </p:column>
+                         -->
+                         <!--
+                         <p:column filterBy="#{itemEstudio.codigoestudiocrm}" headerText="Código" filterMatchMode="contains">
+                            <h:outputText value="#{itemEstudio.codigoestudiocrm}" />
+                        </p:column>
+                         -->
 
                         <p:column id="botonesAccion" headerText="Opciones" filterMatchMode="accion" style="text-align: center">
-                            <p:commandButton id="registrar" icon="fa fa-user-md" action="#{estudiosParaTecnicoN.registrarEstudioTN(itemEstudio.idcrm)}" /> 
+                            <p:commandButton id="registrar" icon="fa fa-user-md" action="#{estudiosParaMicro.registrarMicroscopia(itemEstudio.idcrm)}" /> 
                             <p:tooltip id="toolTipFade2" for="registrar" value="Registrar" position="top"/>
                         </p:column>
 
