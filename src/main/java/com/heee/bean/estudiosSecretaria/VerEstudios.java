@@ -1,9 +1,11 @@
 package com.heee.bean.estudiosSecretaria;
 
+import com.heee.bean.model.entity.Biologiamolecular;
 import com.heee.bean.model.entity.Cabecerarecepcionmuestra;
 import com.heee.bean.model.entity.Doctor;
 import com.heee.bean.model.entity.Estudiosamputaciones;
 import com.heee.bean.model.entity.Hospital;
+import com.heee.bean.model.entity.MarcadorBio;
 import com.heee.bean.model.entity.Paciente;
 import com.heee.bean.model.entity.Tipoestudio;
 import com.heee.bean.model.jpa.JPAFactoryDAO;
@@ -26,6 +28,8 @@ public class VerEstudios implements Serializable {
     private Tipoestudio tipoEstudio;
     private Cabecerarecepcionmuestra estudioCRM;
     private Estudiosamputaciones estudioAmputaciones;
+    private Biologiamolecular estudioBiologiaMolecular;
+    private List<MarcadorBio> marcadorBiologiaMolecularEnBase;
 
     public VerEstudios() {
         this.paciente = new Paciente();
@@ -101,6 +105,24 @@ public class VerEstudios implements Serializable {
     public void setEstudioAmputaciones(Estudiosamputaciones estudioAmputaciones) {
         this.estudioAmputaciones = estudioAmputaciones;
     }
+
+    public Biologiamolecular getEstudioBiologiaMolecular() {
+        return estudioBiologiaMolecular;
+    }
+
+    public void setEstudioBiologiaMolecular(Biologiamolecular estudioBiologiaMolecular) {
+        this.estudioBiologiaMolecular = estudioBiologiaMolecular;
+    }
+
+    public List<MarcadorBio> getMarcadorBiologiaMolecularEnBase() {
+        marcadorBiologiaMolecularEnBase=JPAFactoryDAO.getFactory().getMarcadorBioDAO().marcadoresEstudioBiologiaMolecular(estudioBiologiaMolecular);
+        return marcadorBiologiaMolecularEnBase;
+    }
+
+    public void setMarcadorBiologiaMolecularEnBase(List<MarcadorBio> marcadorBiologiaMolecularEnBase) {
+        this.marcadorBiologiaMolecularEnBase = marcadorBiologiaMolecularEnBase;
+    }
+    
     
     
 }

@@ -5,6 +5,7 @@
  */
 package com.heee.bean.estudiosSecretaria;
 
+import com.heee.bean.model.entity.Biologiamolecular;
 import com.heee.bean.model.entity.Cabecerarecepcionmuestra;
 import com.heee.bean.model.entity.Doctor;
 import com.heee.bean.model.entity.Estudiosamputaciones;
@@ -65,9 +66,11 @@ public class ListarEstudios implements Serializable {
 
         Cabecerarecepcionmuestra ecrm = (Cabecerarecepcionmuestra) JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().read(Integer.valueOf(idCrm));
         Estudiosamputaciones estudioAmputaciones= JPAFactoryDAO.getFactory().getEstudiosAmputacionesDAO().filtrarAmputacion(idCrm);
+        Biologiamolecular estudioBiologiamolecular = JPAFactoryDAO.getFactory().getEstudiosBiologiaMolecularDAO().filtrarBiologiaMolecular(idCrm);
         
         getCtrVerEstudio().setEstudioCRM(ecrm);
         getCtrVerEstudio().setEstudioAmputaciones(estudioAmputaciones);
+        getCtrVerEstudio().setEstudioBiologiaMolecular(estudioBiologiamolecular);
         return "/principal/secretaria/verEstudio.HeeSiap";
     }
 
