@@ -31,7 +31,6 @@ public class RegistrarMicroscopia implements Serializable {
 
     /*Método constructor*/
     public RegistrarMicroscopia() {
-        this.cabeceraRM = new Cabecerarecepcionmuestra();
         this.detalleRM = new Detallerecepcionmuestra();
         this.calidadMuestra = "";
         this.ObservacionMuestra = "";
@@ -42,7 +41,7 @@ public class RegistrarMicroscopia implements Serializable {
     /*Metodo para registrar la microscopía del estudio seleccionado*/
     public void registrarMicro(){
         //detalleRM.setIddrm(this.detalleRM);
-        detalleRM.setIdcrm(cabeceraRM);
+        detalleRM.setIdcrm(this.cabeceraRM);
         detalleRM.setCalidadmuestradrm(this.calidadMuestra);
         detalleRM.setMotivocalidadmuestradrm(this.ObservacionMuestra);//Observación
         detalleRM.setDiagnosticomicrosdrm(this.descripcionMicroscopia);
