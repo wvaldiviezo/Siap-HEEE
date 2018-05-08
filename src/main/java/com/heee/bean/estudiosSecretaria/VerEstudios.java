@@ -3,7 +3,11 @@ package com.heee.bean.estudiosSecretaria;
 import com.heee.bean.model.entity.Biologiamolecular;
 import com.heee.bean.model.entity.Cabecerarecepcionmuestra;
 import com.heee.bean.model.entity.Doctor;
+import com.heee.bean.model.entity.ECitologicoSubcategoria;
+import com.heee.bean.model.entity.EHistMarcador;
+import com.heee.bean.model.entity.Estudiocitologico;
 import com.heee.bean.model.entity.Estudiosamputaciones;
+import com.heee.bean.model.entity.Estudioshistoquimica;
 import com.heee.bean.model.entity.Hospital;
 import com.heee.bean.model.entity.MarcadorBio;
 import com.heee.bean.model.entity.Paciente;
@@ -30,6 +34,10 @@ public class VerEstudios implements Serializable {
     private Estudiosamputaciones estudioAmputaciones;
     private Biologiamolecular estudioBiologiaMolecular;
     private List<MarcadorBio> marcadorBiologiaMolecularEnBase;
+    private Estudiocitologico estudioCitologico;
+    private List<ECitologicoSubcategoria> marcadorCitologicoEnBase;
+    private Estudioshistoquimica estudioHistoquimica;
+    private List<EHistMarcador> marcadorHistoquimicaEnBase;
 
     public VerEstudios() {
         this.paciente = new Paciente();
@@ -122,7 +130,42 @@ public class VerEstudios implements Serializable {
     public void setMarcadorBiologiaMolecularEnBase(List<MarcadorBio> marcadorBiologiaMolecularEnBase) {
         this.marcadorBiologiaMolecularEnBase = marcadorBiologiaMolecularEnBase;
     }
-    
+
+    public Estudiocitologico getEstudioCitologico() {
+        return estudioCitologico;
+    }
+
+    public void setEstudioCitologico(Estudiocitologico estudioCitologico) {
+        this.estudioCitologico = estudioCitologico;
+    }
+
+    public List<ECitologicoSubcategoria> getMarcadorCitologicoEnBase() {
+        marcadorCitologicoEnBase=JPAFactoryDAO.getFactory().getECitologicoSubcategoriaDAO().marcadorEstudioCitologicoPorEstudio(estudioCitologico);
+        return marcadorCitologicoEnBase;
+    }
+
+    public void setMarcadorCitologicoEnBase(List<ECitologicoSubcategoria> marcadorCitologico) {
+        this.marcadorCitologicoEnBase = marcadorCitologico;
+    }
+
+    public Estudioshistoquimica getEstudioHistoquimica() {
+        return estudioHistoquimica;
+    }
+
+    public void setEstudioHistoquimica(Estudioshistoquimica estudioHistoquimica) {
+        this.estudioHistoquimica = estudioHistoquimica;
+    }
+
+    public List<EHistMarcador> getMarcadorHistoquimicaEnBase() {
+        marcadorHistoquimicaEnBase=JPAFactoryDAO.getFactory().getEHistMarcadorDAO().marcadorHistoquimicaPorEstudio(estudioHistoquimica);
+        return marcadorHistoquimicaEnBase;
+    }
+
+    public void setMarcadorHistoquimicaEnBase(List<EHistMarcador> marcadorHistoquimicaEnBase) {
+        this.marcadorHistoquimicaEnBase = marcadorHistoquimicaEnBase;
+    }
+
+   
     
     
 }
