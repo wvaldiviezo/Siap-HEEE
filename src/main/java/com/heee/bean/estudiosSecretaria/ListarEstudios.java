@@ -8,7 +8,12 @@ package com.heee.bean.estudiosSecretaria;
 import com.heee.bean.model.entity.Biologiamolecular;
 import com.heee.bean.model.entity.Cabecerarecepcionmuestra;
 import com.heee.bean.model.entity.Doctor;
+import com.heee.bean.model.entity.Estudiocitologico;
 import com.heee.bean.model.entity.Estudiosamputaciones;
+import com.heee.bean.model.entity.Estudioshistoquimica;
+import com.heee.bean.model.entity.Estudiosinmunohistoquimica;
+import com.heee.bean.model.entity.Estudiosquirurgicos;
+import com.heee.bean.model.entity.Estudiosrevision;
 import com.heee.bean.model.entity.Hospital;
 import com.heee.bean.model.entity.Paciente;
 import com.heee.bean.model.entity.Tipoestudio;
@@ -42,9 +47,7 @@ public class ListarEstudios implements Serializable {
     private Hospital hospital;
     private Tipoestudio tipoEstudio;
     private Cabecerarecepcionmuestra estudioCRM;
-    private Estudiosamputaciones estudioAmputaciones;
-    private String[] atributo;
-    private String[] valor;
+  
 
     //Actualizar información del Empleado
     @ManagedProperty("#{verEstudio}")
@@ -57,8 +60,7 @@ public class ListarEstudios implements Serializable {
         tiposEstudios = null;
         estudioLista = null;
         estudioFiltrado = null;
-        atributo = null;
-        valor = null;
+      
     }
 
     //Método invocado por la acción del botón editar en la vista buscarEstudios.
@@ -67,10 +69,20 @@ public class ListarEstudios implements Serializable {
         Cabecerarecepcionmuestra ecrm = (Cabecerarecepcionmuestra) JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().read(Integer.valueOf(idCrm));
         Estudiosamputaciones estudioAmputaciones= JPAFactoryDAO.getFactory().getEstudiosAmputacionesDAO().filtrarAmputacion(idCrm);
         Biologiamolecular estudioBiologiamolecular = JPAFactoryDAO.getFactory().getEstudiosBiologiaMolecularDAO().filtrarBiologiaMolecular(idCrm);
+        Estudiocitologico estudioCitologico= JPAFactoryDAO.getFactory().getEstudiosCitologicoDAO().filtrarEstudiocitologico(idCrm);
+        Estudioshistoquimica estudioHistoquimica= JPAFactoryDAO.getFactory().getEstudiosHistoquimicaDAO().filtrarEstudioHistoquimica(idCrm);
+        Estudiosinmunohistoquimica estudioInmunohistoquimica=JPAFactoryDAO.getFactory().getEstudiosInmunohistoquimicaDAO().filtrarEstudiosInmunohistoquimica(idCrm);
+        Estudiosquirurgicos estudioQuirurgico=JPAFactoryDAO.getFactory().getEstudiosQuirurgicosDAO().filtraEstudioQuirurgico(idCrm);
+        Estudiosrevision estudioRevision=JPAFactoryDAO.getFactory().getEstudiosRevisionDAO().filtrarEstudioRevision(idCrm);
         
         getCtrVerEstudio().setEstudioCRM(ecrm);
         getCtrVerEstudio().setEstudioAmputaciones(estudioAmputaciones);
         getCtrVerEstudio().setEstudioBiologiaMolecular(estudioBiologiamolecular);
+        getCtrVerEstudio().setEstudioCitologico(estudioCitologico);
+        getCtrVerEstudio().setEstudioHistoquimica(estudioHistoquimica);
+        getCtrVerEstudio().setEstudioInmunohistoquimica(estudioInmunohistoquimica);
+        getCtrVerEstudio().setEstudioQuirurgico(estudioQuirurgico);
+        getCtrVerEstudio().setEstudioRevision(estudioRevision);
         return "/principal/secretaria/verEstudio.HeeSiap";
     }
 

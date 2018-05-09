@@ -3,9 +3,18 @@ package com.heee.bean.estudiosSecretaria;
 import com.heee.bean.model.entity.Biologiamolecular;
 import com.heee.bean.model.entity.Cabecerarecepcionmuestra;
 import com.heee.bean.model.entity.Doctor;
+import com.heee.bean.model.entity.ECitologicoSubcategoria;
+import com.heee.bean.model.entity.EHistMarcador;
+import com.heee.bean.model.entity.EinhMarcadores;
+import com.heee.bean.model.entity.Estudiocitologico;
 import com.heee.bean.model.entity.Estudiosamputaciones;
+import com.heee.bean.model.entity.Estudioshistoquimica;
+import com.heee.bean.model.entity.Estudiosinmunohistoquimica;
+import com.heee.bean.model.entity.Estudiosquirurgicos;
+import com.heee.bean.model.entity.Estudiosrevision;
 import com.heee.bean.model.entity.Hospital;
 import com.heee.bean.model.entity.MarcadorBio;
+import com.heee.bean.model.entity.Marcadoreseihq;
 import com.heee.bean.model.entity.Paciente;
 import com.heee.bean.model.entity.Tipoestudio;
 import com.heee.bean.model.jpa.JPAFactoryDAO;
@@ -30,7 +39,15 @@ public class VerEstudios implements Serializable {
     private Estudiosamputaciones estudioAmputaciones;
     private Biologiamolecular estudioBiologiaMolecular;
     private List<MarcadorBio> marcadorBiologiaMolecularEnBase;
-
+    private Estudiocitologico estudioCitologico;
+    private List<ECitologicoSubcategoria> marcadorCitologicoEnBase;
+    private Estudioshistoquimica estudioHistoquimica;
+    private List<EHistMarcador> marcadorHistoquimicaEnBase;
+    private Estudiosinmunohistoquimica estudioInmunohistoquimica;
+    private List<EinhMarcadores> marcadorInmunohistoquimicaEnBase;
+    private Estudiosquirurgicos estudioQuirurgico;
+    private Estudiosrevision estudioRevision;
+    
     public VerEstudios() {
         this.paciente = new Paciente();
         this.doctor = new Doctor();
@@ -122,7 +139,75 @@ public class VerEstudios implements Serializable {
     public void setMarcadorBiologiaMolecularEnBase(List<MarcadorBio> marcadorBiologiaMolecularEnBase) {
         this.marcadorBiologiaMolecularEnBase = marcadorBiologiaMolecularEnBase;
     }
-    
+
+    public Estudiocitologico getEstudioCitologico() {
+        return estudioCitologico;
+    }
+
+    public void setEstudioCitologico(Estudiocitologico estudioCitologico) {
+        this.estudioCitologico = estudioCitologico;
+    }
+
+    public List<ECitologicoSubcategoria> getMarcadorCitologicoEnBase() {
+        marcadorCitologicoEnBase=JPAFactoryDAO.getFactory().getECitologicoSubcategoriaDAO().marcadorEstudioCitologicoPorEstudio(estudioCitologico);
+        return marcadorCitologicoEnBase;
+    }
+
+    public void setMarcadorCitologicoEnBase(List<ECitologicoSubcategoria> marcadorCitologico) {
+        this.marcadorCitologicoEnBase = marcadorCitologico;
+    }
+
+    public Estudioshistoquimica getEstudioHistoquimica() {
+        return estudioHistoquimica;
+    }
+
+    public void setEstudioHistoquimica(Estudioshistoquimica estudioHistoquimica) {
+        this.estudioHistoquimica = estudioHistoquimica;
+    }
+
+    public List<EHistMarcador> getMarcadorHistoquimicaEnBase() {
+        marcadorHistoquimicaEnBase=JPAFactoryDAO.getFactory().getEHistMarcadorDAO().marcadorHistoquimicaPorEstudio(estudioHistoquimica);
+        return marcadorHistoquimicaEnBase;
+    }
+
+    public void setMarcadorHistoquimicaEnBase(List<EHistMarcador> marcadorHistoquimicaEnBase) {
+        this.marcadorHistoquimicaEnBase = marcadorHistoquimicaEnBase;
+    }
+
+    public Estudiosinmunohistoquimica getEstudioInmunohistoquimica() {
+        return estudioInmunohistoquimica;
+    }
+
+    public void setEstudioInmunohistoquimica(Estudiosinmunohistoquimica estudioInmunohistoquimica) {
+        this.estudioInmunohistoquimica = estudioInmunohistoquimica;
+    }
+
+    public List<EinhMarcadores> getMarcadorInmunohistoquimicaEnBase() {
+        marcadorInmunohistoquimicaEnBase=JPAFactoryDAO.getFactory().getEInHistMarcadorDAO().marcadorInmunohistoquimicaPorEstudio(estudioInmunohistoquimica);
+        return marcadorInmunohistoquimicaEnBase;
+    }
+
+    public void setMarcadorInmunohistoquimicaEnBase(List<EinhMarcadores> marcadorInmunohistoquimicaEnBase) {
+        this.marcadorInmunohistoquimicaEnBase = marcadorInmunohistoquimicaEnBase;
+    }
+
+    public Estudiosquirurgicos getEstudioQuirurgico() {
+        return estudioQuirurgico;
+    }
+
+    public void setEstudioQuirurgico(Estudiosquirurgicos estudioQuirurgico) {
+        this.estudioQuirurgico = estudioQuirurgico;
+    }
+
+    public Estudiosrevision getEstudioRevision() {
+        return estudioRevision;
+    }
+
+    public void setEstudioRevision(Estudiosrevision estudioRevision) {
+        this.estudioRevision = estudioRevision;
+    }
+
+   
     
     
 }

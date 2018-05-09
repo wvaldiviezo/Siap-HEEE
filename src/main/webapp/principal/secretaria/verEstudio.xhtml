@@ -15,7 +15,7 @@
 
                 <h:form id="contenido">
                     <h1 style="color: #045491;text-align: center">Información del Estudio Registrado</h1>
-                    <p:growl id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true" />
+                    <p:growl id="mensaje" autoUpdate="true" severity="info, fatal" showSummary="true" showDetail="true" />
 
                     <h:panelGrid columns="2" cellpadding="3">
                         <p:outputLabel value="Tipo de Estudio:" style="font-weight:bold"/>
@@ -101,6 +101,10 @@
                             </h:panelGrid>
                         </p:tab>
                         <p:tab title="#{verEstudio.estudioCRM.idte.nombrete}" rendered="#{verEstudio.estudioCRM.idte.nombrete=='AMPUTACIONES'}">
+                            <p:outputLabel value="Prioridad:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{verEstudio.estudioCRM.prioridad}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
                             <p:outputLabel value="Extremidad:" style="font-weight:bold"/>
                             <p:outputLabel value="#{verEstudio.estudioAmputaciones.idpartes.idextremidades.nombreextremidades}" style="color: #045491;"/>
                             <br/>
@@ -113,46 +117,126 @@
                             <p:outputLabel value="#{verEstudio.estudioAmputaciones.descripcionamputacionea}" style="color: #045491;"/>
                         </p:tab>
                         <p:tab title="#{verEstudio.estudioCRM.idte.nombrete}" rendered="#{verEstudio.estudioCRM.idte.nombrete=='BIOLOGÍA MOLECULAR'}">
-                          
-
-                            <p:dataTable id="busquedaMarcadores" value="#{verEstudio.marcadorBiologiaMolecularEnBase}" var="marcadorEstudio"  widgetVar="estudiosTabla" rows="15"
+                            <p:outputLabel value="Prioridad:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{verEstudio.estudioCRM.prioridad}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:dataTable id="busquedaMarcadoresBiologia" value="#{verEstudio.marcadorBiologiaMolecularEnBase}" var="marcadorEstudioBiologia"  widgetVar="estudiosTabla" rows="15"
                                          paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="10,15,20"
                                          sortOrder="descending" paginatorPosition="top" emptyMessage="No hay ningún registro con esa opción">
                                 
                                 <p:column headerText="Categoria" style="width: 30px"  >
-                                    <h:outputText value="#{marcadorEstudio.idmarcadorsubcategoriabm.idsubcategoriabm.nombresubcategoriabm}" />
+                                    <h:outputText value="#{marcadorEstudioBiologia.idmarcadorsubcategoriabm.idsubcategoriabm.nombresubcategoriabm}" />
                                 </p:column>
                                 <p:column headerText="Marcadores" style="width: 30px"  >
-                                    <h:outputText value="#{marcadorEstudio.idmarcadorsubcategoriabm.nombremaradorbm}" />
+                                    <h:outputText value="#{marcadorEstudioBiologia.idmarcadorsubcategoriabm.nombremaradorbm}" />
                                 </p:column>
                                 <p:column headerText="Detalle" style="width: 30px"  >
-                                    <h:outputText value="#{marcadorEstudio.descripcionmarcador}" />
+                                    <h:outputText value="#{marcadorEstudioBiologia.descripcionmarcador}" />
                                 </p:column>
-                                
-                                
-
                             </p:dataTable>
 
                         </p:tab>
                         <p:tab title="#{verEstudio.estudioCRM.idte.nombrete}" rendered="#{verEstudio.estudioCRM.idte.nombrete=='CITOLÓGICOS'}">
-                            <p:outputLabel value="Tipo de Estudio:" style="font-weight:bold"/>
-                            <p:outputLabel value="#{verEstudio.estudioCRM.idte.nombrete}" style="color: #045491;"/>
+                            <p:outputLabel value="Prioridad:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{verEstudio.estudioCRM.prioridad}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:outputLabel value="Descripcion Citológico:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{verEstudio.estudioCitologico.descripcioncitologicocec}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:dataTable id="busquedaMarcadoresCitologico" value="#{verEstudio.marcadorCitologicoEnBase}" var="marcadorEstudioCitologico"  widgetVar="estudiosTabla" rows="15"
+                                         paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="10,15,20"
+                                         sortOrder="descending" paginatorPosition="top" emptyMessage="No hay ningún registro con esa opción">
+                                
+                                <p:column headerText="Categoria" style="width: 30px"  >
+                                    <h:outputText value="#{marcadorEstudioCitologico.idsubcategoria.idcategoria.descripcionmarcadorcategoria}" />
+                                </p:column>
+                                <p:column headerText="SubCategoria" style="width: 30px"  >
+                                    <h:outputText value="#{marcadorEstudioCitologico.idsubcategoria.idcategoria.idtec.descripcionmarcadortec}" />
+                                </p:column>
+                                <p:column headerText="Marcadores" style="width: 30px"  >
+                                    <h:outputText value="#{marcadorEstudioCitologico.idsubcategoria.nombresubcategoria}" />
+                                </p:column>
+                                <p:column headerText="Detalle" style="width: 30px"  >
+                                    <h:outputText value="#{marcadorEstudioCitologico.descripcionsubcategoria}" />
+                                </p:column>
+                            </p:dataTable>
+                            
                         </p:tab>
                         <p:tab title="#{verEstudio.estudioCRM.idte.nombrete}" rendered="#{verEstudio.estudioCRM.idte.nombrete=='HISTOQUÍMICA'}">
-                            <p:outputLabel value="Tipo de Estudio:" style="font-weight:bold"/>
-                            <p:outputLabel value="#{verEstudio.estudioCRM.idte.nombrete}" style="color: #045491;"/>
+                            <p:outputLabel value="Prioridad:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{verEstudio.estudioCRM.prioridad}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:outputLabel value="Descripcion estudio:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{verEstudio.estudioHistoquimica.descripcioneh}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:dataTable id="busquedaMarcadoresHistoquimica" value="#{verEstudio.marcadorHistoquimicaEnBase}" var="marcadorEstudioHistoquimica"  widgetVar="estudiosTabla" rows="15"
+                                         paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="10,15,20"
+                                         sortOrder="descending" paginatorPosition="top" emptyMessage="No hay ningún registro con esa opción">
+                                
+                                <p:column headerText="marcadores" style="width: 30px"  >
+                                    <h:outputText value="#{marcadorEstudioHistoquimica.idmarcadoreh.detallemarcadoreh}" />
+                                </p:column>
+                                
+                            </p:dataTable>
                         </p:tab>
                         <p:tab title="#{verEstudio.estudioCRM.idte.nombrete}" rendered="#{verEstudio.estudioCRM.idte.nombrete=='INMUNOHISTOQUÍMICA'}">
-                            <p:outputLabel value="Tipo de Estudio:" style="font-weight:bold"/>
-                            <p:outputLabel value="#{verEstudio.estudioCRM.idte.nombrete}" style="color: #045491;"/>
+                            <p:outputLabel value="Prioridad:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{verEstudio.estudioCRM.prioridad}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:outputLabel value="Descripcion estudio:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{verEstudio.estudioInmunohistoquimica.descripcionestudioeihq}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:dataTable id="busquedaMarcadoresInmunohistoquimica" value="#{verEstudio.marcadorInmunohistoquimicaEnBase}" var="marcadorEstudioInmonohistoquimica"  widgetVar="estudiosTabla" rows="15"
+                                         paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="10,15,20"
+                                         sortOrder="descending" paginatorPosition="top" emptyMessage="No hay ningún registro con esa opción">
+                                
+                                <p:column headerText="marcadores" style="width: 30px"  >
+                                    <h:outputText value="#{marcadorEstudioInmonohistoquimica.idmarcadorihq.detallemarcadorihq}" />
+                                </p:column>
+                                
+                            </p:dataTable>
                         </p:tab>
                         <p:tab title="#{verEstudio.estudioCRM.idte.nombrete}" rendered="#{verEstudio.estudioCRM.idte.nombrete=='QUIRÚRGICOS'}">
-                            <p:outputLabel value="Tipo de Estudio:" style="font-weight:bold"/>
-                            <p:outputLabel value="#{verEstudio.estudioCRM.idte.nombrete}" style="color: #045491;"/>
+                            <p:outputLabel value="Prioridad:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{verEstudio.estudioCRM.prioridad}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:outputLabel value="Organos/Sistemas:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{verEstudio.estudioQuirurgico.idos.descripcionmarcadoros}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:outputLabel value="subtipo:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{verEstudio.estudioQuirurgico.idsubtipo.descripcionmarcadorsubtipo}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:outputLabel value="Descripcion otro:" rendered="#{verEstudio.estudioQuirurgico.idsubtipo.idsubtipo=='9'}" style="font-weight:bold"/>
+                            <p:outputLabel value="#{verEstudio.estudioQuirurgico.descripcionsubtipoeq}" style="color: #045491;"/>
+                            
+                            
                         </p:tab>
                         <p:tab title="#{verEstudio.estudioCRM.idte.nombrete}" rendered="#{verEstudio.estudioCRM.idte.nombrete=='REVISIONES'}">
-                            <p:outputLabel value="Tipo de Estudio:" style="font-weight:bold"/>
-                            <p:outputLabel value="#{verEstudio.estudioCRM.idte.nombrete}" style="color: #045491;"/>
+                            <p:outputLabel value="Prioridad:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{verEstudio.estudioCRM.prioridad}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:outputLabel value="Organos/Sistemas:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{verEstudio.estudioRevision.idos.descripcionmarcadoros}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:outputLabel value="subtipo:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{verEstudio.estudioRevision.idsubtipo.descripcionmarcadorsubtipo}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:outputLabel value="Descripcion otro:" rendered="#{verEstudio.estudioRevision.idsubtipo.idsubtipo=='9'}" style="font-weight:bold"/>
+                            <p:outputLabel value="#{verEstudio.estudioRevision.descripcionsubtipoer}" style="color: #045491;"/>
+                            
                         </p:tab>
                     </p:accordionPanel>
 
@@ -160,7 +244,7 @@
 
                     <br/>
                     <p:commandButton  icon="fa fa-fw fa-remove" value="Cancelar" action="#{verEstudio.cancelar()}" immediate="true">
-                        <p:confirm header="Confirmación" message="Desea cancelar la edición de la información !" icon="ui-icon-alert" />
+                        <p:confirm header="Confirmación" message="Desea salir !" icon="ui-icon-alert" />
                     </p:commandButton>
                     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                         <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
