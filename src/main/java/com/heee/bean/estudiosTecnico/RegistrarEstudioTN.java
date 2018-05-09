@@ -56,29 +56,9 @@ public class RegistrarEstudioTN implements Serializable {
 
     /*Metodo para registrar la descripción del técnico normal del estudio seleccionado*/
     public void registrarDesripcionTN() {
-        //Obtener el id del estudio para poder actualizarlo
-        //detalleRM.setIddrm(this.detalleRM.getIddrm());
-        System.out.println("****cabeecera:" + cabeceraRM.getCodigoestudiocrm());
-        System.out.println("****cabeecera:" + cabeceraRM.getIdcrm());
-
-        cabeceraRM.setNumerohedrm(this.numeroHE);
-        cabeceraRM.setNumerogiemsasdrm(this.numeroGiemsas);
-        cabeceraRM.setNumeroplacasdrm(this.numeroPlacas);
-        cabeceraRM.setNumerocasetasdrm(this.numeroCasetas);
-        cabeceraRM.setNumerofragmentosdrm(this.numeroFragmentos);
-        cabeceraRM.setNumeropapdrm(this.numeroPAP);
-        cabeceraRM.setObservaciontnormaldrm(this.observacionTN);
         cabeceraRM.setEstadoestudiocrm("Microscopia");
-        cabeceraRM.setFechaactualizacrm(this.fechaCreaAreaTecnica);
-        cabeceraRM.setPatologoasignado(empladoID);
-        //this.empleado.setIdempleado(this.empladoID);
-
+        cabeceraRM.setPatologoasignado(patologoAsignado);
         JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().update(this.cabeceraRM);
-//        
-//        JPAFactoryDAO.getFactory().getDetallerecepcionmuestraDAO().create(this.detalleRM);
-//        cabeceraRM.setEstadoestudiocrm("Microscopia");
-//        cabeceraRM.setFechaactualizacrm(this.fechaCreaAreaTecnica);
-//        JPAFactoryDAO.getFactory().getDetallerecepcionmuestraDAO().update(this.detalleRM);
 
     }
 

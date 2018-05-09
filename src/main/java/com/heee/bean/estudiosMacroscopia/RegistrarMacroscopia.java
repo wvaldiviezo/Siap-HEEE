@@ -39,13 +39,6 @@ public class RegistrarMacroscopia implements Serializable {
     /*Metodo para registrar la macroscopía del estudio seleccionado*/
     public void registrarMacro() {
         
-        //cabeceraRM.setIdcrm(this.cabeceraRM);
-        cabeceraRM.setNumerocasetas(this.numeroCasetas);
-        cabeceraRM.setDetallecaseta(this.detalleCaseta);
-        cabeceraRM.setDiagnosticomacrosdrm(this.descripcionMacroscopia);
-        //cabeceraRM.setFechacreamacroscopia(this.fechaCreacionMacro);
-        //System.out.println("*********Fecha de Crea Macroscopia "+this.fechaCreacionMacro);
-        //JPAFactoryDAO.getFactory().getDetallerecepcionmuestraDAO().create(this.detalleRM);
         cabeceraRM.setEstadoestudiocrm("Tecnico Normal");
         cabeceraRM.setFechaactualizacrm(this.fechaCreacionMacro);
         JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().update(this.cabeceraRM);

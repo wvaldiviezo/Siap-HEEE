@@ -69,9 +69,9 @@
                         </p:tab>
                         <p:tab title="Asignación de estudio a Microscopía">
                             <p:outputLabel for="patologo" value="Enviar estudio a: " />
-                            <p:selectOneMenu id="patologo" value="#{registrarEstudioTN.empladoID}" required="true" requiredMessage="Seleccione un Órganos / Sistemas" style="width: 540px">
+                            <p:selectOneMenu id="patologo" value="#{registrarEstudioTN.patologoAsignado}" required="true" requiredMessage="Seleccione un Órganos / Sistemas" style="width: 540px">
                                 <f:selectItem itemLabel="Seleccione una opción" itemValue="" />
-                                <f:selectItems value="#{registrarEstudioTN.ltsEmpleados}" var="empleados" itemLabel="#{empleados.nombresempleado} #{empleados.apellidosempleado}" itemValue="#{empleados.idempleado}" />
+                                <f:selectItems value="#{registrarEstudioTN.ltsEmpleados}" var="empleados" itemLabel="#{empleados.nombresempleado} #{empleados.apellidosempleado}" itemValue="#{empleados.nombresempleado}" />
                             </p:selectOneMenu>
                         </p:tab>
                     </p:accordionPanel>
