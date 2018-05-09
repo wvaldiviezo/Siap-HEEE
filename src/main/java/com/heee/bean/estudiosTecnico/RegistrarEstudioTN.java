@@ -1,7 +1,7 @@
 package com.heee.bean.estudiosTecnico;
 
 import com.heee.bean.model.entity.Cabecerarecepcionmuestra;
-import com.heee.bean.model.entity.Detallerecepcionmuestra;
+//import com.heee.bean.model.entity.Detallerecepcionmuestra;
 import com.heee.bean.model.entity.Empleado;
 import com.heee.bean.model.jpa.JPAFactoryDAO;
 import java.io.Serializable;
@@ -18,17 +18,17 @@ import javax.faces.view.ViewScoped;
 @ViewScoped
 @SessionScoped
 public class RegistrarEstudioTN implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
-    
+
     private Cabecerarecepcionmuestra cabeceraRM;
     private Cabecerarecepcionmuestra cabeceraRMfecha;
-    private Detallerecepcionmuestra detalleRM;
-    
+    //private Detallerecepcionmuestra detalleRM;
+
     private Empleado empleado;
     private int empladoID;
     List<Empleado> ltsEmpleados;
-    
+
     private int numeroHE;
     private int numeroGiemsas;
     private int numeroPlacas;
@@ -38,50 +38,51 @@ public class RegistrarEstudioTN implements Serializable {
     private String observacionTN;
     private Date fechaCreaAreaTecnica = new Date();
     private String patologoAsignado;
-    
-    
-    public RegistrarEstudioTN (){
+
+    public RegistrarEstudioTN() {
         //this.cabeceraRM = new Cabecerarecepcionmuestra();
-        this.detalleRM = new Detallerecepcionmuestra ();
+        //this.detalleRM = new Detallerecepcionmuestra ();
         this.empladoID = 0;
-        this.numeroHE = 0;
-        this.numeroGiemsas = 0;
-        this.numeroPlacas = 0;
-        this.numeroCasetas = 0;
-        this.numeroFragmentos = 0;
-        this.numeroPAP = 0;
-        this.observacionTN = "";
-        this.patologoAsignado = "";
+        this.empleado = new Empleado();
         this.ltsEmpleados = null;
+        numeroHE = 0;
+        numeroGiemsas = 0;
+        numeroCasetas = 0;
+        numeroFragmentos = 0;
+        numeroPAP = 0;
+        observacionTN = "";
+
     }
-    
+
     /*Metodo para registrar la descripción del técnico normal del estudio seleccionado*/
     public void registrarDesripcionTN() {
         //Obtener el id del estudio para poder actualizarlo
         //detalleRM.setIddrm(this.detalleRM.getIddrm());
-        System.out.println("****cabeecera:"+cabeceraRM.getCodigoestudiocrm());
-        System.out.println("****cabeecera:"+cabeceraRM.getIdcrm());
+        System.out.println("****cabeecera:" + cabeceraRM.getCodigoestudiocrm());
+        System.out.println("****cabeecera:" + cabeceraRM.getIdcrm());
 
-        detalleRM.setIdcrm(cabeceraRM);
-        detalleRM.setNumerohedrm(this.numeroHE);
-        detalleRM.setNumerogiemsasdrm(this.numeroGiemsas);
-        detalleRM.setNumeroplacasdrm(this.numeroPlacas);
-        detalleRM.setNumerocasetasdrm(this.numeroCasetas);
-        detalleRM.setNumerofragmentosdrm(this.numeroFragmentos);
-        detalleRM.setNumeroplacasdrm(this.numeroPlacas);
-        detalleRM.setObservaciontnormaldrm(observacionTN);
-        detalleRM.setFechacreaareatecnica(this.fechaCreaAreaTecnica);
-        detalleRM.setPatologoasignado(this.patologoAsignado);
-        
-        JPAFactoryDAO.getFactory().getDetallerecepcionmuestraDAO().create(this.detalleRM);
+        cabeceraRM.setNumerohedrm(this.numeroHE);
+        cabeceraRM.setNumerogiemsasdrm(this.numeroGiemsas);
+        cabeceraRM.setNumeroplacasdrm(this.numeroPlacas);
+        cabeceraRM.setNumerocasetasdrm(this.numeroCasetas);
+        cabeceraRM.setNumerofragmentosdrm(this.numeroFragmentos);
+        cabeceraRM.setNumeropapdrm(this.numeroPAP);
+        cabeceraRM.setObservaciontnormaldrm(this.observacionTN);
         cabeceraRM.setEstadoestudiocrm("Microscopia");
         cabeceraRM.setFechaactualizacrm(this.fechaCreaAreaTecnica);
-        JPAFactoryDAO.getFactory().getDetallerecepcionmuestraDAO().update(this.detalleRM);
+        cabeceraRM.setPatologoasignado(empladoID);
+        //this.empleado.setIdempleado(this.empladoID);
+
+        JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().update(this.cabeceraRM);
+//        
+//        JPAFactoryDAO.getFactory().getDetallerecepcionmuestraDAO().create(this.detalleRM);
+//        cabeceraRM.setEstadoestudiocrm("Microscopia");
+//        cabeceraRM.setFechaactualizacrm(this.fechaCreaAreaTecnica);
+//        JPAFactoryDAO.getFactory().getDetallerecepcionmuestraDAO().update(this.detalleRM);
 
     }
-    
-    //Getters & Setters
 
+    //Getters & Setters
     public Cabecerarecepcionmuestra getCabeceraRM() {
         return cabeceraRM;
     }
@@ -90,14 +91,13 @@ public class RegistrarEstudioTN implements Serializable {
         this.cabeceraRM = cabeceraRM;
     }
 
-    public Detallerecepcionmuestra getDetalleRM() {
-        return detalleRM;
-    }
-
-    public void setDetalleRM(Detallerecepcionmuestra detalleRM) {
-        this.detalleRM = detalleRM;
-    }
-
+//    public Detallerecepcionmuestra getDetalleRM() {
+//        return detalleRM;
+//    }
+//
+//    public void setDetalleRM(Detallerecepcionmuestra detalleRM) {
+//        this.detalleRM = detalleRM;
+//    }
     public int getNumeroHE() {
         return numeroHE;
     }
@@ -176,7 +176,7 @@ public class RegistrarEstudioTN implements Serializable {
 
     public void setCabeceraRMfecha(Cabecerarecepcionmuestra cabeceraRMfecha) {
         this.cabeceraRMfecha = cabeceraRMfecha;
-    }    
+    }
 
     public Empleado getEmpleado() {
         return empleado;
@@ -202,6 +202,5 @@ public class RegistrarEstudioTN implements Serializable {
     public void setLtsEmpleados(List<Empleado> ltsEmpleados) {
         this.ltsEmpleados = ltsEmpleados;
     }
-    
-    
+
 }

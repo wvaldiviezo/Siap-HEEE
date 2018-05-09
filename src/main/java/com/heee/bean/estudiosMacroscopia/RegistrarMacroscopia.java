@@ -1,7 +1,7 @@
 package com.heee.bean.estudiosMacroscopia;
 
 import com.heee.bean.model.entity.Cabecerarecepcionmuestra;
-import com.heee.bean.model.entity.Detallerecepcionmuestra;
+//import com.heee.bean.model.entity.Detallerecepcionmuestra;
 import com.heee.bean.model.entity.Tipoestudio;
 import com.heee.bean.model.jpa.JPAFactoryDAO;
 import com.heee.bean.model.jpa.JPATipoEstudioDAO;
@@ -19,7 +19,7 @@ public class RegistrarMacroscopia implements Serializable {
 
     private Cabecerarecepcionmuestra cabeceraRM;
     private Cabecerarecepcionmuestra cabeceraRMfecha;
-    private Detallerecepcionmuestra detalleRM;
+    //private Detallerecepcionmuestra detalleRM;
 
     private int numeroCasetas;
     private String detalleCaseta;
@@ -29,7 +29,7 @@ public class RegistrarMacroscopia implements Serializable {
 
     /*Método constructor*/
     public RegistrarMacroscopia() {
-        this.detalleRM = new Detallerecepcionmuestra();
+        //this.detalleRM = new Detallerecepcionmuestra();
         this.numeroCasetas = 0;
         this.detalleCaseta = "";
         this.descripcionMacroscopia = "";
@@ -38,14 +38,14 @@ public class RegistrarMacroscopia implements Serializable {
 
     /*Metodo para registrar la macroscopía del estudio seleccionado*/
     public void registrarMacro() {
-        detalleRM.setIdcrm(this.cabeceraRM);
-        detalleRM.setNumerocasetas(this.numeroCasetas);
-        detalleRM.setDetallecaseta(this.detalleCaseta);
-        detalleRM.setDiagnosticomacrosdrm(this.descripcionMacroscopia);
-        detalleRM.setFechacreamacroscopia(this.fechaCreacionMacro);
-        System.out.println("*********Fecha de Crea Macroscopia "+this.fechaCreacionMacro);
         
-        JPAFactoryDAO.getFactory().getDetallerecepcionmuestraDAO().create(this.detalleRM);
+        //cabeceraRM.setIdcrm(this.cabeceraRM);
+        cabeceraRM.setNumerocasetas(this.numeroCasetas);
+        cabeceraRM.setDetallecaseta(this.detalleCaseta);
+        cabeceraRM.setDiagnosticomacrosdrm(this.descripcionMacroscopia);
+        //cabeceraRM.setFechacreamacroscopia(this.fechaCreacionMacro);
+        //System.out.println("*********Fecha de Crea Macroscopia "+this.fechaCreacionMacro);
+        //JPAFactoryDAO.getFactory().getDetallerecepcionmuestraDAO().create(this.detalleRM);
         cabeceraRM.setEstadoestudiocrm("Tecnico Normal");
         cabeceraRM.setFechaactualizacrm(this.fechaCreacionMacro);
         JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().update(this.cabeceraRM);
@@ -63,13 +63,13 @@ public class RegistrarMacroscopia implements Serializable {
         this.cabeceraRM = cabeceraRM;
     }
 
-    public Detallerecepcionmuestra getDetalleRM() {
-        return detalleRM;
-    }
-
-    public void setDetalleRM(Detallerecepcionmuestra detalleRM) {
-        this.detalleRM = detalleRM;
-    }
+//    public Detallerecepcionmuestra getDetalleRM() {
+//        return detalleRM;
+//    }
+//
+//    public void setDetalleRM(Detallerecepcionmuestra detalleRM) {
+//        this.detalleRM = detalleRM;
+//    }
 
     public int getNumeroCasetas() {
         return numeroCasetas;

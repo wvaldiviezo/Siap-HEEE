@@ -28,7 +28,6 @@ import com.heee.bean.model.dao.MarcadoresEHDAO;
 //import com.heee.bean.model.dao.MarcadoresParteEHDAO;
 //import com.heee.bean.model.dao.MarcadoresParteEHPkDAO;
 import com.heee.bean.model.dao.CategoriaCitologicoDAO;
-import com.heee.bean.model.dao.DetallerecepcionmuestraDAO;
 import com.heee.bean.model.dao.ECitologicoSubcategoriaDAO;
 import com.heee.bean.model.dao.EHistMarcadorDAO;
 import com.heee.bean.model.dao.EInHistMarcadorDAO;
@@ -119,11 +118,6 @@ public class JPAFactoryDAO extends FactoryDAO {
     @Override
     public CabecerarecepcionmuestraDAO getCabecerarecepcionmuestraDAO(){
         return new JPACabecerarecepcionmuestraDAO();
-    }
-    
-    @Override
-    public DetallerecepcionmuestraDAO getDetallerecepcionmuestraDAO(){
-        return new JPADetallerecepcionmuestraDAO();
     }
     
     @Override

@@ -1,7 +1,6 @@
 package com.heee.bean.estudiosMacroscopia;
 
 import com.heee.bean.model.entity.Cabecerarecepcionmuestra;
-import com.heee.bean.model.entity.Detallerecepcionmuestra;
 import com.heee.bean.model.entity.Paciente;
 import com.heee.bean.model.entity.Tipoestudio;
 import com.heee.bean.model.jpa.JPAFactoryDAO;
@@ -26,7 +25,7 @@ public class ListarEstudios implements Serializable {
     private Cabecerarecepcionmuestra crMuestra;
     //private Tipoestudio tipoEstudio;
 
-    private Detallerecepcionmuestra detalleCRM;
+   // private Detallerecepcionmuestra detalleCRM;
 
     @ManagedProperty("#{registrarMacroscopia}")
     private RegistrarMacroscopia ctrRegistrarMacro;
@@ -97,13 +96,13 @@ public class ListarEstudios implements Serializable {
         this.ctrRegistrarMacro = ctrRegistrarMacro;
     }
 
-    public Detallerecepcionmuestra getDetalleCRM() {
-        return detalleCRM;
-    }
-
-    public void setDetalleCRM(Detallerecepcionmuestra detalleCRM) {
-        this.detalleCRM = detalleCRM;
-    }
+//    public Detallerecepcionmuestra getDetalleCRM() {
+//        return detalleCRM;
+//    }
+//
+//    public void setDetalleCRM(Detallerecepcionmuestra detalleCRM) {
+//        this.detalleCRM = detalleCRM;
+//    }
 
     public String getEstadoestudiocrm() {
         return estadoestudiocrm;

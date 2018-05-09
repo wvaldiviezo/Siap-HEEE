@@ -1,7 +1,7 @@
 package com.heee.bean.estudiosTecnico;
 
 import com.heee.bean.model.entity.Cabecerarecepcionmuestra;
-import com.heee.bean.model.entity.Detallerecepcionmuestra;
+//import com.heee.bean.model.entity.Detallerecepcionmuestra;
 import com.heee.bean.model.entity.Paciente;
 import com.heee.bean.model.jpa.JPAFactoryDAO;
 import java.io.Serializable;
@@ -25,7 +25,7 @@ public class ListarEstudiosTN implements Serializable {
     //private List<Detallerecepcionmuestra> ltsDetalleLista;
 
     private Cabecerarecepcionmuestra crMuestra;
-    private Detallerecepcionmuestra detalleCRM;
+    //private Detallerecepcionmuestra detalleCRM;
     
     private String estadoestudiocrm;
     
@@ -95,13 +95,13 @@ public class ListarEstudiosTN implements Serializable {
         this.crMuestra = crMuestra;
     }
 
-    public Detallerecepcionmuestra getDetalleCRM() {
-        return detalleCRM;
-    }
-
-    public void setDetalleCRM(Detallerecepcionmuestra detalleCRM) {
-        this.detalleCRM = detalleCRM;
-    }
+//    public Detallerecepcionmuestra getDetalleCRM() {
+//        return detalleCRM;
+//    }
+//
+//    public void setDetalleCRM(Detallerecepcionmuestra detalleCRM) {
+//        this.detalleCRM = detalleCRM;
+//    }
 
     public String getEstadoestudiocrm() {
         return estadoestudiocrm;
@@ -110,7 +110,5 @@ public class ListarEstudiosTN implements Serializable {
     public void setEstadoestudiocrm(String estadoestudiocrm) {
         this.estadoestudiocrm = estadoestudiocrm;
     }
-    
-    
-    
+
 }

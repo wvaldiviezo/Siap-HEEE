@@ -25,8 +25,8 @@ public class ListarEstudiosTE implements Serializable {
     
     private Paciente paciente;
         
-    @ManagedProperty("#{registrarEstudioTE}")
-    private RegistrarEstudioTE ctrRegistarTE;
+    //@ManagedProperty("#{registrarEstudioTE}")
+    //private RegistrarEstudioTE ctrRegistarTE;
     
     public ListarEstudiosTE(){
         
@@ -35,8 +35,8 @@ public class ListarEstudiosTE implements Serializable {
     /*Método que llama al controlador RegistrarMacroscopia para hacer el regsitro de la macroscopía
     del estudio seleccionado*/
     public String registrarEstudioTE(int idCRM) {
-        Cabecerarecepcionmuestra crm = (Cabecerarecepcionmuestra) JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().read(Integer.valueOf(idCRM));
-        getCtrRegistarTE().setCabeceraRM(crm);
+//        Cabecerarecepcionmuestra crm = (Cabecerarecepcionmuestra) JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().read(Integer.valueOf(idCRM));
+//        getCtrRegistarTE().setCabeceraRM(crm);
         return "/principal/tecnico/registrarEstudioTecnicoE.HeeSiap";
     }
     
@@ -67,13 +67,12 @@ public class ListarEstudiosTE implements Serializable {
         this.paciente = paciente;
     }
 
-    public RegistrarEstudioTE getCtrRegistarTE() {
-        return ctrRegistarTE;
-    }
-
-    public void setCtrRegistarTE(RegistrarEstudioTE ctrRegistarTE) {
-        this.ctrRegistarTE = ctrRegistarTE;
-    }
-    
-    
+//    public RegistrarEstudioTE getCtrRegistarTE() {
+//        return ctrRegistarTE;
+//    }
+//
+//    public void setCtrRegistarTE(RegistrarEstudioTE ctrRegistarTE) {
+//        this.ctrRegistarTE = ctrRegistarTE;
+//    }
+  
 }

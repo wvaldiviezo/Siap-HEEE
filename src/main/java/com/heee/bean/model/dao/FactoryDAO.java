@@ -26,7 +26,6 @@ public abstract class FactoryDAO {
     public abstract DoctorDAO getDoctorDAO();
     public abstract PacienteDAO getPacienteDAO();
     public abstract CabecerarecepcionmuestraDAO getCabecerarecepcionmuestraDAO();
-    public abstract DetallerecepcionmuestraDAO getDetallerecepcionmuestraDAO();
     
 
     //estudio amputaciones

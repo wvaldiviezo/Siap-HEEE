@@ -62,6 +62,72 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Cabecerarecepcionmuestra.findByIdusuarioactualizacrm", query = "SELECT c FROM Cabecerarecepcionmuestra c WHERE c.idusuarioactualizacrm = :idusuarioactualizacrm")})
 public class Cabecerarecepcionmuestra implements Serializable {
 
+    @Size(max = 250)
+    @Column(name = "diagnosticomacrosdrm")
+    private String diagnosticomacrosdrm;
+    @Column(name = "numerocasetas")
+    private Integer numerocasetas;
+    @Size(max = 250)
+    @Column(name = "detallecaseta")
+    private String detallecaseta;
+    @Size(max = 250)
+    @Column(name = "diagnosticotecnormaldrm")
+    private String diagnosticotecnormaldrm;
+    @Column(name = "opcionsolicnuevcortesdrm")
+    private Boolean opcionsolicnuevcortesdrm;
+    @Size(max = 200)
+    @Column(name = "realizarnuevoscortes")
+    private String realizarnuevoscortes;
+    @Column(name = "numcortesdrm")
+    private Integer numcortesdrm;
+    @Size(max = 250)
+    @Column(name = "observacionsolicnuevcortesdrm")
+    private String observacionsolicnuevcortesdrm;
+    @Size(max = 200)
+    @Column(name = "estudioespecialdrm")
+    private String estudioespecialdrm;
+    @Size(max = 250)
+    @Column(name = "observacionestudioespecialdrm")
+    private String observacionestudioespecialdrm;
+    @Column(name = "numerohedrm")
+    private Integer numerohedrm;
+    @Column(name = "numerogiemsasdrm")
+    private Integer numerogiemsasdrm;
+    @Column(name = "numeroplacasdrm")
+    private Integer numeroplacasdrm;
+    @Column(name = "numerocasetasdrm")
+    private Integer numerocasetasdrm;
+    @Column(name = "numerofragmentosdrm")
+    private Integer numerofragmentosdrm;
+    @Column(name = "numeropapdrm")
+    private Integer numeropapdrm;
+    @Size(max = 250)
+    @Column(name = "observaciontnormaldrm")
+    private String observaciontnormaldrm;
+    @Column(name = "numeroplacastespecial")
+    private Integer numeroplacastespecial;
+    @Size(max = 150)
+    @Column(name = "tincionespecial")
+    private String tincionespecial;
+    @Size(max = 250)
+    @Column(name = "observaciontespecial")
+    private String observaciontespecial;
+    @Size(max = 100)
+    @Column(name = "patologoasignado")
+    private String patologoasignado;
+    @Size(max = 20)
+    @Column(name = "calidadmuestradrm")
+    private String calidadmuestradrm;
+    @Size(max = 150)
+    @Column(name = "motivocalidadmuestradrm")
+    private String motivocalidadmuestradrm;
+    @Size(max = 250)
+    @Column(name = "diagnosticomicrosdrm")
+    private String diagnosticomicrosdrm;
+    @Size(max = 250)
+    @Column(name = "conclusiondiagnosticadrm")
+    private String conclusiondiagnosticadrm;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -144,8 +210,6 @@ public class Cabecerarecepcionmuestra implements Serializable {
     @JoinColumn(name = "idte", referencedColumnName = "idte")
     @ManyToOne(optional = false)
     private Tipoestudio idte;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcrm")
-    private List<Detallerecepcionmuestra> detallerecepcionmuestraList;
 
     public Cabecerarecepcionmuestra() {
     }
@@ -378,15 +442,6 @@ public class Cabecerarecepcionmuestra implements Serializable {
         this.idte = idte;
     }
 
-    @XmlTransient
-    public List<Detallerecepcionmuestra> getDetallerecepcionmuestraList() {
-        return detallerecepcionmuestraList;
-    }
-
-    public void setDetallerecepcionmuestraList(List<Detallerecepcionmuestra> detallerecepcionmuestraList) {
-        this.detallerecepcionmuestraList = detallerecepcionmuestraList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -410,6 +465,210 @@ public class Cabecerarecepcionmuestra implements Serializable {
     @Override
     public String toString() {
         return "com.heee.bean.model.entity.Cabecerarecepcionmuestra[ idcrm=" + idcrm + " ]";
+    }
+
+    public String getDiagnosticomacrosdrm() {
+        return diagnosticomacrosdrm;
+    }
+
+    public void setDiagnosticomacrosdrm(String diagnosticomacrosdrm) {
+        this.diagnosticomacrosdrm = diagnosticomacrosdrm;
+    }
+
+    public Integer getNumerocasetas() {
+        return numerocasetas;
+    }
+
+    public void setNumerocasetas(Integer numerocasetas) {
+        this.numerocasetas = numerocasetas;
+    }
+
+    public String getDetallecaseta() {
+        return detallecaseta;
+    }
+
+    public void setDetallecaseta(String detallecaseta) {
+        this.detallecaseta = detallecaseta;
+    }
+
+    public String getDiagnosticotecnormaldrm() {
+        return diagnosticotecnormaldrm;
+    }
+
+    public void setDiagnosticotecnormaldrm(String diagnosticotecnormaldrm) {
+        this.diagnosticotecnormaldrm = diagnosticotecnormaldrm;
+    }
+
+    public Boolean getOpcionsolicnuevcortesdrm() {
+        return opcionsolicnuevcortesdrm;
+    }
+
+    public void setOpcionsolicnuevcortesdrm(Boolean opcionsolicnuevcortesdrm) {
+        this.opcionsolicnuevcortesdrm = opcionsolicnuevcortesdrm;
+    }
+
+    public String getRealizarnuevoscortes() {
+        return realizarnuevoscortes;
+    }
+
+    public void setRealizarnuevoscortes(String realizarnuevoscortes) {
+        this.realizarnuevoscortes = realizarnuevoscortes;
+    }
+
+    public Integer getNumcortesdrm() {
+        return numcortesdrm;
+    }
+
+    public void setNumcortesdrm(Integer numcortesdrm) {
+        this.numcortesdrm = numcortesdrm;
+    }
+
+    public String getObservacionsolicnuevcortesdrm() {
+        return observacionsolicnuevcortesdrm;
+    }
+
+    public void setObservacionsolicnuevcortesdrm(String observacionsolicnuevcortesdrm) {
+        this.observacionsolicnuevcortesdrm = observacionsolicnuevcortesdrm;
+    }
+
+    public String getEstudioespecialdrm() {
+        return estudioespecialdrm;
+    }
+
+    public void setEstudioespecialdrm(String estudioespecialdrm) {
+        this.estudioespecialdrm = estudioespecialdrm;
+    }
+
+    public String getObservacionestudioespecialdrm() {
+        return observacionestudioespecialdrm;
+    }
+
+    public void setObservacionestudioespecialdrm(String observacionestudioespecialdrm) {
+        this.observacionestudioespecialdrm = observacionestudioespecialdrm;
+    }
+
+    public Integer getNumerohedrm() {
+        return numerohedrm;
+    }
+
+    public void setNumerohedrm(Integer numerohedrm) {
+        this.numerohedrm = numerohedrm;
+    }
+
+    public Integer getNumerogiemsasdrm() {
+        return numerogiemsasdrm;
+    }
+
+    public void setNumerogiemsasdrm(Integer numerogiemsasdrm) {
+        this.numerogiemsasdrm = numerogiemsasdrm;
+    }
+
+    public Integer getNumeroplacasdrm() {
+        return numeroplacasdrm;
+    }
+
+    public void setNumeroplacasdrm(Integer numeroplacasdrm) {
+        this.numeroplacasdrm = numeroplacasdrm;
+    }
+
+    public Integer getNumerocasetasdrm() {
+        return numerocasetasdrm;
+    }
+
+    public void setNumerocasetasdrm(Integer numerocasetasdrm) {
+        this.numerocasetasdrm = numerocasetasdrm;
+    }
+
+    public Integer getNumerofragmentosdrm() {
+        return numerofragmentosdrm;
+    }
+
+    public void setNumerofragmentosdrm(Integer numerofragmentosdrm) {
+        this.numerofragmentosdrm = numerofragmentosdrm;
+    }
+
+    public Integer getNumeropapdrm() {
+        return numeropapdrm;
+    }
+
+    public void setNumeropapdrm(Integer numeropapdrm) {
+        this.numeropapdrm = numeropapdrm;
+    }
+
+    public String getObservaciontnormaldrm() {
+        return observaciontnormaldrm;
+    }
+
+    public void setObservaciontnormaldrm(String observaciontnormaldrm) {
+        this.observaciontnormaldrm = observaciontnormaldrm;
+    }
+
+    public Integer getNumeroplacastespecial() {
+        return numeroplacastespecial;
+    }
+
+    public void setNumeroplacastespecial(Integer numeroplacastespecial) {
+        this.numeroplacastespecial = numeroplacastespecial;
+    }
+
+    public String getTincionespecial() {
+        return tincionespecial;
+    }
+
+    public void setTincionespecial(String tincionespecial) {
+        this.tincionespecial = tincionespecial;
+    }
+
+    public String getObservaciontespecial() {
+        return observaciontespecial;
+    }
+
+    public void setObservaciontespecial(String observaciontespecial) {
+        this.observaciontespecial = observaciontespecial;
+    }
+
+    public String getPatologoasignado() {
+        return patologoasignado;
+    }
+
+    public void setPatologoasignado(String patologoasignado) {
+        this.patologoasignado = patologoasignado;
+    }
+
+    public String getCalidadmuestradrm() {
+        return calidadmuestradrm;
+    }
+
+    public void setCalidadmuestradrm(String calidadmuestradrm) {
+        this.calidadmuestradrm = calidadmuestradrm;
+    }
+
+    public String getMotivocalidadmuestradrm() {
+        return motivocalidadmuestradrm;
+    }
+
+    public void setMotivocalidadmuestradrm(String motivocalidadmuestradrm) {
+        this.motivocalidadmuestradrm = motivocalidadmuestradrm;
+    }
+
+    public String getDiagnosticomicrosdrm() {
+        return diagnosticomicrosdrm;
+    }
+
+    public void setDiagnosticomicrosdrm(String diagnosticomicrosdrm) {
+        this.diagnosticomicrosdrm = diagnosticomicrosdrm;
+    }
+
+    public String getConclusiondiagnosticadrm() {
+        return conclusiondiagnosticadrm;
+    }
+
+    public void setConclusiondiagnosticadrm(String conclusiondiagnosticadrm) {
+        this.conclusiondiagnosticadrm = conclusiondiagnosticadrm;
+    }
+
+    public void setPatologoasignado(int empladoID) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
