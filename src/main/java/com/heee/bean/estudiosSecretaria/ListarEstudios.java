@@ -11,6 +11,9 @@ import com.heee.bean.model.entity.Doctor;
 import com.heee.bean.model.entity.Estudiocitologico;
 import com.heee.bean.model.entity.Estudiosamputaciones;
 import com.heee.bean.model.entity.Estudioshistoquimica;
+import com.heee.bean.model.entity.Estudiosinmunohistoquimica;
+import com.heee.bean.model.entity.Estudiosquirurgicos;
+import com.heee.bean.model.entity.Estudiosrevision;
 import com.heee.bean.model.entity.Hospital;
 import com.heee.bean.model.entity.Paciente;
 import com.heee.bean.model.entity.Tipoestudio;
@@ -68,12 +71,18 @@ public class ListarEstudios implements Serializable {
         Biologiamolecular estudioBiologiamolecular = JPAFactoryDAO.getFactory().getEstudiosBiologiaMolecularDAO().filtrarBiologiaMolecular(idCrm);
         Estudiocitologico estudioCitologico= JPAFactoryDAO.getFactory().getEstudiosCitologicoDAO().filtrarEstudiocitologico(idCrm);
         Estudioshistoquimica estudioHistoquimica= JPAFactoryDAO.getFactory().getEstudiosHistoquimicaDAO().filtrarEstudioHistoquimica(idCrm);
+        Estudiosinmunohistoquimica estudioInmunohistoquimica=JPAFactoryDAO.getFactory().getEstudiosInmunohistoquimicaDAO().filtrarEstudiosInmunohistoquimica(idCrm);
+        Estudiosquirurgicos estudioQuirurgico=JPAFactoryDAO.getFactory().getEstudiosQuirurgicosDAO().filtraEstudioQuirurgico(idCrm);
+        Estudiosrevision estudioRevision=JPAFactoryDAO.getFactory().getEstudiosRevisionDAO().filtrarEstudioRevision(idCrm);
         
         getCtrVerEstudio().setEstudioCRM(ecrm);
         getCtrVerEstudio().setEstudioAmputaciones(estudioAmputaciones);
         getCtrVerEstudio().setEstudioBiologiaMolecular(estudioBiologiamolecular);
         getCtrVerEstudio().setEstudioCitologico(estudioCitologico);
         getCtrVerEstudio().setEstudioHistoquimica(estudioHistoquimica);
+        getCtrVerEstudio().setEstudioInmunohistoquimica(estudioInmunohistoquimica);
+        getCtrVerEstudio().setEstudioQuirurgico(estudioQuirurgico);
+        getCtrVerEstudio().setEstudioRevision(estudioRevision);
         return "/principal/secretaria/verEstudio.HeeSiap";
     }
 
