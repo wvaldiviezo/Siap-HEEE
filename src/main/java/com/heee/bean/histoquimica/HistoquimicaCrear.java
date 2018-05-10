@@ -101,6 +101,7 @@ public class HistoquimicaCrear implements Serializable {
         this.cabecera.setIddoctor(doctoresEnBase.get(doctoresEnBase.size() - 1));
         pacientesEnBase = JPAFactoryDAO.getFactory().getPacienteDAO().find();
         this.cabecera.setIdpaciente(pacientesEnBase.get(pacientesEnBase.size() - 1));
+        this.cabecera.setFechacreacrm(fechaCreacion);
         String[] atributo = {"nombrete"};
         String[] valor = {nombreEstudio};
         tiposEstudiosEnBase = JPAFactoryDAO.getFactory().getTipoEstudioDAO().find(atributo, valor);

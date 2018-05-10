@@ -12,6 +12,7 @@ import com.heee.bean.model.entity.Parroquia;
 import com.heee.bean.model.entity.Tipoestudio;
 import com.heee.bean.model.jpa.JPAFactoryDAO;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
@@ -49,6 +50,7 @@ public class BiologiaMolecularCrear implements Serializable {
     private String[] marcadoresBiomarcadoresOncologicos;
     private String[] marcadoresInfeccionesVirales;
     private String[] marcadoresMoleculares;
+    private Date fechaCreacion = new Date();
 
     public BiologiaMolecularCrear() {
         doctoresEnBase = null;
@@ -93,6 +95,7 @@ public class BiologiaMolecularCrear implements Serializable {
         this.cabecera.setIddoctor(doctoresEnBase.get(doctoresEnBase.size() - 1));
         pacientesEnBase = JPAFactoryDAO.getFactory().getPacienteDAO().find();
         this.cabecera.setIdpaciente(pacientesEnBase.get(pacientesEnBase.size() - 1));
+        this.cabecera.setFechacreacrm(fechaCreacion);
         String[] atributo = {"nombrete"};
         String[] valor = {nombreEstudio};
         tiposEstudiosEnBase = JPAFactoryDAO.getFactory().getTipoEstudioDAO().find(atributo, valor);

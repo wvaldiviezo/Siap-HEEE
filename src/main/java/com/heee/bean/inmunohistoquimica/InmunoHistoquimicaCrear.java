@@ -13,6 +13,7 @@ import com.heee.bean.model.entity.Partes;
 import com.heee.bean.model.entity.Tipoestudio;
 import com.heee.bean.model.jpa.JPAFactoryDAO;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
@@ -45,6 +46,7 @@ public class InmunoHistoquimicaCrear implements Serializable {
     private contadorEstudioCrear contadorEstudio;
     private EinhMarcadores marcadorInmunohistoquimicaSeleccionado;
     private Marcadoreseihq marcadorInmMarcadoreseihq;
+    private Date fechaCreacion = new Date();
 
     public InmunoHistoquimicaCrear() {
         doctoresEnBase = null;
@@ -88,6 +90,7 @@ public class InmunoHistoquimicaCrear implements Serializable {
         this.cabecera.setIddoctor(doctoresEnBase.get(doctoresEnBase.size() - 1));
         pacientesEnBase = JPAFactoryDAO.getFactory().getPacienteDAO().find();
         this.cabecera.setIdpaciente(pacientesEnBase.get(pacientesEnBase.size() - 1));
+        this.cabecera.setFechacreacrm(fechaCreacion);
         String[] atributo = {"nombrete"};
         String[] valor = {nombreEstudio};
         tiposEstudiosEnBase = JPAFactoryDAO.getFactory().getTipoEstudioDAO().find(atributo, valor);
