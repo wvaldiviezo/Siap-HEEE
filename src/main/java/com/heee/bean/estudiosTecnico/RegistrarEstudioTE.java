@@ -37,7 +37,7 @@ public class RegistrarEstudioTE implements Serializable {
     private List<MarcadorBio> marcadoresBiologiaMolecularEnBase;
 
     public void registrarDescripcionTE() {
-        cabeceraRM.setEstadoestudiocrm("Microscopia");
+        cabeceraRM.setEstadoestudiocrm("Microscopia Especial");
         cabeceraRM.setPatologoasignado(patologoAsignado);
         JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().update(this.cabeceraRM);
     }

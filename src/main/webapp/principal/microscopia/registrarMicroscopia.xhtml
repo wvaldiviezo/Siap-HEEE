@@ -30,23 +30,23 @@
                         <p:tab title="Detalle Informativo del Estudio">
                             <h:panelGrid columns="1" cellpadding="3">
                                 <p:outputLabel value="Número de Historia Clínica:" style="font-weight:bold"/>
-                                <p:inputText value="#{registrarMacroscopia.cabeceraRM.idpaciente.numhistclinpaciente}" readonly="#{facesContext.renderResponse}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
+                                <p:inputText value="#{registrarMicroscopia.cabeceraRM.idpaciente.numhistclinpaciente}" readonly="#{facesContext.renderResponse}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
                                 <p:outputLabel value="Conclusión Macroscópica" style="font-weight:bold"/>
-                                <p:inputText value="#{registrarMacroscopia.detalleRM.diagnosticomacrosdrm}" readonly="#{facesContext.renderResponse}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
-                                <p:outputLabel value="Observación Tecnica" style="font-weight:bold"/>
-                                <p:inputText value="#{registrarMacroscopia.detalleRM.diagnosticotecnormaldrm}" readonly="#{facesContext.renderResponse}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
+                                <p:inputText value="#{registrarMicroscopia.cabeceraRM.diagnosticomacrosdrm}" readonly="#{facesContext.renderResponse}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
+                                <p:outputLabel value="Observación Técnica" style="font-weight:bold"/>
+                                <p:inputText value="#{registrarMicroscopia.cabeceraRM.observaciontnormaldrm}" readonly="#{facesContext.renderResponse}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
                             </h:panelGrid>
                         </p:tab>
                         <p:tab title="Registro de Microscopía">
                             <h:panelGrid columns="1" cellpadding="3" id="pgDetalleMacro">
                                 <p:outputLabel value="Calidad de la Muestra: " style="font-weight:bold"/>
-                                <p:inputText value="#{registrarMicroscopia.calidadMuestra}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
+                                <p:inputText value="#{registrarMicroscopia.cabeceraRM.calidadmuestradrm}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
                                 <p:outputLabel value="Observación de la Calidad de la Muestra: " style="font-weight:bold"/>
-                                <p:inputTextarea value="#{registrarMicroscopia.observacionMuestra}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
+                                <p:inputTextarea value="#{registrarMicroscopia.cabeceraRM.motivocalidadmuestradrm}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
                                 <p:outputLabel value="Descripción de la Microscopía " style="font-weight:bold"/>
-                                <p:inputTextarea rows="6" cols="33" value="#{registrarMacroscopia.descripcionMacroscopia}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
+                                <p:inputTextarea rows="6" cols="33" value="#{registrarMicroscopia.cabeceraRM.diagnosticomicrosdrm}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;"/>
                                 <p:outputLabel value="Conclusión Diagnóstica " style="font-weight:bold"/>
-                                <p:editor id="editor" widgetVar="editorWidget" value="#{registrarMicroscopia.conclusionDiagnostica}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;" />
+                                <p:inputTextarea rows="6" cols="33" value="#{registrarMicroscopia.cabeceraRM.conclusiondiagnosticadrm}" style="width:700px;margin-left:-4px; border: 1px solid #A8A8A8;" />
                             </h:panelGrid>
                         </p:tab>
                     </p:accordionPanel>

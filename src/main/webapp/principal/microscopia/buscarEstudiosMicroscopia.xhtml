@@ -38,13 +38,18 @@
                         <p:column filterBy="#{itemEstudio.codigoestudiocrm}" headerText="Código" filterMatchMode="contains">
                             <h:outputText value="#{itemEstudio.codigoestudiocrm}" />
                         </p:column>
-                        <!--
-                        <p:column filterBy="#{itemEstudio.fechacreacrm}" headerText="Fecha de Asignación" filterMatchMode="contains">
-                            <h:outputText value="#{itemEstudio.fechacreacrm}">
+                        
+                        <p:column filterBy="#{itemEstudio.fechaactualizacrm}" headerText="Fecha de Asignación" filterMatchMode="contains">
+                            <h:outputText value="#{itemEstudio.fechaactualizacrm}">
                             <f:convertDateTime pattern="EEE, d MMM yyyy HH:mm" timeZone="America/Guayaquil" />
                             </h:outputText>
                         </p:column>
-                         -->
+                        
+                        <p:column filterBy="#{itemEstudio.patologoasignado}" headerText="Patólogo" filterMatchMode="contains">
+                            <h:outputText value="#{itemEstudio.patologoasignado}" />
+                        </p:column>
+                        
+                         
                          <!--
                          <p:column filterBy="#{itemEstudio.codigoestudiocrm}" headerText="Código" filterMatchMode="contains">
                             <h:outputText value="#{itemEstudio.codigoestudiocrm}" />

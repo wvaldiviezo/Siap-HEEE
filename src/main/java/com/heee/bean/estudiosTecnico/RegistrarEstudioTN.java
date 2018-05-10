@@ -58,6 +58,7 @@ public class RegistrarEstudioTN implements Serializable {
     public void registrarDesripcionTN() {
         cabeceraRM.setEstadoestudiocrm("Microscopia");
         cabeceraRM.setPatologoasignado(patologoAsignado);
+        cabeceraRM.setFechaactualizacrm(this.fechaCreaAreaTecnica);
         JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().update(this.cabeceraRM);
 
     }
