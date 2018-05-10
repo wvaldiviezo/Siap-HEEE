@@ -1,7 +1,15 @@
 package com.heee.bean.estudiosTecnico;
 
+import com.heee.bean.model.dao.EstudiosBiologiaMolecularDAO;
+import com.heee.bean.model.entity.Biologiamolecular;
 import com.heee.bean.model.entity.Cabecerarecepcionmuestra;
+import com.heee.bean.model.entity.EHistMarcador;
+import com.heee.bean.model.entity.EinhMarcadores;
 import com.heee.bean.model.entity.Empleado;
+import com.heee.bean.model.entity.Estudioshistoquimica;
+import com.heee.bean.model.entity.Estudiosinmunohistoquimica;
+import com.heee.bean.model.entity.MarcadorBio;
+import com.heee.bean.model.entity.Marcadoreseh;
 import com.heee.bean.model.jpa.JPAFactoryDAO;
 import java.io.Serializable;
 import java.util.List;
@@ -20,7 +28,13 @@ public class RegistrarEstudioTE implements Serializable {
 
     private Cabecerarecepcionmuestra cabeceraRM;
     private String patologoAsignado;
-    List<Empleado> ltsEmpleados;
+    private Estudioshistoquimica estudioHistoquimica;
+    private List<Empleado> ltsEmpleados;
+    private List<EHistMarcador> marcadoresHistoquimicaEnBase;
+    private Estudiosinmunohistoquimica estudioInmunohistoquimica;
+    private List<EinhMarcadores> marcadoresInmunohistoquimicaEnBase;
+    private Biologiamolecular estudioBiologiaMolecular;
+    private List<MarcadorBio> marcadoresBiologiaMolecularEnBase;
 
     public void registrarDescripcionTE() {
         cabeceraRM.setEstadoestudiocrm("Microscopia");
@@ -52,5 +66,56 @@ public class RegistrarEstudioTE implements Serializable {
     public void setLtsEmpleados(List<Empleado> ltsEmpleados) {
         this.ltsEmpleados = ltsEmpleados;
     }
+
+    public Estudioshistoquimica getEstudioHistoquimica() {
+        return estudioHistoquimica;
+    }
+
+    public void setEstudioHistoquimica(Estudioshistoquimica estudioHistoquimica) {
+        this.estudioHistoquimica = estudioHistoquimica;
+    }
+
+    public List<EHistMarcador> getMarcadoresHistoquimicaEnBase() {
+        marcadoresHistoquimicaEnBase=JPAFactoryDAO.getFactory().getEHistMarcadorDAO().marcadorHistoquimicaPorEstudio(estudioHistoquimica);
+        return marcadoresHistoquimicaEnBase;
+    }
+
+    public void setMarcadoresHistoquimicaEnBase(List<EHistMarcador> marcadoresHistoquimicaEnBase) {
+        this.marcadoresHistoquimicaEnBase = marcadoresHistoquimicaEnBase;
+    }
+
+    public Estudiosinmunohistoquimica getEstudioInmunohistoquimica() {
+        return estudioInmunohistoquimica;
+    }
+
+    public void setEstudioInmunohistoquimica(Estudiosinmunohistoquimica estudioInmunohistoquimica) {
+        this.estudioInmunohistoquimica = estudioInmunohistoquimica;
+    }
+
+    public List<EinhMarcadores> getMarcadoresInmunohistoquimicaEnBase() {
+        marcadoresInmunohistoquimicaEnBase=JPAFactoryDAO.getFactory().getEInHistMarcadorDAO().marcadorInmunohistoquimicaPorEstudio(estudioInmunohistoquimica);
+        return marcadoresInmunohistoquimicaEnBase;
+    }
+
+    public void setMarcadoresInmunohistoquimicaEnBase(List<EinhMarcadores> marcadoresInmunohistoquimicaEnBase) {
+        this.marcadoresInmunohistoquimicaEnBase = marcadoresInmunohistoquimicaEnBase;
+    }
+
+    public Biologiamolecular getEstudioBiologiaMolecular() {
+        return estudioBiologiaMolecular;
+    }
+
+    public void setEstudioBiologiaMolecular(Biologiamolecular estudioBiologiaMolecular) {
+        this.estudioBiologiaMolecular = estudioBiologiaMolecular;
+    }
+
+    public List<MarcadorBio> getMarcadoresBiologiaMolecularEnBase() {
+        return marcadoresBiologiaMolecularEnBase;
+    }
+
+    public void setMarcadoresBiologiaMolecularEnBase(List<MarcadorBio> marcadoresBiologiaMolecularEnBase) {
+        this.marcadoresBiologiaMolecularEnBase = marcadoresBiologiaMolecularEnBase;
+    }
+    
     
 }

@@ -5,7 +5,11 @@
  */
 package com.heee.bean.estudiosTecnico;
 
+import com.heee.bean.histoquimica.HistoquimicaCrear;
+import com.heee.bean.model.entity.Biologiamolecular;
 import com.heee.bean.model.entity.Cabecerarecepcionmuestra;
+import com.heee.bean.model.entity.Estudioshistoquimica;
+import com.heee.bean.model.entity.Estudiosinmunohistoquimica;
 import com.heee.bean.model.entity.Paciente;
 import com.heee.bean.model.jpa.JPAFactoryDAO;
 import java.io.Serializable;
@@ -36,7 +40,14 @@ public class ListarEstudiosTE implements Serializable {
     del estudio seleccionado*/
     public String registrarEstudioTE(int idCRM) {
         Cabecerarecepcionmuestra crm = (Cabecerarecepcionmuestra) JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().read(Integer.valueOf(idCRM));      
+        Estudioshistoquimica estudioHistoquimica=JPAFactoryDAO.getFactory().getEstudiosHistoquimicaDAO().filtrarEstudioHistoquimica(idCRM);
+        Estudiosinmunohistoquimica estudioInmunohistoquimica=JPAFactoryDAO.getFactory().getEstudiosInmunohistoquimicaDAO().filtrarEstudiosInmunohistoquimica(idCRM);
+        Biologiamolecular estudioBiologiaMolecular=JPAFactoryDAO.getFactory().getEstudiosBiologiaMolecularDAO().filtrarBiologiaMolecular(idCRM);
+        
         getCtrRegistarTE().setCabeceraRM(crm);
+        getCtrRegistarTE().setEstudioHistoquimica(estudioHistoquimica);
+        getCtrRegistarTE().setEstudioInmunohistoquimica(estudioInmunohistoquimica);
+        getCtrRegistarTE().setEstudioBiologiaMolecular(estudioBiologiaMolecular);
         return "/principal/tecnico/registrarEstudioTecnicoE.HeeSiap";
     }
     
