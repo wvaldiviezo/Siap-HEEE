@@ -34,7 +34,7 @@ public class RegistrarEstudioTE implements Serializable {
     private Estudiosinmunohistoquimica estudioInmunohistoquimica;
     private List<EinhMarcadores> marcadoresInmunohistoquimicaEnBase;
     private Biologiamolecular estudioBiologiaMolecular;
-    private List<MarcadorBio> marcadoresBiologiaMolecularEnBase;
+    private List<MarcadorBio> marcadorBiologiaMolecularEnBase;
 
     public void registrarDescripcionTE() {
         cabeceraRM.setEstadoestudiocrm("Microscopia Especial");
@@ -109,13 +109,16 @@ public class RegistrarEstudioTE implements Serializable {
         this.estudioBiologiaMolecular = estudioBiologiaMolecular;
     }
 
-    public List<MarcadorBio> getMarcadoresBiologiaMolecularEnBase() {
-        return marcadoresBiologiaMolecularEnBase;
+    public List<MarcadorBio> getMarcadorBiologiaMolecularEnBase() {
+        marcadorBiologiaMolecularEnBase=JPAFactoryDAO.getFactory().getMarcadorBioDAO().marcadoresEstudioBiologiaMolecular(estudioBiologiaMolecular);
+        return marcadorBiologiaMolecularEnBase;
     }
 
-    public void setMarcadoresBiologiaMolecularEnBase(List<MarcadorBio> marcadoresBiologiaMolecularEnBase) {
-        this.marcadoresBiologiaMolecularEnBase = marcadoresBiologiaMolecularEnBase;
+    public void setMarcadorBiologiaMolecularEnBase(List<MarcadorBio> marcadorBiologiaMolecularEnBase) {
+        this.marcadorBiologiaMolecularEnBase = marcadorBiologiaMolecularEnBase;
     }
+
+    
     
     
 }

@@ -43,6 +43,84 @@
 
                             </h:panelGrid>
                         </p:tab>
+                         <p:tab title="#{registrarEstudioTN.cabeceraRM.idte.nombrete}" rendered="#{registrarEstudioTN.cabeceraRM.idte.nombrete=='QUIRÚRGICOS'}">
+                            <p:outputLabel value="Prioridad:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{registrarEstudioTN.cabeceraRM.prioridad}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:outputLabel value="Organos/Sistemas:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{registrarEstudioTN.estudioQuirurgico.idos.descripcionmarcadoros}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:outputLabel value="Subtipo:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{registrarEstudioTN.estudioQuirurgico.idsubtipo.descripcionmarcadorsubtipo}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:outputLabel value="Descripción otro:" rendered="#{verEstudio.estudioQuirurgico.idsubtipo.idsubtipo=='9'}" style="font-weight:bold"/>
+                            <p:outputLabel value="#{registrarEstudioTN.estudioQuirurgico.descripcionsubtipoeq}" style="color: #045491;"/>
+
+                        </p:tab>
+                        <p:tab title="#{registrarEstudioTN.cabeceraRM.idte.nombrete}" rendered="#{registrarEstudioTN.cabeceraRM.idte.nombrete=='CITOLÓGICOS'}">
+                            <p:outputLabel value="Prioridad:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{registrarEstudioTN.cabeceraRM.prioridad}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:outputLabel value="Descripción Citológico:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{registrarEstudioTN.estudioCitologico.descripcioncitologicocec}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:dataTable id="busquedaMarcadoresCitologico" value="#{registrarEstudioTN.marcadorCitologicoEnBase}" var="marcadorEstudioCitologico"  widgetVar="estudiosTabla" rows="15"
+                                         paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="10,15,20"
+                                         sortOrder="descending" paginatorPosition="top" emptyMessage="No hay ningún registro con esa opción">
+                                
+                                <p:column headerText="SubCategoría" style="width: 30px"  >
+                                    <h:outputText value="#{marcadorEstudioCitologico.idsubcategoria.idcategoria.idtec.descripcionmarcadortec}" />
+                                </p:column>
+                                <p:column headerText="Categoría" style="width: 30px"  >
+                                    <h:outputText value="#{marcadorEstudioCitologico.idsubcategoria.idcategoria.descripcionmarcadorcategoria}" />
+                                </p:column>
+                                <p:column headerText="Marcadores Selecionados" style="width: 30px"  >
+                                    <h:outputText value="#{marcadorEstudioCitologico.idsubcategoria.nombresubcategoria}" />
+                                </p:column>
+                                <p:column headerText="Detalle" style="width: 30px"  >
+                                    <h:outputText value="#{marcadorEstudioCitologico.descripcionsubcategoria}" />
+                                </p:column>
+                            </p:dataTable>
+                            
+                        </p:tab>
+                        <p:tab title="#{registrarEstudioTN.cabeceraRM.idte.nombrete}" rendered="#{registrarEstudioTN.cabeceraRM.idte.nombrete=='AMPUTACIONES'}">
+                            <p:outputLabel value="Prioridad:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{registrarEstudioTN.cabeceraRM.prioridad}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:outputLabel value="Extremidad:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{registrarEstudioTN.estudioAmputaciones.idpartes.idextremidades.nombreextremidades}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:outputLabel value="Partes:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{registrarEstudioTN.estudioAmputaciones.idpartes.nombrepartes}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:outputLabel value="Descripción:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{registrarEstudioTN.estudioAmputaciones.descripcionamputacionea}" style="color: #045491;"/>
+                        </p:tab>
+                        <p:tab title="#{registrarEstudioTN.cabeceraRM.idte.nombrete}" rendered="#{registrarEstudioTN.cabeceraRM.idte.nombrete=='REVISIONES'}">
+                            <p:outputLabel value="Prioridad:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{registrarEstudioTN.cabeceraRM.prioridad}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:outputLabel value="Organos/Sistemas:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{registrarEstudioTN.estudioRevision.idos.descripcionmarcadoros}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:outputLabel value="Subtipo:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{registrarEstudioTN.estudioRevision.idsubtipo.descripcionmarcadorsubtipo}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:outputLabel value="Descripción otro:" rendered="#{registrarEstudioTN.estudioRevision.idsubtipo.idsubtipo=='9'}" style="font-weight:bold"/>
+                            <p:outputLabel value="#{registrarEstudioTN.estudioRevision.descripcionsubtipoer}" style="color: #045491;"/>
+                            
+                        </p:tab>
                         <p:tab title="Registro de Información Técnica Normal">
                             <h:panelGrid columns="1" cellpadding="3" id="pgDetalleMacro">
                                 <p:outputLabel value="Número de H/E: " style="font-weight:bold"/>

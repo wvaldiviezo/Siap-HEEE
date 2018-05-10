@@ -113,7 +113,7 @@
                             <p:outputLabel value="#{verEstudio.estudioAmputaciones.idpartes.nombrepartes}" style="color: #045491;"/>
                             <br/>
                             <br/>
-                            <p:outputLabel value="Descripcion:" style="font-weight:bold"/>
+                            <p:outputLabel value="Descripción:" style="font-weight:bold"/>
                             <p:outputLabel value="#{verEstudio.estudioAmputaciones.descripcionamputacionea}" style="color: #045491;"/>
                         </p:tab>
                         <p:tab title="#{verEstudio.estudioCRM.idte.nombrete}" rendered="#{verEstudio.estudioCRM.idte.nombrete=='BIOLOGÍA MOLECULAR'}">
@@ -125,10 +125,10 @@
                                          paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="10,15,20"
                                          sortOrder="descending" paginatorPosition="top" emptyMessage="No hay ningún registro con esa opción">
                                 
-                                <p:column headerText="Categoria" style="width: 30px"  >
+                                <p:column headerText="Categoría" style="width: 30px"  >
                                     <h:outputText value="#{marcadorEstudioBiologia.idmarcadorsubcategoriabm.idsubcategoriabm.nombresubcategoriabm}" />
                                 </p:column>
-                                <p:column headerText="Marcadores" style="width: 30px"  >
+                                <p:column headerText="Marcadores Selecionados" style="width: 30px"  >
                                     <h:outputText value="#{marcadorEstudioBiologia.idmarcadorsubcategoriabm.nombremaradorbm}" />
                                 </p:column>
                                 <p:column headerText="Detalle" style="width: 30px"  >
@@ -142,7 +142,7 @@
                             <p:outputLabel value="#{verEstudio.estudioCRM.prioridad}" style="color: #045491;"/>
                             <br/>
                             <br/>
-                            <p:outputLabel value="Descripcion Citológico:" style="font-weight:bold"/>
+                            <p:outputLabel value="Descripción Citológico:" style="font-weight:bold"/>
                             <p:outputLabel value="#{verEstudio.estudioCitologico.descripcioncitologicocec}" style="color: #045491;"/>
                             <br/>
                             <br/>
@@ -150,13 +150,13 @@
                                          paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="10,15,20"
                                          sortOrder="descending" paginatorPosition="top" emptyMessage="No hay ningún registro con esa opción">
                                 
-                                <p:column headerText="Categoria" style="width: 30px"  >
-                                    <h:outputText value="#{marcadorEstudioCitologico.idsubcategoria.idcategoria.descripcionmarcadorcategoria}" />
-                                </p:column>
-                                <p:column headerText="SubCategoria" style="width: 30px"  >
+                                <p:column headerText="SubCategoría" style="width: 30px"  >
                                     <h:outputText value="#{marcadorEstudioCitologico.idsubcategoria.idcategoria.idtec.descripcionmarcadortec}" />
                                 </p:column>
-                                <p:column headerText="Marcadores" style="width: 30px"  >
+                                <p:column headerText="Categoría" style="width: 30px"  >
+                                    <h:outputText value="#{marcadorEstudioCitologico.idsubcategoria.idcategoria.descripcionmarcadorcategoria}" />
+                                </p:column>
+                                <p:column headerText="Marcadores Selecionados" style="width: 30px"  >
                                     <h:outputText value="#{marcadorEstudioCitologico.idsubcategoria.nombresubcategoria}" />
                                 </p:column>
                                 <p:column headerText="Detalle" style="width: 30px"  >
@@ -189,7 +189,7 @@
                             <p:outputLabel value="#{verEstudio.estudioCRM.prioridad}" style="color: #045491;"/>
                             <br/>
                             <br/>
-                            <p:outputLabel value="Descripcion estudio:" style="font-weight:bold"/>
+                            <p:outputLabel value="Descripción estudio:" style="font-weight:bold"/>
                             <p:outputLabel value="#{verEstudio.estudioInmunohistoquimica.descripcionestudioeihq}" style="color: #045491;"/>
                             <br/>
                             <br/>
@@ -212,11 +212,11 @@
                             <p:outputLabel value="#{verEstudio.estudioQuirurgico.idos.descripcionmarcadoros}" style="color: #045491;"/>
                             <br/>
                             <br/>
-                            <p:outputLabel value="subtipo:" style="font-weight:bold"/>
+                            <p:outputLabel value="Subtipo:" style="font-weight:bold"/>
                             <p:outputLabel value="#{verEstudio.estudioQuirurgico.idsubtipo.descripcionmarcadorsubtipo}" style="color: #045491;"/>
                             <br/>
                             <br/>
-                            <p:outputLabel value="Descripcion otro:" rendered="#{verEstudio.estudioQuirurgico.idsubtipo.idsubtipo=='9'}" style="font-weight:bold"/>
+                            <p:outputLabel value="Descripción otro:" rendered="#{verEstudio.estudioQuirurgico.idsubtipo.idsubtipo=='9'}" style="font-weight:bold"/>
                             <p:outputLabel value="#{verEstudio.estudioQuirurgico.descripcionsubtipoeq}" style="color: #045491;"/>
                             
                             
@@ -230,11 +230,11 @@
                             <p:outputLabel value="#{verEstudio.estudioRevision.idos.descripcionmarcadoros}" style="color: #045491;"/>
                             <br/>
                             <br/>
-                            <p:outputLabel value="subtipo:" style="font-weight:bold"/>
+                            <p:outputLabel value="Subtipo:" style="font-weight:bold"/>
                             <p:outputLabel value="#{verEstudio.estudioRevision.idsubtipo.descripcionmarcadorsubtipo}" style="color: #045491;"/>
                             <br/>
                             <br/>
-                            <p:outputLabel value="Descripcion otro:" rendered="#{verEstudio.estudioRevision.idsubtipo.idsubtipo=='9'}" style="font-weight:bold"/>
+                            <p:outputLabel value="Descripción otro:" rendered="#{verEstudio.estudioRevision.idsubtipo.idsubtipo=='9'}" style="font-weight:bold"/>
                             <p:outputLabel value="#{verEstudio.estudioRevision.descripcionsubtipoer}" style="color: #045491;"/>
                             
                         </p:tab>

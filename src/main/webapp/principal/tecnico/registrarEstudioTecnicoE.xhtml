@@ -75,6 +75,27 @@
 
                             </p:dataTable>
                         </p:tab>
+                        <p:tab title="#{registrarEstudioTE.cabeceraRM.idte.nombrete}" rendered="#{registrarEstudioTE.cabeceraRM.idte.nombrete=='BIOLOGÍA MOLECULAR'}">
+                            <p:outputLabel value="Prioridad:" style="font-weight:bold"/>
+                            <p:outputLabel value="#{verEstudio.estudioCRM.prioridad}" style="color: #045491;"/>
+                            <br/>
+                            <br/>
+                            <p:dataTable id="busquedaMarcadoresBiologia" value="#{registrarEstudioTE.marcadorBiologiaMolecularEnBase}" var="marcadorEstudioBiologia"  widgetVar="estudiosTabla" rows="15"
+                                         paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="10,15,20"
+                                         sortOrder="descending" paginatorPosition="top" emptyMessage="No hay ningún registro con esa opción">
+
+                                <p:column headerText="Categoría" style="width: 30px"  >
+                                    <h:outputText value="#{marcadorEstudioBiologia.idmarcadorsubcategoriabm.idsubcategoriabm.nombresubcategoriabm}" />
+                                </p:column>
+                                <p:column headerText="Marcadores Selecionados" style="width: 30px"  >
+                                    <h:outputText value="#{marcadorEstudioBiologia.idmarcadorsubcategoriabm.nombremaradorbm}" />
+                                </p:column>
+                                <p:column headerText="Detalle" style="width: 30px"  >
+                                    <h:outputText value="#{marcadorEstudioBiologia.descripcionmarcador}" />
+                                </p:column>
+                            </p:dataTable>
+
+                        </p:tab>
                         <p:tab title="Registro de Información Técnica Especial">
                             <h:panelGrid columns="1" cellpadding="3" id="pgDetalleMacro">
                                 <p:outputLabel value="Número de Placas: " style="font-weight:bold"/>

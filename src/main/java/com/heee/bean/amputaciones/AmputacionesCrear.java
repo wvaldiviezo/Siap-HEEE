@@ -87,6 +87,7 @@ public class AmputacionesCrear implements Serializable {
         pacientesEnBase = JPAFactoryDAO.getFactory().getPacienteDAO().find();
         this.cabecera.setIdpaciente(pacientesEnBase.get(pacientesEnBase.size() - 1));
         this.cabecera.setFechacreacrm(this.fechaCreacion);
+        this.cabecera.setFechaactualizacrm(this.fechaCreacion);
         String[] atributo = {"nombrete"};
         String[] valor = {nombreEstudio};
         tiposEstudiosEnBase = JPAFactoryDAO.getFactory().getTipoEstudioDAO().find(atributo, valor);

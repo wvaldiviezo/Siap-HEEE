@@ -1,8 +1,13 @@
 package com.heee.bean.estudiosTecnico;
 
 import com.heee.bean.model.entity.Cabecerarecepcionmuestra;
+import com.heee.bean.model.entity.ECitologicoSubcategoria;
 //import com.heee.bean.model.entity.Detallerecepcionmuestra;
 import com.heee.bean.model.entity.Empleado;
+import com.heee.bean.model.entity.Estudiocitologico;
+import com.heee.bean.model.entity.Estudiosamputaciones;
+import com.heee.bean.model.entity.Estudiosquirurgicos;
+import com.heee.bean.model.entity.Estudiosrevision;
 import com.heee.bean.model.jpa.JPAFactoryDAO;
 import java.io.Serializable;
 import java.util.Date;
@@ -38,6 +43,11 @@ public class RegistrarEstudioTN implements Serializable {
     private String observacionTN;
     private Date fechaCreaAreaTecnica = new Date();
     private String patologoAsignado;
+    private Estudiosquirurgicos estudioQuirurgico;
+    private Estudiocitologico estudioCitologico;
+    private Estudiosamputaciones estudioAmputaciones;
+    private Estudiosrevision estudioRevision;
+    private List<ECitologicoSubcategoria> marcadorCitologicoEnBase;
 
     public RegistrarEstudioTN() {
         //this.cabeceraRM = new Cabecerarecepcionmuestra();
@@ -184,4 +194,45 @@ public class RegistrarEstudioTN implements Serializable {
         this.ltsEmpleados = ltsEmpleados;
     }
 
+    public Estudiosquirurgicos getEstudioQuirurgico() {
+        return estudioQuirurgico;
+    }
+
+    public void setEstudioQuirurgico(Estudiosquirurgicos estudioQuirurgico) {
+        this.estudioQuirurgico = estudioQuirurgico;
+    }
+
+    public Estudiocitologico getEstudioCitologico() {
+        return estudioCitologico;
+    }
+
+    public void setEstudioCitologico(Estudiocitologico estudioCitologico) {
+        this.estudioCitologico = estudioCitologico;
+    }
+
+    public Estudiosamputaciones getEstudioAmputaciones() {
+        return estudioAmputaciones;
+    }
+
+    public void setEstudioAmputaciones(Estudiosamputaciones estudioAmputaciones) {
+        this.estudioAmputaciones = estudioAmputaciones;
+    }
+
+    public Estudiosrevision getEstudioRevision() {
+        return estudioRevision;
+    }
+
+    public void setEstudioRevision(Estudiosrevision estudioRevision) {
+        this.estudioRevision = estudioRevision;
+    }
+
+    public List<ECitologicoSubcategoria> getMarcadorCitologicoEnBase() {
+        marcadorCitologicoEnBase=JPAFactoryDAO.getFactory().getECitologicoSubcategoriaDAO().marcadorEstudioCitologicoPorEstudio(estudioCitologico);
+        return marcadorCitologicoEnBase;
+    }
+
+    public void setMarcadorCitologicoEnBase(List<ECitologicoSubcategoria> marcadorCitologicoEnBase) {
+        this.marcadorCitologicoEnBase = marcadorCitologicoEnBase;
+    }
+    
 }

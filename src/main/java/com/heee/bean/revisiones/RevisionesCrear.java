@@ -121,6 +121,7 @@ public class RevisionesCrear implements Serializable {
         pacientesEnBase = JPAFactoryDAO.getFactory().getPacienteDAO().find();
         this.cabecera.setIdpaciente(pacientesEnBase.get(pacientesEnBase.size() - 1));
         this.cabecera.setFechacreacrm(this.fechaCreacion);
+        this.cabecera.setFechaactualizacrm(this.fechaCreacion);
         String[] campoTipo = {"nombrete"};
         String[] valorCampoTipo = {nombreEstudio};
         tiposEstudioEnBase = JPAFactoryDAO.getFactory().getTipoEstudioDAO().find(campoTipo, valorCampoTipo);

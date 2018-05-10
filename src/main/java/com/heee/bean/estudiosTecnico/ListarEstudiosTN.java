@@ -1,6 +1,10 @@
 package com.heee.bean.estudiosTecnico;
 
 import com.heee.bean.model.entity.Cabecerarecepcionmuestra;
+import com.heee.bean.model.entity.Estudiocitologico;
+import com.heee.bean.model.entity.Estudiosamputaciones;
+import com.heee.bean.model.entity.Estudiosquirurgicos;
+import com.heee.bean.model.entity.Estudiosrevision;
 //import com.heee.bean.model.entity.Detallerecepcionmuestra;
 import com.heee.bean.model.entity.Paciente;
 import com.heee.bean.model.jpa.JPAFactoryDAO;
@@ -40,7 +44,16 @@ public class ListarEstudiosTN implements Serializable {
     del estudio seleccionado*/
     public String registrarEstudioTN(int idCRM) {
         Cabecerarecepcionmuestra crm = (Cabecerarecepcionmuestra) JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().read(Integer.valueOf(idCRM));
+        Estudiosquirurgicos estudioQuirurgico=JPAFactoryDAO.getFactory().getEstudiosQuirurgicosDAO().filtraEstudioQuirurgico(idCRM);
+        Estudiocitologico estudioCitologico=JPAFactoryDAO.getFactory().getEstudiosCitologicoDAO().filtrarEstudiocitologico(idCRM);
+        Estudiosamputaciones estudioAmputacion=JPAFactoryDAO.getFactory().getEstudiosAmputacionesDAO().filtrarAmputacion(idCRM);
+        Estudiosrevision estudioRevision=JPAFactoryDAO.getFactory().getEstudiosRevisionDAO().filtrarEstudioRevision(idCRM);
+        
         getCtrRegistarTN().setCabeceraRM(crm);
+        getCtrRegistarTN().setEstudioQuirurgico(estudioQuirurgico);
+        getCtrRegistarTN().setEstudioCitologico(estudioCitologico);
+        getCtrRegistarTN().setEstudioAmputaciones(estudioAmputacion);
+        getCtrRegistarTN().setEstudioRevision(estudioRevision);
         return "/principal/tecnico/registrarEstudioTecnicoN.HeeSiap";
     }
 
