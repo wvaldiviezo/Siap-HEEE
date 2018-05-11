@@ -6,12 +6,17 @@
 package com.heee.bean.estudiosMicroscopia;
 
 import com.hee.bean.email.emailEnviar;
+import com.heee.bean.menu.Navegar;
 import com.heee.bean.model.entity.Cabecerarecepcionmuestra;
 import com.heee.bean.model.jpa.JPAFactoryDAO;
 import java.io.Serializable;
 import java.util.Date;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean(name = "registrarMicroscopiaEspecial")
 @SessionScoped
@@ -26,7 +31,9 @@ public class RegistrarMicroscopiaEspecial implements Serializable {
     private String conclusionDiagnostica;
 
     private Date fechaCreacionMicro = new Date();
-
+    
+    @ManagedProperty("#{navegar}")
+    private Navegar navegar;
     /*Método constructor*/
     public RegistrarMicroscopiaEspecial() {
         this.calidadMuestra = "";
@@ -37,23 +44,25 @@ public class RegistrarMicroscopiaEspecial implements Serializable {
     
     /*Metodo para registrar la microscopía del estudio seleccionado*/
     public void registrarMicroEspecial(){
-        //detalleRM.setIddrm(this.detalleRM);
-        //detalleRM.setIdcrm(this.cabeceraRM);
+        try {
         cabeceraRM.setEstadoestudiocrm("Liberado");
         cabeceraRM.setFechaactualizacrm(this.fechaCreacionMicro);
+        JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().update(this.cabeceraRM);
         emailEnviar mail = new emailEnviar();
         mail.setPara(this.cabeceraRM.getIddoctor().getEmaildoctor());
         mail.setAsunto("RESULTADO DEL ESTUDIO: " + this.cabeceraRM.getIdte().getNombrete());
         mail.setContenidoMensaje("Estimado(a),\nRESULTADO DEL ESTUDIO : "+this.cabeceraRM.getCodigoestudiocrm()+"\n"+
                 "NÚMERO DE HISTORIA CLÍNICA: "+this.cabeceraRM.getIdpaciente().getNumhistclinpaciente()+"\n"+
                 "NOMBRES Y APELLIDOS: "+this.cabeceraRM.getIdpaciente().getNombrepaciente()+" "+this.cabeceraRM.getIdpaciente().getApellidopaciente()+"\n"+
-                "MACROSCOPÍA: "+this.cabeceraRM.getDiagnosticomacrosdrm()+"\n"+
                 "MICROSCOPÍA: "+this.cabeceraRM.getDiagnosticomicrosdrm()+"\n"+
                 "CONCLUSIÓN DIAGNÓSTICA: "+this.cabeceraRM.getConclusiondiagnosticadrm()+"\n"+
                 "PATÓLOGO RESPONSABLE: "+this.cabeceraRM.getPatologoasignado());
-        
         mail.enviarCorreo();
-//        JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().update(this.cabeceraRM);      
+     
+        } catch (Exception e) {
+            System.out.println("Error en registrar MicroEspecial");
+        }
+          
     }
     
     //Getters & Setters
@@ -104,6 +113,14 @@ public class RegistrarMicroscopiaEspecial implements Serializable {
 
     public void setFechaCreacionMicro(Date fechaCreacionMicro) {
         this.fechaCreacionMicro = fechaCreacionMicro;
+    }
+
+    public Navegar getNavegar() {
+        return navegar;
+    }
+
+    public void setNavegar(Navegar navegar) {
+        this.navegar = navegar;
     }
     
 }

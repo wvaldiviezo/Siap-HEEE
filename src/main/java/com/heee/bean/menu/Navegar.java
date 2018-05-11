@@ -1,7 +1,9 @@
 package com.heee.bean.menu;
 
 import java.io.Serializable;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -9,22 +11,29 @@ import javax.faces.view.ViewScoped;
 
 @ManagedBean(name = "navegar")
 @SessionScoped
-@ViewScoped
+//@ViewScoped
+//@RequestScoped
 public class Navegar implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private String mensaje;
 
+    public Navegar(){
+    mensaje="Accion Correcta";
+    }
     /*Método para direccionar a la Página principal*/
     public void direccionarInicio() {
         try {
+            System.err.println("mensaje"+mensaje);
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje:", mensaje);
+            FacesContext.getCurrentInstance().addMessage(null, message);
             FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,"Mensaje:", "Accion correcta");
-        FacesContext.getCurrentInstance().addMessage(null, message);
+
             System.out.println("LOGRO REDIRECCIONAR A UN NUEVO FORMULARIO");
 //            FacesContext.getCurrentInstance().getExternalContext().redirect("../Inicio/paginaInicial.xhtml");
-        
-        FacesContext.getCurrentInstance().getExternalContext().redirect("../bienvenida.HeeSiap");
-            
+
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../bienvenida.HeeSiap");
+
         } catch (Exception e) {
             System.out.println("FALLO LA REDIRECCION A UN NUEVO FORMULARIO");
             e.printStackTrace();
@@ -35,7 +44,12 @@ public class Navegar implements Serializable {
         return serialVersionUID;
     }
 
+    public String getMensaje() {
+        return mensaje;
+    }
 
-    
-    
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
+
 }

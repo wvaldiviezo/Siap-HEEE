@@ -31,7 +31,7 @@ public class emailEnviar {
     private final String servidorSMTP = "smtp-mail.outlook.com";
     private final int puertoSMTP = 587;
     private String cuentaEnvio = "siap.heee@outlook.com";
-    private String contrasenia = "siap_heee8102";
+    private String contrasenia = "21111111siap";
     private String para;
     private String asunto;
     private String contenidoMensaje;
@@ -40,10 +40,6 @@ public class emailEnviar {
     
     public emailEnviar() {
         
-//        fecha=new Date();
-//        para = "ricardo.mpcs@gmail.com";
-//        asunto = "prueba";
-//        contenidoMensaje = "esto es una prueba de la clase comprobando velocidad al:"+fecha;
     }
 
     public void enviarCorreo() {

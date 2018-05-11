@@ -41,11 +41,18 @@ public class RegistrarMicroscopia implements Serializable {
         //detalleRM.setIdcrm(this.cabeceraRM);
         cabeceraRM.setEstadoestudiocrm("Liberado");
         cabeceraRM.setFechaactualizacrm(this.fechaCreacionMicro);
-
-        System.out.println("para:"+this.cabeceraRM.getIddoctor().getEmaildoctor());
-        System.out.println("asunto:"+this.cabeceraRM.getIdte().getNombrete());
-        System.out.println("Mensaje:"+this.cabeceraRM.getConclusiondiagnosticadrm());
-//        JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().update(this.cabeceraRM);      
+        JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().update(this.cabeceraRM);   
+        emailEnviar mail = new emailEnviar();
+        mail.setPara(this.cabeceraRM.getIddoctor().getEmaildoctor());
+        mail.setAsunto("RESULTADO DEL ESTUDIO: " + this.cabeceraRM.getIdte().getNombrete());
+        mail.setContenidoMensaje("Estimado(a),\nRESULTADO DEL ESTUDIO : "+this.cabeceraRM.getCodigoestudiocrm()+"\n"+
+                "NÚMERO DE HISTORIA CLÍNICA: "+this.cabeceraRM.getIdpaciente().getNumhistclinpaciente()+"\n"+
+                "NOMBRES Y APELLIDOS: "+this.cabeceraRM.getIdpaciente().getNombrepaciente()+" "+this.cabeceraRM.getIdpaciente().getApellidopaciente()+"\n"+
+                "MACROSCOPÍA: "+this.cabeceraRM.getDiagnosticomacrosdrm()+"\n"+
+                "MICROSCOPÍA: "+this.cabeceraRM.getDiagnosticomicrosdrm()+"\n"+
+                "CONCLUSIÓN DIAGNÓSTICA: "+this.cabeceraRM.getConclusiondiagnosticadrm()+"\n"+
+                "PATÓLOGO RESPONSABLE: "+this.cabeceraRM.getPatologoasignado());
+        mail.enviarCorreo();
     }
     
     //Getters & Setters
