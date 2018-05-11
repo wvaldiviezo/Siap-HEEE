@@ -5,6 +5,7 @@
  */
 package com.heee.bean.estudiosMicroscopia;
 
+import com.hee.bean.email.emailEnviar;
 import com.heee.bean.model.entity.Cabecerarecepcionmuestra;
 import com.heee.bean.model.jpa.JPAFactoryDAO;
 import java.io.Serializable;
@@ -40,7 +41,19 @@ public class RegistrarMicroscopiaEspecial implements Serializable {
         //detalleRM.setIdcrm(this.cabeceraRM);
         cabeceraRM.setEstadoestudiocrm("Liberado");
         cabeceraRM.setFechaactualizacrm(this.fechaCreacionMicro);
-        JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().update(this.cabeceraRM);      
+        emailEnviar mail = new emailEnviar();
+        mail.setPara(this.cabeceraRM.getIddoctor().getEmaildoctor());
+        mail.setAsunto("RESULTADO DEL ESTUDIO: " + this.cabeceraRM.getIdte().getNombrete());
+        mail.setContenidoMensaje("Estimado(a),\nRESULTADO DEL ESTUDIO : "+this.cabeceraRM.getCodigoestudiocrm()+"\n"+
+                "NÚMERO DE HISTORIA CLÍNICA: "+this.cabeceraRM.getIdpaciente().getNumhistclinpaciente()+"\n"+
+                "NOMBRES Y APELLIDOS: "+this.cabeceraRM.getIdpaciente().getNombrepaciente()+" "+this.cabeceraRM.getIdpaciente().getApellidopaciente()+"\n"+
+                "MACROSCOPÍA: "+this.cabeceraRM.getDiagnosticomacrosdrm()+"\n"+
+                "MICROSCOPÍA: "+this.cabeceraRM.getDiagnosticomicrosdrm()+"\n"+
+                "CONCLUSIÓN DIAGNÓSTICA: "+this.cabeceraRM.getConclusiondiagnosticadrm()+"\n"+
+                "PATÓLOGO RESPONSABLE: "+this.cabeceraRM.getPatologoasignado());
+        
+        mail.enviarCorreo();
+//        JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().update(this.cabeceraRM);      
     }
     
     //Getters & Setters

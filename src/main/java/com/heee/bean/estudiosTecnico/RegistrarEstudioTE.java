@@ -12,6 +12,7 @@ import com.heee.bean.model.entity.MarcadorBio;
 import com.heee.bean.model.entity.Marcadoreseh;
 import com.heee.bean.model.jpa.JPAFactoryDAO;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -35,10 +36,12 @@ public class RegistrarEstudioTE implements Serializable {
     private List<EinhMarcadores> marcadoresInmunohistoquimicaEnBase;
     private Biologiamolecular estudioBiologiaMolecular;
     private List<MarcadorBio> marcadorBiologiaMolecularEnBase;
+    private Date fechaCreaAreaTecnica = new Date();
 
     public void registrarDescripcionTE() {
         cabeceraRM.setEstadoestudiocrm("Microscopia Especial");
         cabeceraRM.setPatologoasignado(patologoAsignado);
+        cabeceraRM.setFechaactualizacrm(this.fechaCreaAreaTecnica);
         JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().update(this.cabeceraRM);
     }
 

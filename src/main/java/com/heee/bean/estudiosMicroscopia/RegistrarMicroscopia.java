@@ -5,6 +5,7 @@
  */
 package com.heee.bean.estudiosMicroscopia;
 
+import com.hee.bean.email.emailEnviar;
 import com.heee.bean.model.entity.Cabecerarecepcionmuestra;
 import com.heee.bean.model.jpa.JPAFactoryDAO;
 import java.io.Serializable;
@@ -40,7 +41,11 @@ public class RegistrarMicroscopia implements Serializable {
         //detalleRM.setIdcrm(this.cabeceraRM);
         cabeceraRM.setEstadoestudiocrm("Liberado");
         cabeceraRM.setFechaactualizacrm(this.fechaCreacionMicro);
-        JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().update(this.cabeceraRM);      
+
+        System.out.println("para:"+this.cabeceraRM.getIddoctor().getEmaildoctor());
+        System.out.println("asunto:"+this.cabeceraRM.getIdte().getNombrete());
+        System.out.println("Mensaje:"+this.cabeceraRM.getConclusiondiagnosticadrm());
+//        JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().update(this.cabeceraRM);      
     }
     
     //Getters & Setters

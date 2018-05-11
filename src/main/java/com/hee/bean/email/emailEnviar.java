@@ -22,28 +22,28 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
-@ManagedBean(name = "emailEnviar")
-@RequestScoped
-public class emailEnviar implements Serializable {
-
+//
+//@ManagedBean(name = "emailEnviar")
+//@RequestScoped
+public class emailEnviar {
+//implements Serializable 
     private final Logger logger = Logger.getAnonymousLogger();
     private final String servidorSMTP = "smtp-mail.outlook.com";
     private final int puertoSMTP = 587;
     private String cuentaEnvio = "siap.heee@outlook.com";
-    private String contrasenia = "adminsiap123";
-    private String to;
-    private String subject;
-    private String messageContent;
+    private String contrasenia = "siap_heee8102";
+    private String para;
+    private String asunto;
+    private String contenidoMensaje;
     private Properties configuracion = new Properties();
     private Date fecha;
     
     public emailEnviar() {
         
-        fecha=new Date();
-        to = "ricardo.mpcs@gmail.com";
-        subject = "prueba";
-        messageContent = "esto es una prueba de la clase comprobando velocidad al:"+fecha;
+//        fecha=new Date();
+//        para = "ricardo.mpcs@gmail.com";
+//        asunto = "prueba";
+//        contenidoMensaje = "esto es una prueba de la clase comprobando velocidad al:"+fecha;
     }
 
     public void enviarCorreo() {
@@ -62,10 +62,10 @@ public class emailEnviar implements Serializable {
 
         try {
             final Message message = new MimeMessage(session);
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(para));
             message.setFrom(new InternetAddress(cuentaEnvio));
-            message.setSubject(subject);
-            message.setText(messageContent);
+            message.setSubject(asunto);
+            message.setText(contenidoMensaje);
             message.setSentDate(new Date());
             Transport.send(message);
         } catch (final MessagingException ex) {
@@ -85,5 +85,29 @@ public class emailEnviar implements Serializable {
         return configuracion;
     }
 
+    public String getPara() {
+        return para;
+    }
+
+    public void setPara(String para) {
+        this.para = para;
+    }
+
+    public String getAsunto() {
+        return asunto;
+    }
+
+    public void setAsunto(String asunto) {
+        this.asunto = asunto;
+    }
+
+    public String getContenidoMensaje() {
+        return contenidoMensaje;
+    }
+
+    public void setContenidoMensaje(String contenidoMensaje) {
+        this.contenidoMensaje = contenidoMensaje;
+    }
+    
 }
 
