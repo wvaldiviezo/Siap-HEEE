@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/plantillas/plantillaInicial.xhtml">
+
+            <ui:define name="content">
+
+                <h:form id="contenidoBuscar" style="text-align: center">
+                    <p:growl id="message" showDetail="true" />
+                    <h1 style="color: #045491;text-align: center">Estadísticas Mensuales</h1>
+                    <h:commandLink>
+                        <p:graphicImage value="/resources/images/pdf.png" />
+                        <p:dataExporter type="pdf" target="tbl" fileName="secretaria" pageOnly="true" />
+                    </h:commandLink>
+                    <p:dataTable id="tbl" var="car" value="" style="margin-bottom:20px" >
+                        <f:facet name="header">
+                            Estadísticas de Estudios
+                        </f:facet>
+
+                        <p:columnGroup type="header">
+                            <p:row>
+                                <p:column headerText= "TIPO DE ESTUDIO"/>
+                            </p:row>
+                            <p:row>
+                                <p:column headerText= "No. DE ESTUDIOS REALIZADOS"/>
+                            </p:row>
+                        </p:columnGroup>
+
+                        <p:column>
+                            <h:outputText value="Quirúrgico" />
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="20" />
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+
+                <!-- Script de estilos para el contenido fel formulario-->
+                <h:outputStylesheet library="css" name="buscar.css" />
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
