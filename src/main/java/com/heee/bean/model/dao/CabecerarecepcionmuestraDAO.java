@@ -8,5 +8,5 @@ public interface CabecerarecepcionmuestraDAO extends GenericDAO<Cabecerarecepcio
     public List<Cabecerarecepcionmuestra> buscarEstudiosAsignadosTecnicosEsp();
     public List<Cabecerarecepcionmuestra> buscarEstudiosParaMicroscopia();
     public List<Cabecerarecepcionmuestra> buscarEstudiosParaMicroscopiaEspecial();
-    
+    public List<Cabecerarecepcionmuestra> buscarEstudiosLiberados();
 }
