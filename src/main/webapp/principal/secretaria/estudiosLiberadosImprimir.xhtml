@@ -14,17 +14,20 @@
             <ui:define name="content">
 
                 <h:form id="contenido" style="text-align: center">
-                    <br/>
-                    <br/>
-                    <p:outputLabel value="HOSPITAL DE ESPECIALIDADES EUGENIO ESPEJO" style="font-weight:bold; font-size: 22px; color: #036fab;text-align: center"/>
-                    <br/>
-                    <p:outputLabel value="UNIDAD DE ANATOMÍA PATOLÓGICA" style="font-weight:bold; font-size: 21px; color: #036fab;text-align: center"/>
-                    <br/>
-                    <p:outputLabel value="INFORME DE ESTUDIO" style="font-weight:bold; font-size: 20px; color: #036fab;text-align: center"/>
-                    <p:growl id="mensaje" autoUpdate="true" severity="info, fatal" showSummary="true" showDetail="true" />
-                    <br/>
-                    <br/>
-                    <h:panelGrid columns="2" cellpadding="3" style="text-align: left">
+
+
+                    <h:panelGrid id="panel" columns="2" cellpadding="3" style="text-align: left" >
+                        
+                        <h:panelGrid columns="1" cellpadding="3" style="text-align: center" >
+                            <br/>
+                            <br/>
+                            <p:outputLabel value="HOSPITAL DE ESPECIALIDADES EUGENIO ESPEJO" style="font-weight:bold; font-size: 22px; color: #036fab;text-align: center"/>
+                            <p:outputLabel value="UNIDAD DE ANATOMÍA PATOLÓGICA" style="font-weight:bold; font-size: 21px; color: #036fab;text-align: center"/>
+                            <p:outputLabel value="INFORME DE ESTUDIO" style="font-weight:bold; font-size: 20px; color: #036fab;text-align: center"/>
+                            <p:growl id="mensaje" autoUpdate="true" severity="info, fatal" showSummary="true" showDetail="true" />
+                            <br/>
+                            <br/>
+                        </h:panelGrid> <p:outputLabel/>
                         <p:outputLabel value="Datos del Estudio" style="font-weight:bold; font-size: 20px; color: #036fab;"/><p:outputLabel/>
                         <p:outputLabel value="Tipo de Estudio:" style="font-weight:bold;"/>
                         <h:outputLabel  value="#{imprimirEstudiosLiberados.estudioCRM.idte.nombrete}" style="color: #045491;font-weight:bold"/>
@@ -62,7 +65,7 @@
                         <p:outputLabel value="Diagnosticos" style="font-weight:bold; font-size: 20px; color: #036fab;"/><p:outputLabel/>
                         <p:outputLabel value="Macroscopía:" style="font-weight:bold"/>
                         <h:outputLabel  value="#{imprimirEstudiosLiberados.estudioCRM.diagnosticomacrosdrm}" style="color: #045491;font-weight:bold"/>
-                        <p:outputLabel value="Macroscopía:" style="font-weight:bold"/>
+                        <p:outputLabel value="Microscopía:" style="font-weight:bold"/>
                         <h:outputLabel  value="#{imprimirEstudiosLiberados.estudioCRM.diagnosticomicrosdrm}" style="color: #045491;font-weight:bold"/>
                         <p:outputLabel value="Conclusión Diagnóstica:" style="font-weight:bold"/>
                         <h:outputLabel  value="#{imprimirEstudiosLiberados.estudioCRM.conclusiondiagnosticadrm}" style="color: #045491;font-weight:bold"/>
@@ -70,21 +73,22 @@
                     <br/>
                     <br/>
                     <br/>
-                    
-                        <p:commandButton value="Imprimir" type="button" icon="fa fa-print">
+
+                    <p:commandButton value="Imprimir" type="button" icon="fa fa-print">
+                        <p:printer target="panel" />
+
+                    </p:commandButton>
+
+                    <p:commandButton  icon="fa fa-fw fa-remove" value="Cancelar" action="#{imprimirEstudiosLiberados.cancelar()}" immediate="true">
+                        <p:confirm header="Confirmación" message="Desea salir !" icon="ui-icon-alert" />
+                    </p:commandButton>
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
                             <p:printer target="contenido" />
                         </p:commandButton>
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
 
-                        <p:commandButton  icon="fa fa-fw fa-remove" value="Cancelar" action="#{imprimirEstudiosLiberados.cancelar()}" immediate="true">
-                            <p:confirm header="Confirmación" message="Desea salir !" icon="ui-icon-alert" />
-                        </p:commandButton>
-                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                            <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check">
-                                <p:printer target="contenido" />
-                            </p:commandButton>
-                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                        </p:confirmDialog>
-                    
 
                 </h:form>
 

@@ -8,42 +8,39 @@
 
     <body>
 
+
         <ui:composition template="./../../WEB-INF/plantillas/plantillaInicial.xhtml">
 
             <ui:define name="content">
 
-                <h:form id="contenidoBuscar" style="text-align: center">
-                    <p:growl id="message" showDetail="true" />
-                    <h1 style="color: #045491;text-align: center">Estadísticas Mensuales</h1>
-                    <h:commandLink>
-                        <p:graphicImage value="/resources/images/pdf.png" />
-                        <p:dataExporter type="pdf" target="tbl" fileName="secretaria" pageOnly="true" />
-                    </h:commandLink>
-                    <p:dataTable id="tbl" var="car" value="" style="margin-bottom:20px" >
-                        <f:facet name="header">
-                            Estadísticas de Estudios
-                        </f:facet>
+                <h:form id="contenido">
+                    <h1 style="color: #045491;text-align: center">Estadística</h1>
+                    <p:panelGrid columns="2">
+                    <p:chart type="pie" model="#{grafico.modelo}" style="width:400px;height:300px;" responsive="true" />
+                    </p:panelGrid>
+                    <p:panelGrid columns="1">
+                        <p:dataTable id="estudiosPorAnio" value="#{grafico.estudiosPorAnio}" var="estudio"  widgetVar="estudiosTabla" rows="15"
+                                         paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="10,15,20"
+                                         sortOrder="descending" paginatorPosition="top" emptyMessage="No hay ningún registro con esa opción">
 
-                        <p:columnGroup type="header">
-                            <p:row>
-                                <p:column headerText= "TIPO DE ESTUDIO"/>
-                            </p:row>
-                            <p:row>
-                                <p:column headerText= "No. DE ESTUDIOS REALIZADOS"/>
-                            </p:row>
-                        </p:columnGroup>
-
-                        <p:column>
-                            <h:outputText value="Quirúrgico" />
-                        </p:column>
-                        <p:column>
-                            <h:outputText value="20" />
-                        </p:column>
-                    </p:dataTable>
+                                <p:column headerText="Estudio" style="width: 30px"  >
+                                    <h:outputText value="#{estudio.idte.nombrete}" />
+                                </p:column>
+                               <p:column headerText="Cantidad" style="width: 30px"  >
+                                   <h:outputText value="#{estudio.numtipoestudio}" />
+                                </p:column>
+                            </p:dataTable>
+                    </p:panelGrid>
                 </h:form>
 
+
+
+                <!-- Scrip para usar el calendario en español-->
+                <h:outputScript library="js" name="spanishLocale.js" />
+                <h:outputScript library="js" name="limpiar.js" />
                 <!-- Script de estilos para el contenido fel formulario-->
-                <h:outputStylesheet library="css" name="buscar.css" />
+                <h:outputStylesheet library="css" name="estudios.css" />
+
 
             </ui:define>
 

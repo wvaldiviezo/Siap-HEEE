@@ -29,6 +29,7 @@ public class CodigoEstudioListar implements Serializable {
     private Date fecha;
     private int numeroEstudios;
     private int idTipoEstudio;
+    private String anio;
     private List<Contadorestipoestudioanio> EstudiosPorIdTipo;
     List<Tipoestudio> TiposEstudioporNombre;
 
@@ -98,17 +99,21 @@ public class CodigoEstudioListar implements Serializable {
     public String getCodigo() {
         String[] campoTipo = {"nombrete"};
         String[] valorCampoTipo = {nombreEstudio};
-        System.out.println("nombre de estudio"+nombreEstudio);
+        System.out.println("nombre de estudio" + nombreEstudio);
         TiposEstudioporNombre = JPAFactoryDAO.getFactory().getTipoEstudioDAO().find(campoTipo, valorCampoTipo);
 
         //sacar el id unicamente del estudio que esta en la coleccion anterior
         idTipoEstudio = TiposEstudioporNombre.get(0).getIdte();
-
+        anio = new SimpleDateFormat("yyyy").format(fecha);
         EstudiosPorIdTipo = JPAFactoryDAO.getFactory().getContadoresTipoEstudioAnioDAO().find();
 
         for (Contadorestipoestudioanio obj : EstudiosPorIdTipo) {
-            if (obj.getIdte().getIdte() == idTipoEstudio) {
-                numeroEstudios += 1;
+
+            System.out.println("**sentencia:" + (obj.getIdte().getIdte().equals(idTipoEstudio)) +" Y "+(obj.getAnioctea().equals(anio)));
+
+            if ((obj.getIdte().getIdte().equals(idTipoEstudio)) && (obj.getAnioctea().equals(anio))) {
+                System.out.println("paso if desde codigo estudio");
+                numeroEstudios = obj.getNumtipoestudio();
             }
         }
 //        para sacar el numero del estudio que se esta ingresando en este momento
