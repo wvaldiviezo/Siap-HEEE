@@ -31,6 +31,8 @@ public class contadorEstudioCrear implements Serializable {
     private Tipoestudio tTipoestudioipoEstudio;
     private List<Tipoestudio> TiposEstudioporNombre;
     private List<Contadorestipoestudioanio> contadoresEnBase;
+    private List<Contadorestipoestudioanio> estudiosPorAnio;
+    private String anio;
 
     public contadorEstudioCrear() {
 
@@ -48,57 +50,53 @@ public class contadorEstudioCrear implements Serializable {
         int contador = 0;
         System.out.println("*****entro a crear estudio en contador de estudio");
         cabeceraEnBase = JPAFactoryDAO.getFactory().getCabecerarecepcionmuestraDAO().find();
-        for(Cabecerarecepcionmuestra cabecera: cabeceraEnBase){
-            System.out.println("id cabeceras:"+cabecera.getIdte().getIdte());
+        for (Cabecerarecepcionmuestra cabecera : cabeceraEnBase) {
+            System.out.println("id cabeceras:" + cabecera.getIdte().getIdte());
         }
         this.tipoEstudio.setIdte(cabeceraEnBase.get(cabeceraEnBase.size() - 1).getIdte().getIdte());
-        System.out.println("ID tipo de estudio"+cabeceraEnBase.get(cabeceraEnBase.size() - 1).getIdte().getIdte());
+        System.out.println("ID tipo de estudio" + cabeceraEnBase.get(cabeceraEnBase.size() - 1).getIdte().getIdte());
         this.contadorEstudio.setIdte(this.tipoEstudio);
         this.contadorEstudio.setAnioctea(new SimpleDateFormat("yyyy").format(fecha));
         contadoresEnBase = JPAFactoryDAO.getFactory().getContadoresTipoEstudioAnioDAO().find();
 
-        for (int i = 1; i <= contadoresEnBase.size(); i++) {
-            if (contadorEstudio.getAnioctea().equals(contadoresEnBase.get(i - 1).getAnioctea()) && contadorEstudio.getIdte().equals(contadoresEnBase.get(i - 1).getIdte())) {
-                System.out.println("Cumplio condicion de if");
-                System.out.println("tipo de estudio"+this.contadorEstudio.getIdte().getNombrete());
-                System.out.println("ID tipo de estudio"+cabeceraEnBase.get(cabeceraEnBase.size() - 1).getIdte().getIdte());
-                this.tipoEstudio.setIdte(cabeceraEnBase.get(cabeceraEnBase.size() - 1).getIdte().getIdte());
-                this.contadorEstudio.setIdte(this.tipoEstudio);
-                this.contadorEstudio.setIdctea(contadoresEnBase.get(i - 1).getIdctea());
-                this.contadorEstudio.setNumtipoestudio(contadoresEnBase.get(i - 1).getNumtipoestudio() + 1);
-                this.contadorEstudio.setFechacreacion(fecha);
-                JPAFactoryDAO.getFactory().getContadoresTipoEstudioAnioDAO().update(this.contadorEstudio);
-            } else if (i == contadoresEnBase.size()) {
-                this.tipoEstudio.setIdte(cabeceraEnBase.get(cabeceraEnBase.size() - 1).getIdte().getIdte());
-                this.contadorEstudio.setIdte(this.tipoEstudio);
-                System.out.println("Cumplio condicion de else if");
-                System.out.println("***tipo de estudio"+this.contadorEstudio.getIdte().getNombrete());
-                System.out.println("**ID tipo de estudio"+cabeceraEnBase.get(cabeceraEnBase.size() - 1).getIdte().getIdte());
-//                contadorEstudio.setIdctea(null);
-                this.contadorEstudio.setNumtipoestudio(1);
-                this.contadorEstudio.setFechacreacion(fecha);
-                JPAFactoryDAO.getFactory().getContadoresTipoEstudioAnioDAO().create(this.contadorEstudio);
+        anio = new SimpleDateFormat("yyyy").format(fecha);
+        System.out.println("an;o" + anio);
+//        cantidadEstudios = JPAFactoryDAO.getFactory().getContadoresTipoEstudioAnioDAO().find();
+        String[] atributo = {"anioctea"};
+        String[] valor = {anio};
+        estudiosPorAnio = JPAFactoryDAO.getFactory().getContadoresTipoEstudioAnioDAO().find(atributo, valor);
+
+        if (contadoresEnBase.isEmpty()) {
+
+            System.out.println("entro a empty ");
+            this.tipoEstudio.setIdte(cabeceraEnBase.get(cabeceraEnBase.size() - 1).getIdte().getIdte());
+            this.contadorEstudio.setIdte(this.tipoEstudio);
+            this.contadorEstudio.setNumtipoestudio(1);
+            this.contadorEstudio.setFechacreacion(fecha);
+            JPAFactoryDAO.getFactory().getContadoresTipoEstudioAnioDAO().create(this.contadorEstudio);
+            this.contadorEstudio=null;
+        } else {
+            for (Contadorestipoestudioanio contadorActual : estudiosPorAnio) {
+                if (contadorActual.getIdte().getIdte().equals(cabeceraEnBase.get(cabeceraEnBase.size() - 1).getIdte().getIdte())) {
+                    
+                    this.contadorEstudio = contadorActual;
+                    this.contadorEstudio.setNumtipoestudio(contadorActual.getNumtipoestudio() + 1);
+                    this.contadorEstudio.setFechacreacion(fecha);
+                    JPAFactoryDAO.getFactory().getContadoresTipoEstudioAnioDAO().update(this.contadorEstudio);
+                    this.contadorEstudio=null;
+                } else if (contadorActual.equals(estudiosPorAnio.get(estudiosPorAnio.size() - 1))) {
+                    
+                    this.contadorEstudio.setIdctea(null);
+                    this.tipoEstudio.setIdte(cabeceraEnBase.get(cabeceraEnBase.size() - 1).getIdte().getIdte());
+                    this.contadorEstudio.setIdte(this.tipoEstudio);
+                    this.contadorEstudio.setNumtipoestudio(1);
+                    this.contadorEstudio.setFechacreacion(fecha);
+                    JPAFactoryDAO.getFactory().getContadoresTipoEstudioAnioDAO().create(this.contadorEstudio);
+                    this.contadorEstudio=null;
+                }
             }
         }
 
-//        for( Contadorestipoestudioanio contadores : contadoresEnBase ){
-//            contadores.getIdte();
-//            if(contadores.getIdte().getIdte().equals(cabeceraEnBase.get(cabeceraEnBase.size()-1).getIdte().getIdte()) && contadores.getAnioctea().equals(this.contadorEstudio.getAnioctea()) ){
-//            contadorEstudio.setNumtipoestudio(contadores.getNumtipoestudio()+1);
-//            contadorEstudio.setIdctea(contadores.getIdctea());
-//            JPAFactoryDAO.getFactory().getContadoresTipoEstudioAnioDAO().update(this.contadorEstudio);
-//            break;
-//            }              
-//        }
-//        contadorEstudio.setIdctea(null);
-//        contadorEstudio.setNumtipoestudio(1);
-//        contadorEstudio.setFechacreacion(fecha);
-//        JPAFactoryDAO.getFactory().getContadoresTipoEstudioAnioDAO().create(this.contadorEstudio);
-//        contador+=1;
-//        System.out.println("Total de estudios:"+contador);
-//        contadorEstudio.setNumtipoestudio(contador);
-//        contadorEstudio.setFechacreacion(fecha);
-//        
     }
     //getter and setter
 
