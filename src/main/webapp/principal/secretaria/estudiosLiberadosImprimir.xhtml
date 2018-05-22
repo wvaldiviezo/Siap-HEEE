@@ -18,12 +18,16 @@
 
                     <h:panelGrid id="panel" columns="2" cellpadding="3" style="text-align: left" >
                         
-                        <h:panelGrid columns="1" cellpadding="3" style="text-align: center" >
+                        
+                        <h:panelGrid columns="1"  cellpadding="3" style="text-align: center " >
+                            <img src="./../.../resources/images/ministerio.jpg">
+                                 
+                            </img>
                             <br/>
                             <br/>
-                            <p:outputLabel value="HOSPITAL DE ESPECIALIDADES EUGENIO ESPEJO" style="font-weight:bold; font-size: 22px; color: #036fab;text-align: center"/>
-                            <p:outputLabel value="UNIDAD DE ANATOMÍA PATOLÓGICA" style="font-weight:bold; font-size: 21px; color: #036fab;text-align: center"/>
-                            <p:outputLabel value="INFORME DE ESTUDIO" style="font-weight:bold; font-size: 20px; color: #036fab;text-align: center"/>
+                            <p:outputLabel value="HOSPITAL DE ESPECIALIDADES EUGENIO ESPEJO" style="font-weight:bold; font-size: 22px; color: #6d6f6a;text-align: center"/>
+                            <p:outputLabel value="UNIDAD DE ANATOMÍA PATOLÓGICA" style="font-weight:bold; font-size: 21px; color: #6d6f6a;text-align: center"/>
+                            <p:outputLabel value="INFORME DE ESTUDIO" style="font-weight:bold; font-size: 20px; color: #6d6f6a;text-align: center"/>
                             <p:growl id="mensaje" autoUpdate="true" severity="info, fatal" showSummary="true" showDetail="true" />
                             <br/>
                             <br/>
@@ -69,6 +73,8 @@
                         <h:outputLabel  value="#{imprimirEstudiosLiberados.estudioCRM.diagnosticomicrosdrm}" style="color: #045491;font-weight:bold"/>
                         <p:outputLabel value="Conclusión Diagnóstica:" style="font-weight:bold"/>
                         <h:outputLabel  value="#{imprimirEstudiosLiberados.estudioCRM.conclusiondiagnosticadrm}" style="color: #045491;font-weight:bold"/>
+                        <p:outputLabel value="Patologo Responsable:" style="font-weight:bold"/>
+                        <h:outputLabel  value="#{imprimirEstudiosLiberados.estudioCRM.patologoasignado}" style="color: #045491;font-weight:bold"/>
                     </h:panelGrid>
                     <br/>
                     <br/>
