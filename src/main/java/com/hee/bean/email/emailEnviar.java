@@ -31,7 +31,7 @@ public class emailEnviar {
     private final String servidorSMTP = "smtp-mail.outlook.com";
     private final int puertoSMTP = 587;
     private String cuentaEnvio = "siap.heee@outlook.com";
-    private String contrasenia = "siap_heee8102";
+    private String contrasenia = "siap123";
     private String para;
     private String asunto;
     private String contenidoMensaje;
